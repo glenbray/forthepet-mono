@@ -1,0 +1,18 @@
+.container
+  h1 Subscribe
+  h2 For updates and featured specials
+  p Subscribe to recieve featured specials, special offers, and news updates.
+  .row
+    .col-md-4
+      = form_for :subscribe, url: mailing_list_index_path, method: :post do |f| 
+        table 
+          tr
+            td
+              = f.label "Email"
+            td
+              = f.text_field :email, class: 'form-control', placeholder: 'Email address', style: "color: #000000 !important;"
+          tr
+            td 
+              | &nbsp;
+            td
+              = f.submit "Subscribe", class: 'btn btn-primary'

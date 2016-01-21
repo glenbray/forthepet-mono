@@ -1,0 +1,97 @@
+// Place all the styles related to the referrals controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.referral_steps {
+  background: #ffffff;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-right: 72px;
+  .btn-primary {
+    background: darken(#04aff7, 10%);
+    color: #ffffff !important;
+    padding: 5px 15px;
+    border-radius: 0;
+    font-weight: bold;
+    transition: background 0.15s linear, top 0.08s linear, border 0.15s linear;
+    text-decoration: none;
+    display: inline-block;
+    border: 2px solid darken(#04aff7, 10%);
+    border-radius: 0 !important;
+    text-transform: uppercase;
+    i {
+      margin-right: 8px;
+    }
+    &:hover {
+      text-decoration: none;
+      background: darken(#04aff7, 0%);
+      color: #fff !important;
+      border: 2px solid darken(#04aff7, 0%);
+    }
+    &:focus {
+      outline: 0;
+    }
+  }
+  div[class*="step"] {
+    .innerContainer {
+      display: table-cell;
+      vertical-align: middle;
+      width: 100%;
+      height: 92px;
+      padding-left: 60px;
+      padding-right: 120px;
+    }
+  }
+  .step1 {
+    background: image-url('step1.png') no-repeat left center, image-url('step1_r.png') no-repeat right center;
+    background-size: auto, auto;
+    .input-group-btn {
+      margin: 0; padding: 0;
+    }
+  }
+  .step2 {
+    background: image-url('step2.png') no-repeat left center, image-url('step2_r.png') no-repeat right center;
+    background-size: auto, auto;
+  }
+  .step3 {
+    background: image-url('step3.png') no-repeat left center, image-url('step3_r.png') no-repeat right center;
+    background-size: auto, auto;
+  }
+  hr {
+    border-color: #ccc;
+  }
+}
+
+@media (min-width: 992px) {
+  .browse_share {
+    display: table-cell;
+    vertical-align: middle;
+    height: 440px;
+    a {
+      padding: 20px;
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  footer {
+    text-align: center;
+  }
+  h1 {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 991px) {
+  .referral_steps {
+    margin-right: 0;
+  }
+  .browse_share {
+    text-align: center;
+    margin-top: 90px;
+    a {
+      padding: 20px;
+    }
+  }
+}

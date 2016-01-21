@@ -1,0 +1,28 @@
+---
+galaxy_info:
+  author: "forthepet"
+  license: BSD
+  min_ansible_version: 1.4
+  platforms:
+   - name: EL
+     versions:
+      - 5
+      - 6
+   - name: Fedora
+     versions:
+      - 16
+      - 17
+      - 18
+   - name: Ubuntu
+     versions:
+      - utopic
+      - precise
+      - quantal
+      - raring
+      - saucy
+   - name: Debian
+     versions:
+      - wheezy
+  categories:
+   - system
+dependencies: []

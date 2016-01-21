@@ -1,0 +1,10 @@
+- name: check if bundler gem installed
+  shell: bash -lc "gem list | grep bundler"
+  ignore_errors: yes
+  register: bundler_installed
+  tags: bundler_install
+
+- name: install bundler gem
+  shell: bash -lc "gem install bundler"
+  when: bundler_installed|failed
+  tags: bundler_install

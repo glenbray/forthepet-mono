@@ -1,0 +1,9 @@
+[webservers]
+192.168.77.22
+
+[databases]
+192.168.77.23
+
+[development:children]
+webservers
+databases

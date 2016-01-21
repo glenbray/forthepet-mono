@@ -1,0 +1,35 @@
+.container
+  .row
+    div class="col-lg-10 col-lg-offset-1"
+      = link_to admin_option_index_path, class: 'generic-outlined-btn push-down' do
+        i class="fa fa-arrow-circle-o-left fa-2"
+        | Return
+      .admin-panel style="margin-bottom: 20px; padding-bottom: 20px;"
+        div class="admin-title"
+          h3 Option Values for #{@option_value.option.name}
+        div class="admin-body"
+          .row
+            .col-md-5
+              = simple_form_for @option_value, url: "/admin/option/#{@option_value.option_id}/values/" do |f|
+                = f.hidden_field :option_id, value: @option_value.option_id
+                = f.input :name, autofocus: true
+                = f.input :display
+                = f.submit 'Create Option Value', class: 'btn-action'
+
+          hr
+
+          table.table.table-striped
+            thead
+              th
+              th Name
+              th Display
+              th
+            tbody.sortable data-sortable-url="#{admin_option_values_sort_url}"
+              - @option.option_values.each do |v|
+                = content_tag_for :tr, v do
+                  td 
+                    i class="fa fa-bars fa-2x"
+                  td = v.name
+                  td = v.display
+                  td = link_to 'Edit', edit_admin_option_option_value_path(v.option_id, v.id)
+                  / td = link_to 'Delete', ''

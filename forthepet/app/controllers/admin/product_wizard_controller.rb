@@ -1,0 +1,81 @@
+class Admin::ProductWizardController < Admin::AdminController
+  include Wicked::Wizard
+
+  steps :category, :supplier, :product, :image, :final
+
+  def show
+    case step
+    when :supplier
+      search_supplier
+    when :product
+      session_product_variant
+      product_form
+    when :image
+      @photo = session_product.photos.build
+    end
+
+    render_wizard
+  end
+
+  def update
+    @product = session_product
+
+    case step
+    when :category
+      @product.update_attributes(category_id: params[:product][:category])
+      render_wizard @product
+    when :supplier
+      @product.update_attributes(supplier_id: params[:supplier_id])
+      render_wizard @product
+    when :product
+      session_product_variant
+
+      if product_form.validate(params[:product])
+        render_wizard @product_form
+      else
+        render_wizard
+      end
+    when :image
+      @photo = session_product.photos.build(image_params)
+      @photo.save
+      render_wizard
+    when :final
+      @product.update_attributes(is_active: true)
+      session[:product_id] = nil
+      redirect_to edit_admin_product_path(@product)
+    end
+  end
+
+  private
+
+  def search_supplier
+    @q = Supplier.search(params[:q])
+    @suppliers = @q.result(distinct: true)
+  end
+
+  def product_form
+    @product_form ||= Admin::CreateProductForm.new(session_product)
+  end
+
+  def session_product_variant
+    session_product.build_master_variant if session_product.master_variant.nil?
+    session_product
+  end
+
+  def session_product
+    @product ||= begin
+      if session[:product_id].blank?
+        product = Product.create
+        session[:product_id] = product.id
+        product
+      else
+        Product.find(session[:product_id])
+      end
+    end
+  end
+
+  def image_params
+    params.require(:photo).permit(:alt_text, :picture, :description)
+  end
+
+end

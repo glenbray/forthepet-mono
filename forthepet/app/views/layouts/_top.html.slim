@@ -1,0 +1,10 @@
+.container
+  div class="row top-section"
+    div class="col-lg-6 col-md-6 col-sm-6 col-md-offset-0 col-sm-offset-3"
+      = image_tag("forthepetlogo.jpg", width: '290', format: 'jpg', secure: true)
+    div class="col-lg-6 col-md-6 col-sm-6 col-md-offset-0"
+      div class="top-panel"
+        = link_to 'My Account'
+        = link_to cart_index_path do
+          i.icon-shopping-cart
+          = "Cart #{session_cart.cart_items_count}"

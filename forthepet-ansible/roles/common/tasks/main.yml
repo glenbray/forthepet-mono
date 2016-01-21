@@ -1,0 +1,53 @@
+- name: add git core ppa
+  apt_repository: repo='ppa:git-core/ppa' state=present
+  tags: common
+
+- name: install essential packages
+  apt: pkg={{ item }} state=present update_cache=true cache_valid_time=86400
+  with_items:
+    - git
+    - vim
+    - tmux
+    - curl
+    - make
+    - ntp
+    - fail2ban
+    - unattended-upgrades
+    - logwatch
+  tags: common
+
+- name: copy sshd_config
+  copy: src=sshd_config dest=/etc/ssh/sshd_config
+  # notify:
+  #   - restart ssh
+  tags: common
+
+
+# - name: Disallow SSH password authentication
+#   lineinfile:
+#     dest=/etc/ssh/sshd_config
+#     regexp="^PasswordAuthentication"
+#     line="PasswordAuthentication no"
+#     state=present
+#   notify:
+#     - restart ssh
+#   tags: common
+
+- name: Allow port 22 access
+  ufw: rule=allow name=OpenSSH
+  tags: common
+
+- name: Open firewall ports
+  ufw: rule=allow port={{ item }}
+  with_items: ufw_ports
+  tags: common
+
+- name: Start firewall
+  ufw: state=enabled
+  tags: common
+
+- name: set vim as default editor
+  command: update-alternatives --install "/usr/bin/editor" "editor" "/usr/bin/vim" 100
+  tags:
+    - common
+    - alternatives

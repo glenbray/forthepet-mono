@@ -1,0 +1,102 @@
+doctype html
+html
+  head
+    - meta title: "For the Pet", description: "For the pet has the best deals in Australia for discounted pet products.", keywords: %w(pet deals cheap discount cats dogs snakes)
+
+    meta charset="utf-8"
+    meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    = metamagic
+
+    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
+    = csrf_meta_tags
+    = render 'layouts/shim'
+
+  body
+    div id="fb-root"
+    div class="m-pikabu-viewport"
+
+      div class="m-pikabu-sidebar m-pikabu-left"
+        nav class="off-canvas-left"
+          ul
+            = nav_link 'All Deals', root_path
+            = nav_link 'Dog Deals', dog_deals_products_path
+            = nav_link 'Cat Deals', cat_deals_products_path
+            = nav_link 'Misc', misc_deals_products_path
+            = nav_link 'Refer a Friend', referrals_path
+            = nav_link 'How it works', how_it_works_path
+            = nav_link 'About', about_path
+
+      div class="m-pikabu-container"
+        div class="top-header" id="top"
+          div class="container top-wrapper"
+            a href="#{root_path}"
+              = image_tag("forthepetlogo-final-tran.png", width: 240, height: 68, format: 'jpg', class: 'logo', crop: :scale)
+            nav class="cart-box-top hidden-xs"
+              = render partial: 'shared/cart_top', locals: { cart: session_cart }
+
+        header
+          = render 'layouts/menu'
+        section style="background: #fff; min-height: 400px;"
+          .body
+            - unless flash.empty?
+              div class="container"
+                - flash.each do |key, value|
+                  div class="alert alert-#{key}"
+                    = value
+                    a class="close" data-dismiss="alert" href="#"&times;
+
+            = content_for?(:wizard) ? yield(:wizard) : yield
+          = render 'layouts/footer'
+    a href="#" class="back-to-top"
+      i class="fa fa-arrow-up fa-lg"
+
+
+    - unless current_user
+      #signup.modal.fade aria-hidden="true" role="dialog" tabindex="-1"
+        .modal-dialog
+          .modal-content
+            .modal-header
+              button.close aria-label="Close" data-dismiss="modal" type="button"
+                span aria-hidden="true"  &times;
+              h4#myModalLabel.modal-title style="color: #04aff7;" Subscribe
+            .modal-body
+              p style="color: #F97415; margin-bottom: 25px;" Daily Deals for Pets
+              = form_for :subscribe, url: mailing_list_index_path, method: :post do |f|
+                div class="form-group"
+                  = f.label :email
+                  = f.email_field :email, class: 'form-control', placeholder: 'Email address', required: true
+                .form-group
+                  = f.submit 'Sign me up!', class: 'btn btn-success', style: 'border-radius: 0px;'
+
+            .modal-footer
+              = link_to 'Privacy Policy', privacy_policy_path, class: 'pull-left', style: 'margin-top: 7px;'
+              button.btn.btn-default data-dismiss="modal" type="button" Not Interested
+
+
+    noscript
+      iframe height="0" src="//www.googletagmanager.com/ns.html?id=GTM-M4LT5G" style="display:none;visibility:hidden" width="0"
+
+    = javascript_include_tag "application", "data-turbolinks-track" => true, async: 'true'
+
+    javascript:
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-24998893-2', 'auto');
+        ga('send', 'pageview');
+
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-M4LT5G');
+
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3&appId=322505021225270"
+        fjs.parentNode.insertBefore(js, fjs)
+      }(document, 'script', 'facebook-jssdk'))

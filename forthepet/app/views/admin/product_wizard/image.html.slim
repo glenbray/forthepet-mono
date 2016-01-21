@@ -1,0 +1,41 @@
+.container
+  .row
+    .col-xs-12
+      h2 Product Wizard
+
+      div.progress
+        div class="progress-bar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 100%;" 100%
+
+      div class="wizard-container"
+        h3 Upload Images
+
+        = simple_form_for @photo, url: wizard_path, method: :put do |f|
+          .row
+            .col-lg-4
+              = f.label :alt_text
+              = f.text_field :alt_text, class: 'form-control', placeholder: 'alt text'
+          .row.form-spacer
+            .col-lg-4
+              = f.label :description
+              = f.text_field :description, class: 'form-control', placeholder: 'Identifying text for admin'
+          .row.form-spacer
+            .col-lg-3
+              = f.hidden_field :picture_cache
+              = f.file_field :picture
+          .form-spacer
+            = f.submit 'Save Image', class: 'btn btn-primary'
+            = link_to 'Continue', next_wizard_path, class: 'btn btn-primary', style: 'margin-left: 5px;', method: :put
+
+        - if @product.photos?
+          table.table.form-spacer
+            thead
+              th Image
+              th Alt text
+              th Description
+            - @product.photos.each do |p|
+              tr
+                td = image_tag(p.picture_url(:thumbnail), alt: p.alt_text)
+                td = p.alt_text
+                td = p.description
+                / td
+                  / = link_to "Remove", "/admin/product/#{@product.id}/remove_image/#{p.id}", data: {confirm: 'Are you sure?'}, method: 'delete', class: 'delete'

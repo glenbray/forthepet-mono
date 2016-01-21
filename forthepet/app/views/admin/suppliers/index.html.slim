@@ -1,0 +1,38 @@
+.container
+  .row
+    div class="col-lg-10 col-lg-offset-1"
+      = link_to new_admin_supplier_path, class: 'generic-outlined-btn push-down' do
+        i class="fa fa-plus"
+        | New Supplier
+
+      .admin-panel
+        div class="admin-title"
+          h3 Suppliers
+        div class="admin-body"
+          div class="search"
+            = search_form_for @q, url: admin_suppliers_path do |f|
+              div class="input-group col-xs-7"
+                = f.text_field :name_cont, class: 'input-group form-control', placeholder: 'Search by name, abn, phone, mobile, fax, or email'
+                span class="input-group-btn"
+                  = f.submit 'Search', class: 'btn btn-info'
+          hr
+          table.table
+            tr
+              th Supplier Name
+              th ABN
+              th Phone
+              th Mobile
+              th Fax
+              th Email
+              th
+              / th
+            - @suppliers.each do |s|
+              tr
+                td = s.name
+                td = s.abn
+                td = s.phone
+                td = s.mobile
+                td = s.fax
+                td = s.email
+                td = link_to 'Edit', edit_admin_supplier_path(s.id)
+                / td = link_to 'Delete', 'admin/suppliers', method: 'destroy'

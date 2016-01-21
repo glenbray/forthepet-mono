@@ -1,0 +1,43 @@
+- name: remove nginx package
+  apt: name=nginx state=absent
+  tags: nginx_passenger
+
+- name: gpg --keyserver keyserver.ubuntu.com --recv-keys 561F9B9CAC40B2F7
+  shell: gpg --keyserver keyserver.ubuntu.com --recv-keys 561F9B9CAC40B2F7
+  tags: nginx_passenger
+
+- name: gpg --armor --export 561F9B9CAC40B2F7 | sudo apt-key add -
+  shell: gpg --armor --export 561F9B9CAC40B2F7 | sudo apt-key add -
+  tags: nginx_passenger
+
+- name: install apt-transport-https package
+  apt: name={{ item }} state=present
+  with_items:
+    - apt-transport-https
+    - ca-certificates
+  tags: nginx_passenger
+
+- name: touch /etc/apt/sources.list.d/passenger.list
+  file: path=/etc/apt/sources.list.d/passenger.list state=touch
+  tags: nginx_passenger
+
+- name: add /etc/apt/sources.list.d/passenger.list
+  lineinfile: dest=/etc/apt/sources.list.d/passenger.list state=present line="deb https://oss-binaries.phusionpassenger.com/apt/passenger trusty main" mode=0600
+  register: passenger_source
+  tags: nginx_passenger
+
+- name: apt-get udpate
+  apt: update_cache=yes
+  when: passenger_source.changed
+  tags: nginx_passenger
+
+- name: apt-get install nginx-full passenger
+  apt: name={{ item }} state=present
+  with_items:
+    - nginx-full
+    - passenger
+  tags: nginx_passenger
+
+- name: copy over nginx.conf with passenger support
+  template: src=nginx.conf.j2 dest=/etc/nginx/nginx.conf
+  tags: nginx_passenger

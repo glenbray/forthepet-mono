@@ -1,0 +1,30 @@
+.container
+  .row
+    div class="col-lg-10 col-lg-offset-1 push-down"
+      = link_to admin_product_index_path, class: 'generic-outlined-btn push-down' do
+        i class="fa fa-arrow-circle-o-left fa-2"
+        | Return
+      .admin-panel
+        div class="admin-title"
+          h3 Product Features
+        div class="admin-body"
+          = render 'admin/product/products_tabs'
+          .row
+            div class="col-md-5"
+              = simple_form_for @feature, url: '' do |f|
+                = f.input :description, input_html: { autofocus: true }
+                = f.submit
+
+          .row
+            .col-xs-12
+              hr
+              h3 Saved Features
+              table.table
+                thead
+                  th Description
+                  th
+                tbody
+                  - @product.features.each do |feature|
+                    tr
+                      td = feature.description
+                      td = link_to 'Delete', admin_product_feature_path(@product, feature), method: :delete

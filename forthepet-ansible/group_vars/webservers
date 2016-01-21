@@ -1,0 +1,9 @@
+rbenv_versions:
+  - version: 2.2.2
+    default_ruby: true
+    global_gems:
+      - bundler
+
+ufw_ports:
+  - 80
+  - 443

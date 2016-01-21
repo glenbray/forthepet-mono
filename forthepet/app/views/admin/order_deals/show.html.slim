@@ -1,0 +1,24 @@
+.container
+  .row
+    div class="col-lg-12"
+      .admin-panel
+        div class="admin-title"
+          h3 Deal Orders
+        div class="admin-body"
+          h3 = @deal.name
+          = link_to 'Email supplier'
+          table.table
+            thead
+              th Order Id
+              th Quantity
+              th Cost
+              th State
+              th
+            tbody
+              - @order_items.each do |order_item|
+                tr
+                  td = order_item.id
+                  td = order_item.quantity
+                  td = order_item.total
+                  td = order_item.aasm_state
+                  td

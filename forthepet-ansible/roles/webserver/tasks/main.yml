@@ -1,0 +1,53 @@
+- name: create user forthepet
+  user: name=forthepet shell=/bin/bash state=present
+  tags: webserver
+
+- name: prepare deploy path
+  file: path={{ item }} owner=forthepet mode=755 state=directory
+  with_items:
+    - /var/www/forthepet
+    - /var/www/forthepet/releases
+    - /var/www/forthepet/shared
+    - /var/www/forthepet/shared/bundle
+    - /var/www/forthepet/shared/log
+    - /var/www/forthepet/shared/pids
+  tags: webserver
+
+- name: set home directory of user forthepet
+  user: name=forthepet home=/var/www/forthepet state=present
+  tags: webserver
+
+- name: create ssh directory
+  file: path=/var/www/forthepet/.ssh state=directory
+
+- name: symlink /etc/authorized_keys for fm user
+  file: src=/etc/authorized_keys dest=/var/www/forthepet/.ssh/authorized_key state=link
+  tags: webserver
+
+- name: pg gem dependency
+  apt: name=libpq-dev state=present
+  tags: webserver
+
+- name: copy web nginx config
+  copy: src={{ forthepet_nginx }} dest=/etc/nginx/sites-enabled/forthepet
+  tags: webserver
+
+- name: prepare ssl path
+  file: path=/etc/nginx/ssl state=directory
+  tags: webserver
+
+- name: copy ssl crt file
+  copy: src=forthepet.crt dest=/etc/nginx/ssl/forthepet.crt
+  tags: webserver
+
+- name: copy ssl key file
+  copy: src=forthepet.key dest=/etc/nginx/ssl/forthepet.key
+  tags: webserver
+
+- name: remove default from /etc/nginx/sites-enabled
+  file: path=/etc/nginx/sites-enabled/default state=absent
+  tags: webserver
+
+- name: add forthepet user to sudoers file
+  lineinfile: "dest=/etc/sudoers state=present line='forthepet ALL=(ALL) NOPASSWD: /usr/bin/passenger-config' validate='visudo -cf %s'"
+  tags: webserver

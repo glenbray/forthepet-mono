@@ -1,0 +1,13 @@
+- name: add ppa repos for ruby dependencies
+  apt_repository: repo={{ item }} state=present
+  with_items: ruby_dependency_repos
+  tags:
+    - rbenv
+    - ruby
+
+- name: install ruby dependency packages
+  apt: pkg={{ item }} state=present
+  with_items: ruby_dependency_packages
+  tags:
+    - rbenv
+    - ruby

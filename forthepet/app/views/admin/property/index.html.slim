@@ -1,0 +1,49 @@
+.container
+  .row
+    .col-lg-10.col-lg-offset-1
+      .col-xs-6
+        h2
+          | Property
+      .col-xs-6
+        button#click-meopen.btn.btn-primary.pull-right[type="button" style="margin-top: 25px;"]
+          | + Create Property
+#expandable.row
+  #content.col-lg-10.col-lg-offset-1
+    - if @property.errors.full_messages.any?
+      .alert.alert-danger.alert-block
+        h4
+          | Warning!
+        ul
+          - @property.errors.full_messages.each do |error_message|
+            - if @property.errors.full_messages.first == error_message
+              li
+                = error_message
+    = form_for @property, url: {action: 'create'} do |f|
+      fieldset
+        legend
+          | Create a Property
+        .row
+          .col-lg-6
+            = f.label 'Property Name'
+            = f.text_field :name, placeholder: 'Name of Property', class: 'form-control'
+          .col-lg-6
+            = f.label 'Presentation'
+            = f.text_field :presentation, placeholder: 'Presentation', class: 'form-control'
+        .form-spacer
+          = f.submit 'Save', class: 'btn btn-primary'
+          button#click-meclose.btn.btn-primary[type="reset" value="reset"]
+            | Cancel
+.container.push-down
+  .col-lg-10.col-lg-offset-1
+    table.table
+      thead
+        th
+          | Name
+        th
+          | Presentation
+      - @properties.each do |p|
+        tr
+          td
+            = p.name
+          td
+            = p.presentation

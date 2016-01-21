@@ -1,0 +1,354 @@
+// Place all the styles related to the shopping/checkout controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$current: #FF7000;
+$todo: #FFC896;
+$finished: #FFAE47;
+
+html, body {
+  background-color: #CACACA;
+}
+
+.form-horizontal .control-label {
+  margin-top: 0px;
+}
+
+.form-horizontal {
+  input[type=text], input[type=number], input[type=password], input[type=tel], input[type=email], select {
+    background: #e2e2e2;
+    color: #3e3e3e;
+    border: 1px solid #666666;
+    border-radius: 0;
+    box-shadow: none;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px !important;
+  }
+
+  label {
+    text-transform: uppercase;
+  }
+}
+
+.checkout-form-group {
+  margin-bottom: 10px;
+}
+
+.checkout-form {
+  background-color: #fff;
+  min-height: 100%;
+  padding: 40px;
+  padding-top: 10px;
+}
+
+table.summary {
+  tr {
+    th {
+      border-bottom: 2px solid #ff6501 !important;
+    }
+    td {
+      border-bottom: 1px solid #ff6501 !important;
+    }
+    &:last-child {
+      td {
+        border-bottom: 0 !important;
+      }
+    }
+  }
+}
+
+.continue-btn {
+  width: 100%;
+  padding: 20px 0 !important;
+  font-size: 1.2em;
+}
+
+hr.checkout-hr {
+  border-color: #ff6501;
+  border-style: dashed;
+}
+
+.back-to {
+  background: #04aff7;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  margin: 0 -10px;
+  a {
+    display: block;
+    width: 100%;
+    color: #fff;
+    line-height: 3;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    &:hover {
+      color: #efefef;
+      text-decoration: none;
+      background: #0393cf;
+    }
+  }
+}
+
+.logo-checkout {
+  margin-top: 20px !important;
+  margin-bottom: 20px !important;
+  min-height: 64px;
+}
+
+.s-or-r {
+  margin-right: 5px;
+  margin-left: 5px;
+  color: #4B4B4B;
+  text-decoration: underline;
+  font-weight: bold;
+  &:hover {
+    color: #00AAFF;
+  }
+}
+
+.fa-arrow-circle-o-right {
+  margin-left: 5px;
+}
+
+.btn-outlined {
+  border: 1px solid #D8D8D8;
+  padding: 10px 15px;
+  border-radius: 5px;
+  &:hover {
+    border: 1px solid #B3AFAF;
+  }
+}
+
+@mixin wizard-base {
+  .panel-heading {
+    padding: 8px;
+  }
+
+  > a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    &:hover {
+      color: #fff;
+    }
+  }
+
+  h4 {
+    font-weight: bold;
+    margin-top: 5px;
+  }
+
+  .panel-body {
+    border: 1px solid #BDB9B9;
+    padding: 30px;
+  }
+}
+
+
+.wizard-panels {
+  .panel {
+    border: 0;
+  }
+}
+
+
+
+.wizard-progress {
+  background-color: #fff;
+  border: 1px solid #BDB9B9;
+  border-top: 5px solid #03C3FF;
+  padding: 20px;
+
+  .progress-title {
+    display: block;
+    color: #535353;
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  hr {
+    margin: 0;
+    margin-bottom: 20px;
+  }
+
+  .progress-body {
+    .progress-list {
+      list-style: none;
+      padding: 0;
+
+      li {
+        padding: 5px 0px;
+      }
+    }
+
+    .progress-list {
+      li {
+        margin-bottom: 10px;
+        color: #4E4E4E;
+        a {
+          text-decoration: none;
+          color: inherit;
+        }
+
+
+        .circle {
+          margin-right: 15px;
+          padding-right: 10px;
+          padding: 5px;
+          padding-left: 10px;
+          padding-right: 10px;
+          border-radius: 80px;
+          color: #866363;
+          font-weight: bold;
+          background: #E7E7E7;
+        }
+
+        .c-progress-com {
+          background: #555555;
+          padding-right: 7px;
+          padding-left: 7px;
+          color: #2CCE6D;
+        }
+
+        .c-progress-cur {
+          background: #EC9B33;
+          color: #fff;
+        }
+
+        .c-progress-todo {
+
+        }
+      }
+    }
+  }
+}
+
+.wizard-current {
+  @include wizard-base;
+  .panel-heading{
+
+    background: $current;
+    border-bottom: 2px solid #FFC01F !important;
+  }
+}
+
+.wizard-todo {
+  @include wizard-base;
+
+  .panel-heading {
+    background: $todo;
+    border-bottom: 2px solid #FDAC45 !important;
+  }
+
+  h4 {
+    color: #B15003;
+  }
+}
+
+.wizard-finished {
+  @include wizard-base;
+
+  .panel-heading {
+    background: $finished;
+    border-bottom: 2px solid #FF8F00  !important;
+  }
+}
+
+
+.wizard-num {
+  margin-right: 10px;
+  background: #00A4FF;
+  padding: 5px 12px;
+  border-radius: 80px;
+  color: #fff;
+  font-weight: bold;
+}
+
+
+
+@media (max-width: 768px) {
+  .panel-group {
+    margin-left: 5px;
+    margin-right: 5px;
+
+    .panel-body {
+      padding: 15px;
+    }
+  }
+}
+
+.wizard-row {
+  margin-bottom: 10px;
+}
+
+.wizard-continue-btn {
+  background: #56D6FF;
+  color: #1C6A7E;
+  font-weight: bold;
+  font-size: 15px;
+  border: 0;
+  padding: 8px;
+  border-bottom: 2px solid #049EDA;
+  border-radius: 3px;
+  &:hover {
+    background: #27CBFF;
+  }
+  &:active {
+    border-top: 2px solid white;
+    border-bottom: 0;
+    box-shadow: inset 0 0 10px 1px #00ADFF;
+  }
+
+  &:focus {
+    outline: 0;
+  }
+}
+
+
+// payment.html.slim
+
+.order-summary {
+  padding: 20px;
+  border: 1px solid #E0E0E0;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  background: #EEEEEE;
+
+  address div span:first-of-type{
+    font-weight: bold;
+    min-width: 100px;
+    float: left;
+  }
+}
+
+.payment {
+  h3 {
+    margin: 0;
+    color: #585656;
+  }
+  hr {
+    margin: 0;
+    margin-bottom: 15px;
+  }
+
+  .payment-total {
+    display: inline-block;
+    font-weight: bold;
+    font-size: 20px;
+    color: #008F06;
+  }
+
+  .payment-gst {
+    margin-left: 5px;
+    font-weight: bold;
+    color: #383838;
+  }
+
+  .payment-shipping {
+    display: block;
+    margin-bottom: 30px;
+    color: #CF8037;
+  }
+}
+
+

@@ -1,0 +1,154 @@
+.container
+  .row
+    div class="col-lg-10 col-lg-offset-1"
+      = link_to admin_users_path, class: 'generic-outlined-btn push-down' do
+        i class="fa fa-arrow-circle-o-left fa-2"
+        | Return
+      .admin-panel
+        div class="admin-title"
+          h3 User Addresses
+        div class="admin-body"
+          = render 'admin/users/users_tabs'
+          form url="#{admin_user_addresses_path}" method="post"
+            input name="authenticity_token" type="hidden" value="#{form_authenticity_token}" /
+            .row
+              .col-md-6
+                h3 Billing
+                .form-group
+                  label for="b_first_name" First Name
+                  input name="b_first_name" value="#{@billing.first_name}" class="form-control" type="text"
+                  label for="b_last_name" Surname
+                  input name="b_last_name" value="#{@billing.last_name}" class="form-control" type="text"
+                  label for="b_address1" Address 1
+                  input name="b_address1" value="#{@billing.address1}" class="form-control" type="text"
+                  label for="b_address2" Address 2
+                  input name="b_address2" value="#{@billing.address2}" class="form-control" type="text"
+                  label for="b_suburb" Suburb
+                  input name="b_suburb" value="#{@billing.suburb}" class="form-control" type="text"
+                  label for="b_state" State
+                  select class="select required form-control" name="b_state" required="required"
+                    - if @billing.state == "NSW"
+                      option value="NSW" selected="selected"
+                        | New South Wales
+                    - else
+                      option value="NSW" 
+                        | New South Wales
+                    - if @billing.state == "ACT"
+                      option value="ACT" selected="selected"
+                        | Australian Capital Territory
+                    - else
+                      option value="ACT" 
+                        | Australian Capital Territory
+                    - if @billing.state == "NT"
+                      option value="NT" selected="selected"
+                        | Northern Territory
+                    - else
+                      option value="NT" 
+                        | Northern Territory
+                    - if @billing.state == "QLD"
+                      option value="QLD" selected="selected"
+                        | Queensland
+                    - else
+                      option value="QLD" 
+                        | Queensland
+                    - if @billing.state == "SA"
+                      option value="SA" selected="selected"
+                        | South Australia
+                    -else
+                      option value="SA" 
+                        | South Australia
+                    - if @billing.state == "TAS"
+                      option value="TAS" selected="selected"
+                        | Tasmania
+                    -else
+                      option value="TAS" 
+                        | Tasmania
+                    - if @billing.state == "VIC"
+                      option value="VIC" selected="selected"
+                        | Victoria
+                    -else
+                      option value="VIC" 
+                        | Victoria
+                    - if @billing.state == "WA"
+                      option value="WA" selected="selected"
+                        | Western Australia
+                    -else
+                      option value="WA" 
+                        | Western Australia
+                  / input name="b_state" value="#{@billing.state}" class="form-control" type="text"
+                  label for="b_postcode" Postcode
+                  input name="b_postcode" value="#{@billing.postcode}" class="form-control" type="text"
+                .form-group
+                  label
+                    input name="billing_is_shipping" id="billing_is_shipping" type="checkbox" 
+                    | Ship to this address
+              .col-md-6
+                h3 Shipping
+                .form-group
+                  label for="s_first_name" First Name
+                  input name="s_first_name" value="#{@shipping.first_name}" class="form-control" type="text"
+                  label for="s_last_name" Surname
+                  input name="s_last_name" value="#{@shipping.last_name}" class="form-control" type="text"
+                  label for="s_address1" Address 1
+                  input name="s_address1" value="#{@shipping.address1}" class="form-control" type="text"
+                  label for="s_address2" Address 2
+                  input name="s_address2" value="#{@shipping.address2}" class="form-control" type="text"
+                  label for="s_suburb" Suburb
+                  input name="s_suburb" value="#{@shipping.suburb}" class="form-control" type="text"
+                  label for="s_state" State
+                  select class="select required form-control" name="s_state" required="required"
+                    - if @shipping.state == "NSW"
+                      option value="NSW" selected="selected"
+                        | New South Wales
+                    - else
+                      option value="NSW" 
+                        | New South Wales
+                    - if @shipping.state == "ACT"
+                      option value="ACT" selected="selected"
+                        | Australian Capital Territory
+                    - else
+                      option value="ACT" 
+                        | Australian Capital Territory
+                    - if @shipping.state == "NT"
+                      option value="NT" selected="selected"
+                        | Northern Territory
+                    - else
+                      option value="NT" 
+                        | Northern Territory
+                    - if @shipping.state == "QLD"
+                      option value="QLD" selected="selected"
+                        | Queensland
+                    - else
+                      option value="QLD" 
+                        | Queensland
+                    - if @shipping.state == "SA"
+                      option value="SA" selected="selected"
+                        | South Australia
+                    -else
+                      option value="SA" 
+                        | South Australia
+                    - if @shipping.state == "TAS"
+                      option value="TAS" selected="selected"
+                        | Tasmania
+                    -else
+                      option value="TAS" 
+                        | Tasmania
+                    - if @shipping.state == "VIC"
+                      option value="VIC" selected="selected"
+                        | Victoria
+                    -else
+                      option value="VIC" 
+                        | Victoria
+                    - if @shipping.state == "WA"
+                      option value="WA" selected="selected"
+                        | Western Australia
+                    -else
+                      option value="WA" 
+                        | Western Australia
+                  / input name="s_state" value="#{@shipping.state}" class="form-control" type="text"
+                  label for="s_postcode" Postcode
+                  input name="s_postcode" value="#{@shipping.postcode}" class="form-control" type="text"
+            .row
+              .col-md-12
+                .form-group
+                  input type="submit" class="generic-btn" value="Change Addresses"

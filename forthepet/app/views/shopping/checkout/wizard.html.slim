@@ -1,0 +1,44 @@
+doctype html
+html
+  head
+    title For the Pet
+    meta charset="utf-8"
+    meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    meta name="keywords" content="template language"
+
+    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
+    link href='https://fonts.googleapis.com/css?family=Ubuntu:300,400' rel='stylesheet' type='text/css'
+    = csrf_meta_tags
+    = render 'layouts/shim'
+
+  body
+    .container
+      .back-to
+        = link_to cart_index_path do
+          i class="fa fa-arrow-circle-left"
+            span style="margin-left: 5px;" Take me back to the cart
+    .container.checkout-form
+      = image_tag("forthepetlogo-final-tran.png", width: '240', format: 'jpg', class: 'logo logo-checkout', style: 'display: block; margin: 0 auto;')
+
+      .row
+        h1 Cart Summary
+
+        .col-xs-12.col-md-8
+          table.table.summary
+            thead
+              th Item
+              th Quantity
+              th Price
+            tbody
+              - session_cart.cart_items.each do |c|
+                tr
+                  td = c.name
+                  td style="padding-left: 30px !important;" = c.quantity
+                  td = number_to_currency(c.total)
+              tr
+                td
+                td style="text-align: right; font-weight: bold;" Total:
+                td = number_to_currency(session_cart.total)
+      = yield
+    = javascript_include_tag "application", "data-turbolinks-track" => true, async: 'true'
+    = yield :javascript_bottom

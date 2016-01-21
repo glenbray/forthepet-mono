@@ -1,0 +1,11 @@
+ul class="nav nav-tabs"
+	li = link_to 'Deal Details', edit_admin_deal_path(@deal)
+	li
+		= link_to admin_deal_attach_path(@deal) do
+			| Attach Product
+	li
+		= link_to 'Fine Print', admin_deal_fine_prints_path(@deal)
+
+h3 = @deal.name
+
+div class="pull-down"

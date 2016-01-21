@@ -1,0 +1,19 @@
+.container-fluid
+  .row
+    .col-lg-12
+      h2 Process Orders
+
+  .row
+    - unless @orders.empty?
+      div id="orders-section" class="col-lg-6"
+        = render partial: 'index', locals: { orders: @orders }
+
+      div id="order-section" class="col-lg-6"
+        = render partial: 'show', locals: { order: @order }
+    - else
+      div id="order-section" class="col-lg-6"
+        div class="admin-panel" style="margin-bottom: 30px;"
+          div class="admin-title" style="margin-bottom: 10px;"
+            h3 style="display: inline-block;" Pending Orders
+          div class="admin-body"
+            h3 style="color: #CA4946" Currently no orders available

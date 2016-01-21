@@ -1,0 +1,109 @@
+head
+  scss:
+    .container {
+      padding-left: 5px;
+    }
+
+    h1 {
+     color: #2F9BF5;
+    }
+
+    h2 {
+      color: #EA8817;
+    }
+
+    table {
+      th, td {
+        padding: 0.4rem;
+        text-align: left;
+        border: 1px solid #ccc;
+      }
+
+      thead {
+        th {
+          text-align: left;
+          font-weight: bold;
+        }
+      }
+    }
+
+    .aggregations {
+      tbody tr:nth-child(odd) {
+        background: #eee;
+      }
+    }
+
+    .push-down {
+      margin-top: 20px;
+    }
+
+    .center {
+      text-align: center;
+    }
+
+.container
+  h1 Order Summaries Report
+
+  h2 Aggregations
+
+  table.aggregations
+    thead
+      th Name
+      th Quantity
+      th Total
+    tbody
+      - @grouped_order_items.each do |item|
+        tr
+          td = Deal.find(item.first).name
+          td.center = item.last.sum(&:quantity)
+          td = number_to_currency(item.last.sum(&:total))
+      tr
+        td
+        td
+        td = number_to_currency(@orders_total)
+
+  .push-down
+
+  h2 Itemised Orders
+
+  - @orders.each do |order|
+    .push-down
+
+    table.table
+      thead
+        th colspan="2" User Information
+      tbody
+        tr
+          td User Email
+          td = order.email
+        tr
+          td Transaction No
+          td = order.transaction_no
+        tr
+          td Shipping Full Name
+          td = order.shipping_full_name
+        tr
+          td Shipping Address
+          td = order.shipping_address
+
+    .push-down
+
+    table.table
+      thead
+        th Deal
+        th Quantity
+        th Total
+      tbody
+        - order.order_items.each do |item|
+          tr
+            td = item.deal.name
+            td.center = item.quantity
+            td = item.print_total
+        tr
+          td
+          td
+          td = number_to_currency(order.order_items.sum(&:total))
+
+    .push-down
+
+    hr

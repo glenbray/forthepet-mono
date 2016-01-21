@@ -1,0 +1,64 @@
+.container
+  .row
+    div class="col-lg-12"
+      = link_to admin_orders_path, class: 'generic-outlined-btn push-down' do
+        i class="fa fa-arrow-circle-o-left fa-2"
+        | Return to Orders
+  .row
+    div class="col-lg-12"
+      .admin-panel
+        div class="admin-title"
+          h3 Order Items
+        div class="admin-body"
+          .row
+            .col-lg-7
+              table.table
+                thead
+                  th User Information
+                  th
+                tbody
+                  tr
+                    td User Email
+                    td = @order.email
+                  tr
+                    td Transaction No
+                    td = @order.transaction_no
+                  tr
+                    td Shipping Full name
+                    td = @order.shipping_full_name
+                  tr
+                    td Shipping Address
+                    td = @order.shipping_address
+                  tr
+                    td Tracking No
+                    td = @order.tracking_no
+                  tr
+                    td Purchased Date
+                    td = @order.purchased_at
+
+          = link_to 'Resend Order Email', admin_order_email_path(@order), method: :post, class: 'btn btn-default'
+
+          table class="table table-striped" style="margin-top: 20px;"
+            thead
+              th Deal
+              th Product
+              th Variant
+              th Quantity
+              th Status
+              th Total
+            tbody
+              - @order_items.each do |order_item|
+                tr
+                  td = order_item.deal.name
+                  td = order_item.deal.product_name
+                  td = order_item.variant
+                  td = order_item.quantity
+                  td = order_item.aasm_state
+                  td = order_item.total
+              tr
+                td
+                td
+                td
+                td
+                td
+                td = @order.total

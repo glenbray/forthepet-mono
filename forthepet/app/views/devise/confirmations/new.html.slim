@@ -1,0 +1,18 @@
+div class="container"
+  div class="row"
+    div class="col-md-6 col-xs-12"
+      section class="login"
+        = form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post, class: 'form-horizontal' }) do |f|
+          fieldset
+            legend
+              | Resend confirmation instructions
+          = devise_error_messages!
+
+          .form-group
+            = f.label :email, class: 'col-sm-3 control-label'
+            .col-sm-9
+              = f.email_field :email, autofocus: true, class: 'form-control'
+
+          .form-group
+            div class="col-sm-offset-3 col-sm-9"
+              = f.submit "Resend", class: 'generic-btn'

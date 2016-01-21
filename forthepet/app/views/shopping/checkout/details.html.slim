@@ -1,0 +1,137 @@
+.row
+  h1 Details
+  = simple_form_for @checkout_form, url: wizard_path, method: :put, html: { class: 'form-horizontal', onkeypress: "return event.keyCode != 13;" } do |f|
+    - if @checkout_form.errors.full_messages.any?
+      .row
+        div class="panel panel-danger"
+          div class="panel-heading": h4 Warning!
+          div class="panel-body"
+            ul
+              - @checkout_form.errors.full_messages.each do |error_message|
+                li style="color: #CA0707;font-weight: bold;font-size: 16px;padding:5px;" = error_message
+
+    .row
+      div class="col-md-5 col-xs-12"
+        h2 Your Email
+        div class="form-group checkout-form-group"
+          = f.label :email, class: 'col-sm-4 control-label'
+          .col-sm-8
+            = f.input_field :email
+    .row
+      div class="col-xs-12 col-md-5"
+        h2 Billing Address
+
+        div class="form-group checkout-form-group"
+          = f.label :billing_first_name, label: 'First Name', class: 'col-sm-4 control-label'
+          .col-sm-8
+            = f.input_field :billing_first_name, id: :billing_first_name
+
+        div class="form-group checkout-form-group"
+          = f.label :billing_last_name, label: 'Last Name', class: 'col-sm-4 control-label'
+          .col-sm-8
+            = f.input_field :billing_last_name, id: :billing_last_name
+
+        div class="form-group checkout-form-group"
+          = f.label :billing_company, label: 'Company', class: 'col-sm-4 control-label'
+          .col-sm-8
+            = f.input_field :billing_company, id: :billing_company
+
+        div class="form-group checkout-form-group"
+          = f.label :billing_address1, label: 'Address 1', class: 'col-sm-4 control-label'
+          .col-sm-8
+            = f.input_field :billing_address1, id: :billing_address1
+
+        div class="form-group checkout-form-group"
+          = f.label :billing_address2, label: 'Address 2', class: 'col-sm-4 control-label'
+          .col-sm-8
+            = f.input_field :billing_address2, id: :billing_address2
+
+        div class="form-group checkout-form-group"
+          = f.label :billing_suburb, label: 'Suburb', class: 'col-sm-4 control-label'
+          .col-sm-8
+            = f.input_field :billing_suburb, id: :billing_suburb
+
+        div class="form-group checkout-form-group"
+          = f.label :billing_state, label: 'State', class: 'col-sm-4 control-label'
+          .col-sm-8
+            = f.select :billing_state, states, { include_blank: true }, id: 'billing_state', class: 'form-control'
+
+        div class="form-group checkout-form-group"
+          = f.label :billing_postcode, label: 'Postcode', class: 'col-sm-4 control-label'
+          .col-sm-8
+            = f.input_field :billing_postcode, id: :billing_postcode
+
+        div class="form-group checkout-form-group"
+          = f.label :billing_mobile, label: 'Mobile', class: 'col-sm-4 control-label'
+          .col-sm-8
+            = f.input_field :billing_mobile, id: :billing_mobile
+
+        div class="form-group checkout-form-group"
+          = f.label :billing_phone, label: 'Phone', class: 'col-sm-4 control-label'
+          .col-sm-8
+            = f.input_field :billing_phone, id: :billing_phone
+
+        .form-group
+          .col-sm-offset-4.col-sm-8
+            .checkbox
+              = f.input :billing_is_shipping, :as => :boolean, :input_html => { id: :billing_is_shipping, checked: "checked" }
+
+      div class="col-md-offset-1 col-xs-12 col-md-5 shipping" style="display: none;"
+        h2 Shipping Address
+
+        div class="form-group checkout-form-group"
+          = f.label :shipping_first_name, label: 'First Name', class: 'col-sm-4 control-label'
+          .col-sm-8
+            = f.input_field :shipping_first_name, id: :shipping_first_name, required: false
+
+        div class="form-group checkout-form-group"
+          = f.label :shipping_last_name, label: 'Last Name', class: 'col-sm-4 control-label'
+          .col-sm-8
+            = f.input_field :shipping_last_name, id: :shipping_last_name, required: false
+
+        div class="form-group checkout-form-group"
+          = f.label :shipping_company, label: 'Company', class: 'col-sm-4 control-label'
+          .col-sm-8
+            = f.input_field :shipping_company, id: :shipping_company, required: false
+
+        div class="form-group checkout-form-group"
+          = f.label :shipping_address1, label: 'Address 1', class: 'col-sm-4 control-label'
+          .col-sm-8
+            = f.input_field :shipping_address1, id: :shipping_address1, required: false
+
+        div class="form-group checkout-form-group"
+          = f.label :shipping_address2, label: 'Address 2', class: 'col-sm-4 control-label'
+          .col-sm-8
+            = f.input_field :shipping_address2, id: :shipping_address2, required: false
+
+        div class="form-group checkout-form-group"
+          = f.label :shipping_suburb, label: 'Suburb', class: 'col-sm-4 control-label'
+          .col-sm-8
+            = f.input_field :shipping_suburb, id: :shipping_suburb, required: false
+
+        div class="form-group checkout-form-group"
+          = f.label :shipping_state, label: 'State', class: 'col-sm-4 control-label'
+          .col-sm-8
+            = f.select :shipping_state, states, { include_blank: true }, id: 'shipping_state', required: false, class: 'form-control'
+
+        div class="form-group checkout-form-group"
+          = f.label :shipping_postcode, label: 'Postcode', class: 'col-sm-4 control-label'
+          .col-sm-8
+            = f.input_field :shipping_postcode, id: :shipping_postcode, required: false
+
+        div class="form-group checkout-form-group"
+          = f.label :shipping_mobile, label: 'Mobile', class: 'col-sm-4 control-label'
+          .col-sm-8
+            = f.input_field :shipping_mobile, id: :shipping_mobile, required: false
+
+        div class="form-group checkout-form-group"
+          = f.label :shipping_phone, label: 'Phone', class: 'col-sm-4 control-label'
+          .col-sm-8
+            = f.input_field :shipping_phone, id: :shipping_phone, required: false
+
+    .row
+      = f.submit 'Continue to payment', class: 'btn btn-primary continue-btn'
+
+= content_for :javascript_bottom do
+  script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places&region=AU"
+  = javascript_include_tag "shopping/details_autocomplete"
