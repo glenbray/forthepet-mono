@@ -1,0 +1,8 @@
+$('#orders-section').html("<%= j (render 'index', orders: @orders) %>");
+$('#order-section').html("<%= j (render 'show', order: @order) %>");
+
+<% flash.each do |key, value| %>
+  var alert = $(".forthepet-flash")
+  alert.html("<%= j (render 'layouts/admin_partials/flash', key: key, value: value) %>");
+  <% flash.discard %>
+<% end %>

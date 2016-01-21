@@ -1,0 +1,23 @@
+.container
+  .row
+    div class="col-lg-10 col-lg-offset-1"
+      = link_to new_admin_option_path, class: 'generic-outlined-btn push-down' do
+        i class="fa fa-plus"
+        | New Option
+      .admin-panel
+        div class="admin-title"
+          h3 Options
+        div class="admin-body"
+          table class="table table-stripped"
+            thead
+              tr
+                th Name
+                th
+            tbody
+              - @options.each do |option|
+                tr
+                  td = option.name
+                  td
+                    = link_to 'Edit', edit_admin_option_path(option.id)
+                    = link_to 'Option Values', admin_option_option_value_index_path(option), style: 'margin-left: 10px;'
+                  / td = link_to 'Delete', admin_option_option_value_path(category), method: :delete

@@ -1,0 +1,8 @@
+ul
+  li
+    a href='#dashboard' id='#dashboard_a' Dashboard
+  li
+    a href='#accountinfo' id='#accountinfo_a' Account Info
+  li
+    a href='#orders' id='#orders_a' Orders
+  li = link_to 'Logout', destroy_user_session_path, method: :delete, style: 'color: #B60000;'

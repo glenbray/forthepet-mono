@@ -1,0 +1,36 @@
+.container
+  .row
+    div class="col-lg-10 col-lg-offset-1 push-down"
+      = link_to admin_product_index_path, class: 'generic-outlined-btn push-down' do
+        i class="fa fa-arrow-circle-o-left fa-2"
+        | Return
+      .admin-panel
+        div class="admin-title"
+          h3 Product Images
+        div class="admin-body"
+          = render 'admin/product/products_tabs'
+          = simple_form_for @photo, url: admin_product_images_path do |f|
+            fieldset
+              legend Image Upload
+              = f.input :alt_text
+              = f.input :description
+              = f.input :picture_cache, as: :hidden
+              = f.input :picture, as: :file
+              = f.submit 'Upload Image', class: 'btn-action pull-down'
+
+          table class="table pull-down"
+            thead
+              th
+              th Image
+              th Alt text
+              th Description
+              th
+            tbody.sortable data-sortable-url="#{admin_images_sort_url}"
+              - @product.photos.each do |p|
+                = content_tag_for :tr, p do
+                  td
+                    i class="fa fa-bars fa-2x"
+                  td = image_tag(p.picture_url(:thumbnail), secure: true)
+                  td = p.alt_text
+                  td = p.description
+                  td = link_to "Remove", admin_product_image_path(@product, p), method: :delete, data: { confirm: "Are you sure?" }

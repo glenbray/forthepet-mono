@@ -1,0 +1,237 @@
+// Place all the styles related to the admin/admin controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$font-size-base: 12px;
+
+// @import "bootstrap";
+@import "bootstrap/variables";
+@import "bootstrap/mixins";
+
+// Reset and dependencies
+@import "bootstrap/normalize";
+@import "bootstrap/print";
+
+// Core CSS
+@import "bootstrap/scaffolding";
+@import "bootstrap/type";
+@import "bootstrap/code";
+@import "bootstrap/grid";
+@import "bootstrap/tables";
+@import "bootstrap/forms";
+@import "bootstrap/buttons";
+
+// Components
+@import "bootstrap/component-animations";
+@import "bootstrap/dropdowns";
+@import "bootstrap/button-groups";
+@import "bootstrap/input-groups";
+@import "bootstrap/navs";
+@import "bootstrap/navbar";
+@import "bootstrap/breadcrumbs";
+@import "bootstrap/pagination";
+@import "bootstrap/pager";
+@import "bootstrap/labels";
+@import "bootstrap/thumbnails";
+@import "bootstrap/alerts";
+@import "bootstrap/progress-bars";
+@import "bootstrap/media";
+@import "bootstrap/list-group";
+@import "bootstrap/panels";
+@import "bootstrap/responsive-embed";
+@import "bootstrap/wells";
+@import "bootstrap/close";
+
+// Components w/ JavaScript
+@import "bootstrap/modals";
+
+// Utility classes
+@import "bootstrap/utilities";
+@import "bootstrap/responsive-utilities";
+@import "bootstrap-datetimepicker";
+
+body {
+  background: #E0E0E0;
+  color: #555555;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+h1 {
+  font-weight: 300;
+  font-size: 45px;
+  color: #383838;
+  margin-bottom: 20px;
+}
+
+.h-underline {
+  padding-bottom: 5px;
+  border-bottom: 1px solid #666;
+  display: inline-block;
+}
+
+h3 {
+  font-weight: 300;
+  color: #383838;
+}
+
+h4 {
+  font-weight: 300;
+  font-size: 20px;
+}
+
+.center {
+  text-align: center;
+}
+
+footer {
+  margin-top: 50px;
+}
+
+.breadcrumbs {
+  background: #ECECEC;
+  padding: 10px;
+  margin-bottom: 25px;
+  color: #5E5E5E;
+  font-weight: bold;
+
+  a {
+    color: #838383;
+    font-weight: normal;
+    text-decoration: none;
+    border-bottom: 1px solid;
+  }
+
+  i {
+    margin-right: 7px;
+    margin-left: 7px;
+  }
+}
+
+.alert {
+  .close {
+    opacity: 0.5;
+  }
+}
+
+.alert-notice {
+  @extend .alert-warning;
+}
+
+.alert-success {
+  border: 1px solid #AEDBA8;
+}
+
+.admin-overview {
+  background: #fff;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  padding-bottom: 15px;
+  h4 {
+    margin-bottom: 20px;
+  }
+  span {
+    color: #383838;
+    font-size: 20px;
+  }
+}
+
+.admin-panel {
+  background-color: #ffffff;
+  border-radius: 3px;
+  margin-bottom: 100px;
+
+  .admin-title {
+    background-color: #fafafa;
+    padding: 1px;
+    padding-left: 20px;
+    border-bottom: 1px solid #F0F0F0;
+    border-radius: 3px 3px 0 0;
+
+    h3 {
+      font-family: inherit;
+      margin-top: 14px;
+    }
+  }
+
+  .admin-body {
+    padding: 10px 25px;
+  }
+
+  .search {
+    label {
+      display: block;
+    }
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+}
+
+.btn-return {
+  background-color: #FF9900;
+  padding: 8px;
+  text-decoration: none;
+  color: white;
+  margin-bottom: 10px;
+  display: block;
+  max-width: 80px;
+  text-align: center;
+
+  a:hover{
+    color: white;
+  }
+}
+
+.push-down {
+  margin-bottom: 20px;
+}
+
+.pull-down {
+  margin-top: 20px;
+}
+
+.navbar-default {
+  border-color: #FAFAFA;
+  background: #FFFFFF;
+  border-radius: 0;
+  box-shadow: 1px 0 3px rgba(0,0,0,.15);
+  margin-bottom: 0px;
+  .navbar-brand {
+    padding: 0px;
+  }
+}
+
+.edit {
+  color: #FFBA59;
+  font-weight: bold;
+
+  &:hover {
+    color: #FF9500;
+    text-decoration: none;
+  }
+}
+
+.delete {
+  color: #FF7979;
+  font-weight: bold;
+  margin-left: 20px;
+
+  &:hover {
+    color: #FF0000;
+    text-decoration: none;
+  }
+}
+
+.table > tbody > tr > td {
+  vertical-align: middle;
+}
+
+.form-spacer {
+  margin-top: 20px;
+}
+
+.well {
+  padding: 15px;
+  border-radius: 0px;
+}

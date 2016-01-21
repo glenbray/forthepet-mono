@@ -1,0 +1,22 @@
+.container
+  .row
+    div class="col-xs-12 push-down"
+      h1.h-underline Dashboard
+  .row
+    .col-sm-3
+      div class="admin-overview"
+        h4 Total Orders
+        span = @order_count
+    .col-sm-3
+      div class="admin-overview"
+        h4 Active Deals
+        span = @active_count
+    .col-sm-3
+      div class="admin-overview"
+        h4 Total Sales
+        span = number_to_currency(@orders_total)
+    .col-sm-3
+      div class="admin-overview"
+        div
+          h4 Users
+          span = User.count

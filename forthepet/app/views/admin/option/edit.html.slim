@@ -1,0 +1,13 @@
+.container
+  .row
+    div class="col-lg-10 col-lg-offset-1"
+      = link_to admin_option_index_path, class: 'generic-outlined-btn push-down' do
+        i class="fa fa-arrow-circle-o-left fa-2"
+        | Return
+      .admin-panel
+        div class="admin-title"
+          h3 Edit Option
+        div class="admin-body"
+          = simple_form_for [:admin, @option], url: admin_option_path do |f|
+            = f.input :name
+            = f.submit 'Update Option', class: 'btn-action pull-down'

@@ -1,0 +1,14 @@
+.container
+  .row
+    div class="col-lg-10 col-lg-offset-1"
+      = link_to admin_users_path, class: 'generic-outlined-btn push-down' do
+        i class="fa fa-arrow-circle-o-left fa-2"
+        | Return
+      .admin-panel
+        div class="admin-title"
+          h3 User Credits
+        div class="admin-body"
+          = render 'admin/users/users_tabs'
+          .row
+            .col-md-12
+              p Credits CRUD here

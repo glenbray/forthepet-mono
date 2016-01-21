@@ -1,0 +1,8 @@
+- if object.errors.any?
+  div class="panel panel-danger"
+    div.panel-heading
+      = pluralize(object.errors.count, "Error")
+    div.panel-body
+      ul
+        - object.errors.full_messages.each do |msg|
+          li = "* #{msg}"

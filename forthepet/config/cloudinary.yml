@@ -1,0 +1,38 @@
+---
+development:
+  cloud_name: forthepet
+  api_key: '923696197844748'
+  api_secret: h76oztqoW_QF6IR_P1m1lo6a5KI
+  enhance_image_tag: true
+  static_image_support: false
+  secure: true
+
+# development:
+#   cloud_name: forthepet-dev
+#   api_key: '657933584537568'
+#   api_secret: fq7ZHDY3S32Sbj-xqe3rGAKHC8g
+#   enhance_image_tag: true
+#   static_image_support: true
+#   secure: true
+
+production:
+  cloud_name: forthepet
+  api_key: '923696197844748'
+  api_secret: h76oztqoW_QF6IR_P1m1lo6a5KI
+  enhance_image_tag: true
+  static_image_support: true
+  secure: true
+
+uat:
+  cloud_name: forthepet
+  api_key: '923696197844748'
+  api_secret: h76oztqoW_QF6IR_P1m1lo6a5KI
+  enhance_image_tag: true
+  static_image_support: true
+  secure: true
+test:
+  cloud_name: forthepet
+  api_key: '923696197844748'
+  api_secret: h76oztqoW_QF6IR_P1m1lo6a5KI
+  enhance_image_tag: true
+  static_image_support: false

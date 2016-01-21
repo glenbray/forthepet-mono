@@ -1,0 +1,31 @@
+.container
+  = render 'products_tabs'
+  .row.push-down
+    .col-lg-6.col-lg-offset-3.well
+      = form_for @photo, url: {action: 'upload'} do |f|
+        fieldset
+          legend
+            | Image Upload
+          .row
+            .col-lg-6
+              = f.label :alt_text
+              = f.text_field :alt_text, class: 'form-control'
+          .row
+            .col-lg-6
+              = f.label :description
+              = f.text_field :description, class: 'form-control'
+          .row.form-spacer
+            .col-lg-3
+              = f.hidden_field :picture_cache
+              = f.file_field :picture
+          .form-spacer
+            = f.submit 'Save', class: 'btn btn-primary'
+  .row.push-down
+    .col-lg-6.col-lg-offset-3
+      table.table
+        - @product.photos.each do |p|
+          tr
+            td
+              = image_tag(p.picture_url(:thumbnail))
+            td
+              = link_to "Remove", "/admin/product/#{@product.id}/remove_image/#{p.id}", data: {confirm: 'Are you sure?'}, method: 'delete', class: 'delete'

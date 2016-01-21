@@ -1,0 +1,37 @@
+.container
+  h1 Refer your friends
+  h2 For some awesome rewards!
+  .row
+    .col-md-8
+      .referral_steps
+        .step1
+          .innerContainer
+            p
+              b Step 1:
+              | Share your favourite deals with your friends using the social share links on deal pages while you're logged in. Your shared links will have a special referral ID.
+            .row
+              .col-xs-12
+                - if user_signed_in?
+                  .input-group
+                    input#copy-text type="text" class="form-control" value="#{@referral_url}" disabled="disabled"
+                    span.input-group-btn
+                      button#copy-button data-clipboard-target="copy-text" title="Click to copy your referral." data-clipboard-text="#{@referral_url}" class="btn btn-primary" type="button" COPY
+                  .alert.alert-success id="copy-success" style="display: none; width: 58%; text-align: center;" Copied to clipboard!
+                - else
+                  b.text-danger You must log into your account in order to recieve discounts from referrals.
+        hr
+        .step2
+          .innerContainer
+            p
+              b Step 2:
+              | Your friends create an account and make a purchase after following your link.
+              em It must be their first purchase.
+        hr
+        .step3
+          .innerContainer
+            p
+              b Step 3:
+              | Your account will be credited with a $5 credit! We'll notify you by email when this happens.
+    .col-md-4
+      .browse_share
+        a href="/" class="btn btn-warning btn-lg" Browse Deals and Share!

@@ -1,0 +1,32 @@
+.container
+  .row
+    div class="col-lg-10 col-lg-offset-1"
+      = link_to new_admin_fine_print_path, class: 'generic-outlined-btn push-down' do
+        i class="fa fa-plus"
+        | New Fine Print
+      .admin-panel
+        div class="admin-title"
+          h3 Fine Prints
+        div class="admin-body"
+          div class="alert alert-info" style="margin-bottom: 30px;"
+            | These fine prints are the defaults that will apply across all deals. To add fine prints to a specific deal, edit from the actual deal section.
+
+          - if @fine_prints.empty?
+            b No fine prints available
+          - else
+            table class="table table-striped"
+              thead
+                tr
+                  th Name
+                  th Default
+                  th
+              - @fine_prints.each do |f|
+                tr
+                  td = f.description
+                  td = f.is_default
+                  td
+                    = link_to edit_admin_fine_print_path(f), class: 'edit' do
+                      i class="fa fa-pencil-square-o fa-2x"
+
+                    /= link_to '', class: 'delete' do
+                      /i class="fa fa-trash-o fa-2x"

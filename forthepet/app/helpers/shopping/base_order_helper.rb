@@ -1,0 +1,2 @@
+module Shopping::BaseOrderHelper
+end

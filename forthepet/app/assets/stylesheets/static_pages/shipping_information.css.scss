@@ -1,0 +1,23 @@
+.shipping-information {
+
+  p {
+    margin-top: 20px;
+  }
+
+  ol {
+    font-size: 1.2em;
+    color: #A59B95;
+
+    li {
+      p {
+        color: #000000;
+        margin-left: 5px;
+
+        span {
+          display: block;
+        }
+      }
+    }
+  }
+
+}

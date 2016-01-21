@@ -1,0 +1,10 @@
+.container
+  .row
+    h4 Services
+
+    = simple_form_for @service, url: {action: 'create'} do |f|
+      = render 'shared/error_messages', object: f.object
+      = f.simple_fields_for :item do |i|
+        = i.input :name
+      = f.input :location    
+      = f.submit

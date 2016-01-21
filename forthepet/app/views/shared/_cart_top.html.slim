@@ -1,0 +1,9 @@
+- if current_user
+  = link_to 'Log out', destroy_user_session_path, method: :delete, class: 'link'
+  = link_to 'Account', account_root_path, class: 'link'
+- else
+  = link_to 'Sign up', new_user_registration_path, class: 'link'
+  = link_to 'Log in', new_user_session_path, class: 'link'
+= link_to cart_index_path, class: 'cart-btn-large' do
+  i class="fa fa-shopping-cart"
+  span = "Cart #{cart.print_quantity}"

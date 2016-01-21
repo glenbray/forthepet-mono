@@ -1,0 +1,29 @@
+.container
+  .row
+    .col-xs-12
+      h2 Product Wizard
+
+      div.progress
+        div class="progress-bar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 50%;" 50%
+
+      div class="wizard-container"
+        h3 Select Supplier
+
+        = search_form_for @q, url: wizard_path, method: :get do |f|
+          = f.label :name_cont
+          = f.search_field :name_cont
+          = f.submit 'Search'
+
+        hr
+
+        table.table
+          thead
+            th Supplier
+            th abn
+            th
+          tbody
+            - @suppliers.each do |supplier|
+              tr
+                td = supplier.name
+                td = supplier.abn
+                td = link_to 'select', wizard_path(:supplier, supplier_id: supplier.id), method: :put

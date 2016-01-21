@@ -1,0 +1,18 @@
+.container
+  .row
+    div class="col-lg-10 col-lg-offset-1"
+      = link_to admin_users_path, class: 'generic-outlined-btn push-down' do
+        i class="fa fa-arrow-circle-o-left fa-2"
+        | Return
+      .admin-panel
+        div class="admin-title"
+          h3 User Password
+        div class="admin-body"
+          = render 'admin/users/users_tabs'
+          .row
+            .col-md-12
+              = simple_form_for @user, url: admin_user_password_index_path(@user), method: :post do |f|
+                = f.hidden_field :reset_password_token 
+                = f.input :password, class: "form-control"
+                = f.input :password_confirmation, class: "form-control"
+                = f.submit 'Update', class: 'btn-action pull-down'

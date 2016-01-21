@@ -1,0 +1,61 @@
+# ruby_installed is registered as an object like this:
+# { key1: value1, key2: value2, results: [{ruby_installed_version_x}, {ruby_installed_version_y}] }
+- name: check if ruby version is installed
+  shell: bash -lc "rbenv versions | grep {{ item.version }}"
+  ignore_errors: yes
+  register: ruby_installed
+  with_items: rbenv_versions
+  changed_when: false
+  tags:
+    - rbenv
+    - ruby
+
+# 'with_indexed_items': items[items.0] = items.1
+# in other words, items.0 is index, items.1 is the object
+# ruby_installed is a complex object, so we need to find out ruby_installed.results[index]|failed
+- name: install ruby
+  shell: bash -lc "rbenv install {{ item.1.version }}"
+  when: (ruby_installed.results[item.0])|failed
+  with_indexed_items: rbenv_versions
+  tags:
+    - rbenv
+    - ruby
+
+- name: get global ruby
+  shell: cat {{ rbenv_home }}/version
+  register: rbenv_global_version
+  ignore_errors: true
+  changed_when: false
+  tags:
+    - rbenv
+    - ruby
+
+- name: set global ruby
+  shell: bash -lc "rbenv global {{ item.version }} && rbenv rehash"
+  when: (item.default_ruby is defined) and (item.default_ruby)
+  with_items: rbenv_versions
+  changed_when: item.version != rbenv_global_version
+  tags:
+    - rbenv
+    - ruby
+
+- name: create gemrc
+  file: path=/etc/gemrc state=touch mode=0644
+  tags:
+    - rbenv
+    - ruby
+
+- name: update /etc/gemrc not include docs when installing gem
+  lineinfile: 'dest=/etc/gemrc line="gem: --no-rdoc --no-ri"'
+  tags:
+    - rbenv
+    - ruby
+
+- name: install global gems
+  shell: bash -lc 'rbenv shell {{ item.0.version }} && gem install {{ item.1 }}'
+  with_subelements:
+    - rbenv_versions
+    - global_gems
+  tags:
+    - rbenv
+    - ruby

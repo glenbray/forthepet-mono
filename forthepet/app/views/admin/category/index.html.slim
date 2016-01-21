@@ -1,0 +1,22 @@
+.container
+  .row
+    div class="col-lg-10 col-lg-offset-1"
+      = link_to new_admin_category_path, class: 'generic-outlined-btn push-down' do
+        i class="fa fa-plus"
+        | New Category
+      .admin-panel
+        div class="admin-title"
+          h3 Categories
+        div class="admin-body"
+          table class="table table-stripped"
+            thead
+              tr
+                th Category Title
+                th 
+                / th 
+            tbody
+              - @categories.each do |c|
+                tr
+                  td = c.name
+                  td = link_to 'Edit', edit_admin_category_path(c.id)
+                  / td = link_to 'Delete', admin_category_path(category), method: :delete

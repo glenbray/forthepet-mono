@@ -1,0 +1,45 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+VAGRANTFILE_API_VERSION = '2'
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.box = 'ubuntu/trusty64'
+  config.vm.synced_folder '.', '/forthepet', nfs: true
+  config.ssh.forward_agent = true
+  config.vbguest.auto_update = true
+  config.vbguest.no_remote = false
+  config.ssh.insert_key = false
+
+  config.vm.define :database do |database|
+    database.vm.network 'private_network', ip: '192.168.77.23'
+  end
+
+  config.vm.define :webserver, primary: true do |webserver|
+    config.vm.network :public_network, ip: "10.1.1.20", bridge: 'en0: Wi-Fi (AirPort)'
+    webserver.vm.network 'private_network', ip: '192.168.77.22'
+
+    webserver.vm.provision 'ansible' do |ansible|
+      ansible.playbook = "../forthepet-ansible/playbook.yml"
+      ansible.verbose = 'vvvv'
+      ansible.sudo = true
+      ansible.limit = 'all'
+      ansible.host_key_checking = false
+
+      ansible.groups = {
+        'webservers' => ['webserver'],
+        'databases' => ['database'],
+        'development:children' => ['webservers', 'databases']
+      }
+    end
+
+    webserver.vm.provision 'shell', path: 'devops/dev_setup.sh'
+  end
+
+  config.vm.provider 'virtualbox' do |vb|
+    vb.customize ['modifyvm', :id, '--memory', '512']
+    vb.customize ['modifyvm', :id, '--cpus', 1]
+    vb.customize ['modifyvm', :id, '--natdnshostresolver1', 'on']
+    vb.customize ['modifyvm', :id, '--natdnsproxy1', 'on']
+  end
+end

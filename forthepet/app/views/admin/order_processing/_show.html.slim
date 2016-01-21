@@ -1,0 +1,76 @@
+div class="admin-panel" style="margin-bottom: 30px;"
+  div class="admin-title" style="margin-bottom: 10px;"
+    h3 style="display: inline-block;" = "Order #{order.id}"
+  div class="admin-body" id="order_item"
+    .row
+      .col-md-5
+        = simple_form_for order, url: admin_order_processing_tracking_no_path(order), remote: true, html: { class: 'form-group' } do |f|
+          .form-group
+            = f.label :tracking_no
+            .input-group
+              = f.input_field :tracking_no, placeholder: 'Save Tracking No', size: 50, class: 'form-control'
+              span.input-group-btn
+                = f.submit 'Save', class: 'btn btn-info'
+
+      - unless order.has_active_deals?
+        = link_to 'Ship Order', admin_order_processing_ship_it_path(order), class: 'btn btn-danger pull-right', style: 'padding: 12px; border: 0px; margin-top: 15px;', data: { confirm: 'Are all items ready to be shipped?' }, method: :put
+      - else
+        span.pull-right style="color: #E50000; margin-right: 15px;" Order has deals that are currently active
+
+    .push-down
+
+    .row
+      .col-lg-9
+        .well
+          table.table
+            thead
+              th colspan="2" Order Information
+            tbody
+              tr
+                td: b Email
+                td = order.email
+              tr
+                td: b Transaction No
+                td = order.transaction_no
+              tr
+                td: b Full name
+                td = order.shipping_full_name
+              tr
+                td: b Shipping Address
+                td = order.shipping_address
+              tr
+                td: b Purchase Date
+                td = order.purchased_at
+              tr
+                td: b Tracking No
+                td = order.tracking_no
+
+    table.table
+      thead
+        th Deal
+        th Product
+        th Variant
+        th.center Qty
+        th Status
+        th Total
+      tbody
+        - order.order_items.each do |item|
+          tr
+            td = item.deal.name
+            td = item.deal.product_name
+            td = item.variant
+            td.center = item.quantity
+            td = item.aasm_state
+            td = item.print_total
+            / td
+            /   - unless item.currently_active?
+            /     = link_to 'Recieved', admin_order_processing_received_path(item), method: :patch
+            /   - else
+            /     span style="border: 2px solid #248802; padding: 6px; color: #248802;" currently active
+        tr
+          td
+          td
+          td
+          td
+          td
+          td = order.order_items.sum(&:total)
