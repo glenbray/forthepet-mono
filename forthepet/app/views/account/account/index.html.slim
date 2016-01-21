@@ -1,0 +1,160 @@
+.container
+  div class="col-md-3"
+    nav class="account-nav"
+      = render 'account_nav'
+
+  div class="col-md-9 default-panel"
+    h1 id="dashboard" My Dashboard
+    p Welcome to your account dashboard, use the links at the side to scroll to a section you would like to edit.
+    br
+    h2 Account stats:
+    .row
+      .col-sm-4
+        .account_widget
+          div
+            h4 Total Orders
+            span = @user.orders_count
+      .col-sm-4
+        .account_widget
+          div
+            h4 Credits
+            span = number_to_currency(@credits, :unit => "$")
+
+    hr
+    .row
+      h1 id="accountinfo" Account Information
+      p
+        div: strong = "Name: #{@user.name}"
+        div: strong = "Email: #{@user.email}"
+        br
+      .col-sm-8
+        h2 Change Password
+        = simple_form_for @user, url: account_update_password_path(@user.id), html: { class: 'form-horizontal' } do |f|
+          = f.hidden_field :reset_password_token
+
+          .form-group
+            = f.label :password, class: 'col-sm-4 control-label'
+            .col-sm-8
+              = f.password_field :password, :autocomplete => "off", class: 'form-control'
+          .form-group
+            = f.label :password_confirmation, class: 'col-sm-4 control-label'
+            .col-sm-8
+              = f.password_field :password_confirmation, :autocomplete => "off", class: 'form-control'
+          .form-group
+            .col-sm-offset-4.col-sm-8
+              = f.submit "Change my password", class: 'generic-btn'
+
+    hr
+    .row
+      div class="col-md-6"
+        h2 Billing Address
+        = simple_form_for billing, url: billing_url, html: { class: 'form-horizontal' } do |f|
+          .form-group
+            = f.label :first_name, class: 'col-sm-4 control-label'
+            .col-sm-8
+              = f.input_field :first_name, class: 'form-control'
+
+          .form-group
+            = f.label :last_name, class: 'col-sm-4 control-label'
+            .col-sm-8
+              = f.input_field :last_name, class: 'form-control'
+
+          .form-group
+            = f.label :address1, class: 'col-sm-4 control-label'
+            .col-sm-8
+              = f.input_field :address1, class: 'form-control'
+
+          .form-group
+            = f.label :address2, class: 'col-sm-4 control-label'
+            .col-sm-8
+              = f.input_field :address2, class: 'form-control'
+
+          .form-group
+            = f.label :suburb, class: 'col-sm-4 control-label'
+            .col-sm-8
+              = f.input_field :suburb, class: 'form-control'
+
+          .form-group
+            = f.label :state, label: 'State', class: 'col-sm-4 control-label'
+            .col-sm-8
+              = f.select :state, states, { include_blank: true }, id: 'billing_state', class: 'form-control'
+
+          .form-group
+            = f.label :postcode, class: 'col-sm-4 control-label'
+            .col-sm-8
+              = f.input_field :postcode, class: 'form-control'
+
+          .form-group
+            .col-sm-offset-4.col-sm-8
+              .checkbox
+                = f.input :billing_is_shipping, :as => :boolean, :input_html => { id: :billing_is_shipping, checked: "checked" }
+
+          .form-group
+            .col-sm-offset-4.col-sm-8
+              = f.submit class: 'generic-btn'
+
+
+      div class="col-md-6"
+        h2 Shipping Address
+        = simple_form_for shipping, url: shipping_url, html: { class: 'form-horizontal' } do |f|
+          .form-group
+            = f.label :first_name, class: 'col-sm-4 control-label'
+            .col-sm-8
+              = f.input_field :first_name, class: 'form-control'
+
+          .form-group
+            = f.label :last_name, class: 'col-sm-4 control-label'
+            .col-sm-8
+              = f.input_field :last_name, class: 'form-control'
+
+          .form-group
+            = f.label :address1, class: 'col-sm-4 control-label'
+            .col-sm-8
+              = f.input_field :address1, class: 'form-control'
+
+          .form-group
+            = f.label :address2, class: 'col-sm-4 control-label'
+            .col-sm-8
+              = f.input_field :address2, class: 'form-control'
+
+          .form-group
+            = f.label :suburb, class: 'col-sm-4 control-label'
+            .col-sm-8
+              = f.input_field :suburb, class: 'form-control'
+
+          .form-group
+            = f.label :state, label: 'State', class: 'col-sm-4 control-label'
+            .col-sm-8
+              = f.select :state, states, { include_blank: true }, id: 'billing_state', class: 'form-control'
+
+          .form-group
+            = f.label :postcode, class: 'col-sm-4 control-label'
+            .col-sm-8
+              = f.input_field :postcode, class: 'form-control'
+
+          .form-group
+            .col-sm-offset-4.col-sm-8
+              = f.submit class: 'generic-btn'
+
+    hr
+
+    h1#orders Order History
+    - if @orders.count == 0
+      div No orders have been made.
+    - else
+      table.table
+        thead
+          th Order Id
+          th Transaction No
+          th Date
+          th Quantity
+          th Total
+          / th
+        - @orders.each do |o|
+          tr
+            td = o.id
+            td = o.transaction_no
+            td = o.purchased_at
+            td = o.quantity
+            td = o.total
+            / td = link_to 'View'

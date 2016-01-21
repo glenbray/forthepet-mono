@@ -1,0 +1,27 @@
+.container
+  - unless @deals.blank?
+    - @deals.each_slice(2) do |deals|
+      .row
+        - deals.each do |deal|
+          div class="col-sm-6 col-xs-12"
+            .deal-box
+              = link_to deal_path(deal), class: 'deal-link'
+                .deal-img
+                  - if deal.photos?
+                    = image_tag(deal.first_image, class: 'img-responsive')
+                  - else
+                    = image_tag('deal-placeholder.png', class: 'img-responsive')
+                
+                  div.deal-time-container
+                    i class="fa fa-clock-o"
+                      .deal-time data-end= deal.ends_on_server_time
+                .deal-content
+                  h4.title = deal.title
+                  p = deal.description
+                  div.deal-bottom
+                    .price-box
+                      = deal.deals_price
+                    span class="label label-danger" = deal.percentage_saved
+                    = image_tag('free-delivery.png', class: 'img-responsive')
+  - else
+    h1 No Deals Currently Available

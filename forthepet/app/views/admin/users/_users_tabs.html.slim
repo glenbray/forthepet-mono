@@ -1,0 +1,6 @@
+ul.nav.nav-tabs
+  li = link_to 'Details', edit_admin_user_path(@user)
+  li = link_to 'Addresses', admin_user_addresses_path(@user)
+  li = link_to 'Change Password', admin_user_password_index_path(@user)
+  li = link_to 'Credits', admin_user_credits_path(@user), style: "text-decoration: line-through;"
+.push-down

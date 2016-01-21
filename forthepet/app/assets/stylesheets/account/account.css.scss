@@ -1,0 +1,84 @@
+// Place all the styles related to the account/account controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.orders-table {
+  th {
+    text-align: center;
+  }
+  td {
+    text-align: center;
+  }
+}
+
+.account_widget {
+  background-color: #fff;
+  border: 2px solid #e2e2e2;
+  margin-bottom: 20px;
+  border-radius: 3px;
+  padding: 20px;
+  text-align: center;
+}
+
+.account-nav {
+  border: 3px solid #E2E2E2;
+  border-radius: 3px;
+  margin-bottom: 20px;
+  background: #ffffff;
+  ul {
+    padding: 30px;
+    padding-bottom: 15px;
+    margin: 0;
+    list-style: none;
+
+    li {
+      margin-bottom: 20px;
+      a {
+        color: #333333;
+        font-weight: bold;
+        text-decoration: none;
+        text-transform: uppercase;
+      }
+
+      a:hover {
+        border-bottom: 2px solid #3D3D3D;
+      }
+    }
+  }
+}
+
+#new_address, #edit_user_2 {
+  tr {
+    width: 100%;
+    td {
+      input[type=text], input[type=number], input[type=password] {
+        margin-bottom: 4px;
+        background: #e2e2e2;
+        color: #3e3e3e;
+        border: 1px solid #9c9c9c;
+        border-radius: 0;
+        box-shadow: none;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 0.875em;
+        line-height: 2;
+        height: 2em;
+        padding: 0 0.7142857143em;
+      }
+      label {
+        text-transform: uppercase;
+      }
+      &:first-child {
+        width: 40%;
+      }
+    }
+  }
+}
+#edit_user_2 {
+  tr {
+    td {
+      &:first-child {
+        width: 50%;
+      }
+    }
+  }
+}

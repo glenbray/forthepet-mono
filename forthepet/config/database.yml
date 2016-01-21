@@ -1,0 +1,12 @@
+development:
+#  url: <%= ENV["FORTHEPET_DB_PRODUCTION"] %>
+  url: <%= ENV["FORTHEPET_DB_DEV"] %>
+
+test:
+  url: <%= ENV["FORTHEPET_DB_TEST"] %>
+
+staging:
+  url: <%= ENV["FORTHEPET_DB_URL"] %>
+
+production:
+  url: <%= ENV["FORTHEPET_DB_URL"] %>

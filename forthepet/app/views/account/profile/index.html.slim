@@ -1,0 +1,57 @@
+.container
+	.row
+		div class="col-lg-6 col-offset-3"
+			= simple_form_for @user, url: account_profile_path(@user) do |f|
+				h4 Profile
+				= render 'shared/error_messages', object: @user
+				= f.input :first_name
+				= f.input :last_name
+				= f.input :email
+				= f.input :mobile
+				= f.input :phone
+				= f.input :password
+				= f.input :confirm_password
+				= f.submit
+
+/ <div class="row">
+/ 	<div class="col-lg-6 col-offset-3">
+
+/ 		<%= form_for @user, url: {controller: 'profile', action: 'update'} do |f| %>
+/ 		<fieldset>
+/ 		<legend>Profile</legend>
+/ 			<%= render 'shared/error_messages' %>
+/ 			<h4>Personal Details</h4>
+
+/ 			<div class="row">
+/ 					<div class="col-lg-6">
+/ 						<%= f.label 'First Name' %>
+/ 						<%= f.text_field :first_name %>
+/ 					</div>
+/ 					<div class="col-lg-6">
+/ 						<%= f.label 'Last Name' %>
+/ 						<%= f.text_field :last_name %>
+/ 					</div>
+/ 				</div>
+/ 				<div class="row form-spacer">
+/ 					<div class="col-lg-12">
+/ 						<%= f.label 'Email' %>
+/ 						<%= f.text_field :email %>
+/ 					</div>
+/ 				</div>
+/ 				<div class="row form-spacer">
+/ 					<div class="col-lg-6">
+/ 						<%= f.label 'Mobile' %>
+/ 						<%= f.text_field :mobile %>
+/ 					</div>
+/ 					<div class="col-lg-6">
+/ 						<%= f.label 'Home Phone' %>
+/ 						<%= f.text_field :phone %>
+/ 					</div>
+/ 				</div>
+/ 				<div class="form-spacer"><%= f.submit 'Save', class: 'btn btn-primary' %></div>
+
+/ 		</fieldset>
+
+/ 		<% end %>
+/ 	</div>
+/ </div>

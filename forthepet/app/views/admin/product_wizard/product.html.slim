@@ -1,0 +1,39 @@
+.container
+  .row
+    .col-xs-12
+      h2 Product Wizard
+
+      div.progress
+        div class="progress-bar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 75%;" 75%
+
+      div class="wizard-container"
+        h3 Product Details
+
+        = simple_form_for @product_form, url: wizard_path, method: :put do |f|
+          .row
+            .col-lg-4
+              div.form-group
+                = f.label :name
+                = f.input_field :name, class: 'form-control'
+              div.form-group
+                = f.label :brand
+                = f.input_field :brand, class: 'form-control'
+
+              = f.simple_fields_for :master_variant do |v|
+                div.form-group
+                  = v.label :price
+                  = v.input_field :price, class: 'form-control'
+
+                div.form-group
+                  = v.label :quantity
+                  = v.input_field :quantity, class: 'form-control', value: 100
+
+                div.form-group
+                  = v.label :sku
+                  = v.input_field :sku, class: 'form-control'
+          .row
+            .col-lg-12
+              div.form-group
+                = f.input :description, as: :text, input_html: { rows: 15, class: 'editor' }, required: false
+
+              = f.submit 'Continue', class: 'btn btn-md'

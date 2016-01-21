@@ -1,0 +1,8 @@
+$('#order-section').html("<%= j (render 'show', order: @order) %>")
+
+$('.order-btn').each(function() {
+  $(this).on('click', function() {
+    $('.order-btn').parents('tr').removeClass('active');
+    $(this).parents('tr').addClass('active');
+  });
+});

@@ -1,0 +1,13 @@
+= content_for :register do
+  div id="register" class="panel-collapse collapse in"
+    div class="panel-body" style="margin: 0 auto;"
+      p
+        = link_to 'Login', '', class: 's-or-r'
+        | or
+        = link_to 'create an account', '', class: 's-or-r'
+        | for faster checkout
+      hr
+      p
+        = link_to wizard_path(:billing), class: 's-or-r btn-outlined' do
+          | Contine as Guest
+          i class="fa fa-arrow-circle-o-right"

@@ -1,0 +1,58 @@
+- include: install_rbenv.yml
+- include: install_ruby_dependencies.yml
+- include: install_ruby.yml
+
+# - name: node ppa
+#   apt_repository: repo='ppa:chris-lea/node.js' state=present
+#
+# - name: rbenv dependencies
+#   apt: pkg={{ item }} state=present
+#   with_items:
+#     - build-essential
+#     - zlib1g-dev
+#     - openssl
+#     - libopenssl-ruby1.9.1
+#     - libssl-dev
+#     - libruby1.9.1
+#     - libcurl4-openssl-dev
+#     - libreadline-dev
+#     - libxml2-dev
+#     - libxslt1-dev
+#     - nodejs
+#
+# # Clone rbenv into /usr/local/rbenv
+# - git: repo="https://github.com/sstephenson/rbenv.git" dest=/usr/local/rbenv
+#
+# # set up required rbenv directories
+# - file: path=/usr/local/rbenv/shims state=directory
+# - file: path=/usr/local/rbenv/versions state=directory
+#
+# # rbenv variables
+# - file: path=/etc/profile.d/rbenv.sh state=touch mode=0775
+# - lineinfile: dest=/etc/profile.d/rbenv.sh state=present line="# rbenv setup"
+# - lineinfile: dest=/etc/profile.d/rbenv.sh state=present line="export RBENV_ROOT=/usr/local/rbenv"
+# - lineinfile: dest=/etc/profile.d/rbenv.sh state=present line='export PATH="$RBENV_ROOT/bin:$PATH"'
+# - lineinfile: dest=/etc/profile.d/rbenv.sh state=present line='eval "$(rbenv init -)"'
+#
+# # Clone ruby-build into rbenv to use as a plugin
+# - git: repo="https://github.com/sstephenson/ruby-build.git" dest=/usr/local/rbenv/plugins/ruby-build
+#
+# - name: check if ruby version is installed
+#   shell: bash -lc "rbenv versions | grep {{ ruby_version }}"
+#   ignore_errors: yes
+#   register: ruby_installed
+#
+# - name: install ruby {{ ruby_version }}
+#   shell: bash -lc "rbenv install {{ ruby_version }}"
+#   when: ruby_installed|failed
+#
+# - name: set global ruby {{ ruby_version }}
+#   shell: bash -lc "rbenv global {{ ruby_version }} && rbenv rehash"
+#
+# - name: create gemrc
+#   file: path=/etc/gemrc state=touch mode=0644
+#
+# - name: update gemrc
+#   lineinfile: 'dest=/etc/gemrc line="gem: --no-rdoc --no-ri"'
+#
+# - include: install_gems.yml

@@ -1,0 +1,19 @@
+rbenv_repo: https://github.com/sstephenson/rbenv.git
+ruby_build_repo: https://github.com/sstephenson/ruby-build.git
+rbenv_home: /usr/local/rbenv
+
+ruby_dependency_repos:
+  - ppa:chris-lea/node.js
+
+ruby_dependency_packages:
+  - build-essential
+  - zlib1g-dev
+  - openssl
+  - libssl-dev
+  - libcurl4-openssl-dev
+  - libreadline-dev
+  - libxml2-dev
+  - libxslt1-dev
+  - nodejs
+  - libffi6
+  - libffi-dev

@@ -1,0 +1,20 @@
+- hosts: all
+  sudo: yes
+  roles:
+    - users
+    - common
+    - swap
+    - ntp
+    - timezone
+
+- hosts: webservers
+  sudo: yes
+  roles:
+    - rbenv
+    - passenger_nginx
+    - webserver
+
+- hosts: databases
+  sudo: yes
+  roles:
+    - database

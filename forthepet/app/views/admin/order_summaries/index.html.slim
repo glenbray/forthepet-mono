@@ -1,0 +1,73 @@
+.container
+  h1 class="h-underline" Order Summaries Report
+  .push-down
+  .row
+    div class="col-lg-6"
+      div class="admin-panel"
+        div class="admin-title"
+          h3 Aggregations
+        div class="admin-body"
+          .row
+            .col-lg-12
+              table.table
+                thead
+                  th Name
+                  th Quantity
+                  th Total
+                tbody
+                  - @grouped_order_items.each do |item|
+                    tr
+                      td = Deal.find(item.first).name
+                      td.center = item.last.sum(&:quantity)
+                      td = number_to_currency(item.last.sum(&:total))
+                  tr
+                    td
+                    td
+                    td = number_to_currency(@grouped_order_items.inject(0) { |sum, deal| sum += deal.last.sum(&:total) })
+              = link_to 'Email Report', admin_order_summaries_email_path, method: :post, class: 'btn btn-action push-down'
+
+    div class="col-lg-6"
+      .admin-panel
+        div class="admin-title"
+          h3 Itemisation
+        div class="admin-body"
+          .row
+            .col-lg-12
+              .push-down
+              - @orders.each do |order|
+                .well
+                  .row
+                    .col-lg-12
+                      table.table
+                        thead
+                          th colspan="2" User Information
+                        tbody
+                          tr
+                            td User Email
+                            td = order.email
+                          tr
+                            td Transaction No
+                            td = order.transaction_no
+                          tr
+                            td Shipping Full name
+                            td = order.shipping_full_name
+                          tr
+                            td Shipping Address
+                            td = order.shipping_address
+
+                  table.table
+                    thead
+                      th Deal
+                      th Quantity
+                      th Total
+                    tbody
+                      - order.order_items.each do |item|
+                        tr
+                          td = item.deal.name
+                          td.center = item.quantity
+                          td = item.print_total
+                      tr
+                        td
+                        td
+                        td = number_to_currency(order.order_items.sum(&:total))
+

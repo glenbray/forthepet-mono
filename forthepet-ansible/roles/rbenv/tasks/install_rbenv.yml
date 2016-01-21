@@ -1,0 +1,18 @@
+- name: checkout rbenv repo
+  git: repo={{ rbenv_repo }} dest={{ rbenv_home }}
+  tags: rbenv
+
+- name: set up required rbenv directories
+  file: path="{{ rbenv_home }}/{{ item }}" state=directory
+  with_items:
+    - shims
+    - versions
+  tags: rbenv
+
+- name: copy rbenv.sh to /etc/profile.d/rbenv.sh
+  copy: src=rbenv.sh dest=/etc/profile.d/rbenv.sh mode=0775
+  tags: rbenv
+
+- name: clone ruby-build plugin
+  git: repo={{ ruby_build_repo }} dest={{ rbenv_home }}/plugins/ruby-build
+  tags: rbenv

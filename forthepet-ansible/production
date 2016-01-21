@@ -1,0 +1,9 @@
+[webservers]
+forthepet.com.au
+
+[databases]
+db.forthepet.com.au
+
+[production:children]
+webservers
+databases

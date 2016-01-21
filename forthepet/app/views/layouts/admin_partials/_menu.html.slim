@@ -1,0 +1,59 @@
+nav class="navbar navbar-default"
+  .container-fluid
+    div class="navbar-header"
+      button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse"
+        span class="icon-bar"
+        span class="icon-bar"
+        span class="icon-bar"
+      a class="navbar-brand" data-target="#" href="#{admin_root_path}"
+        = image_tag("forthepetlogo-final.jpg", height: '48', style: 'margin-left: 10px;', format: 'jpg')
+    div class="collapse navbar-collapse navbar-responsive-collapse"
+      ul class="nav navbar-nav navbar-right"
+
+        - if can? :manage, Order
+          li class="dropdown"
+            a href="#" class="dropdown-toggle" data-toggle="dropdown"
+              | Orders
+              b class="caret"
+
+            ul class="dropdown-menu"
+              li = link_to 'Orders', admin_orders_path('q[aasm_state_cont]' => 'pending', commit: 'Filter')
+              li = link_to 'Process Orders', admin_order_processing_index_path
+              li = link_to 'Summaries Report', admin_order_summaries_path
+
+        - if can? :manage, Deal
+          li class="dropdown"
+            a href="#" class="dropdown-toggle" data-toggle="dropdown"
+              | Deals
+              b class="caret"
+
+            ul class="dropdown-menu"
+              li = link_to 'Deals', admin_deals_path
+              li = link_to 'Fine Print', admin_fine_prints_path
+
+        - if can? :manage, Product
+          li class="dropdown"
+            a href="#" class="dropdown-toggle" data-toggle="dropdown"
+              | Products
+              b class="caret"
+
+            ul class="dropdown-menu"
+              li = link_to 'Products', admin_product_index_path
+              li = link_to 'Options', admin_option_index_path
+
+
+        - if can? :manage, Category
+          li = link_to 'Category', admin_category_index_path
+        - if can? :manage, Supplier
+          li = link_to 'Suppliers', admin_suppliers_path
+
+        - if can? :manage, Admin
+          li class="dropdown"
+            a href="#" class="dropdown-toggle" data-toggle="dropdown"
+              | Users
+              b class="caret"
+            ul class="dropdown-menu"
+              li = link_to 'Users', admin_users_path
+              li = link_to 'Admins', admin_admins_path
+
+        li = link_to 'Logout', destroy_admin_session_path, method: :delete

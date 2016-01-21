@@ -1,0 +1,23 @@
+div class="admin-panel" style="margin-bottom: 30px;"
+  div class="admin-title" style="margin-bottom: 10px;"
+    h3 style="display: inline-block;" Pending Orders
+  div class="admin-body"
+    p = "Total Pending: #{orders.count}"
+    table.table.table-hover
+      thead
+        th Id
+        th Transaction No
+        th Full Name
+        th Email
+        th Tracking No
+        th
+      tbody
+        - orders.each do |order|
+         tr class="#{order.current(@order.id)}"
+          td = order.id
+          td = order.transaction_no
+          td = order.shipping_full_name
+          td = order.email
+          td = order.tracking_no
+          td = link_to admin_order_processing_path(order), class: 'btn btn-default order-btn', remote: true do
+                i.fa.fa-search

@@ -1,0 +1,35 @@
+.container[style="padding-top: 20px;"]
+  - if @deals != nil && @deals.size > 0
+    - @deals.each_with_index do |deal, index|
+      - is_even = false
+      - if index.even?
+        .row
+          - is_even = true
+      .col-lg-4.col-md-6.col-sm-8.col-sm-offset-2.col-md-offset-0
+        |  <div class="image-deal well box 
+        = if is_even then 'deal-odd' else 'deal-even' end
+        | "> 
+        a[href=""]
+          |  <img class="img-responsive" src="
+          = deal.product.photos.first.picture_url(:deal)
+          | " alt="
+          = deal.product.photos.first.alt_text
+          | " > 
+        h4
+          = deal.name
+        p
+          = deal.product.short_description
+        |  <div id="c" data-end="
+        = deal.ends_on.to_i
+        | " class="deal-time">
+      .deal-prices
+        h4
+          = number_to_currency(deal.product.master_variant.price, unit: "$")
+      .deal-discount
+        h4
+          = number_to_currency(deal.deal_price, unit: "$")
+- if !index.even? || @deals.size - 1 == index
+
+- else
+  b
+    | No Deals Currently Available!

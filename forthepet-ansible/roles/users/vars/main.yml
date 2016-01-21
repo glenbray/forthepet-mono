@@ -1,0 +1,4 @@
+users:
+  - name: glen
+    password: "$1$/dqUUph/$HEE4BEf0Lj6uogHxvY7nF."
+    key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC7I2uLyztyaYYCQP8wvCRmf9MU8KVAZoxFzx/7MaRaMdY53HH3/JxsxQYRXauFOoMYpfeiIW9baazN5AXnmK9UmuK2eo0mICla1fdRWEUHglFiFWuG5wHzPNGSqb/rzL/YZk1DPbARZUa9ob89zhqJHIkSHGOFld/AOkuQ+sjpMd0EYrDMFQs3UkLt/gSfeTdOUoDxevo9wTst2zTY3NkI61zo52x2F6Vuy41JohOmQCpUB3Fr+RltHo9c2+rg0T86dZnxJgGIj/wI+X/PyznqI3teFmnGa+P0IuTSxJ4CBpYzh2x4KPnTHF1GtNxoFa4K49tr6Ywp9w69DFgV97Q1 glen@Glens-MacBook-Pro.local"

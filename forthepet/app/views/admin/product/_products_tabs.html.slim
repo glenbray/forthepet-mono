@@ -1,0 +1,25 @@
+h4 = @product.name
+hr
+ul class="nav nav-tabs"
+  li class="#{prod_menu_active(:product, controller_name)}"
+    = link_to 'Product Details', edit_admin_product_path(@product)
+
+  li class="#{prod_menu_active(:product_option, controller_name)}"
+    = link_to 'Options', admin_product_options_path(@product)
+
+  li class="#{prod_menu_active(:variant, controller_name)}"
+    = link_to 'Variants', admin_product_variants_path(@product)
+
+  li class="#{prod_menu_active(:product_categories, controller_name)}"
+    = link_to 'Categories', admin_product_categories_path(@product)
+
+  li class="#{prod_menu_active(:product_supplier, controller_name)}"
+    = link_to 'Supplier', admin_product_suppliers_path(@product)
+
+  li class="#{prod_menu_active(:product_features, controller_name)}"
+    = link_to 'Features', admin_product_features_path(@product)
+
+  li class="#{prod_menu_active(:product_images, controller_name)}"
+    = link_to 'Images', admin_product_images_path(@product)
+
+.push-down

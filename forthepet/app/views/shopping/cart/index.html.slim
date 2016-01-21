@@ -1,0 +1,20 @@
+.container
+  .row
+    h1 style="margin-left: 10px;" Your Shopping Cart
+    h2 style="margin-left: 10px; font-weight: 200;"
+      b Check out
+      | &nbsp; the savings you just made!
+
+  - if @cart_items.empty?
+    h3 You have no items in your cart
+    = link_to 'Did you forget something?', :back, class: 'forgot-link'
+  - else
+      div class="row" style="margin-bottom: 50px;"
+        div class="col-xs-12 col-md-9"
+          div.cart-items.mobile-cart
+            = render partial: 'cart_items', locals: { cart_items: @cart_items }
+
+        div class="col-xs-12 col-md-3"
+          - unless session_cart.empty?
+            div class="cart-summary"
+              = render partial: 'summary', locals: { cart: @cart }

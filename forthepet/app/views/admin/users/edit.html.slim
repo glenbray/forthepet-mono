@@ -1,0 +1,29 @@
+.container
+  .row
+    div class="col-lg-10 col-lg-offset-1"
+      = link_to admin_users_path, class: 'generic-outlined-btn push-down' do
+        i class="fa fa-arrow-circle-o-left fa-2"
+        | Return
+      .admin-panel
+        div class="admin-title"
+          h3 User Details
+        div class="admin-body"
+          = render "users_tabs"
+          = simple_form_for @user, url: admin_user_path do |f|
+            .row
+              div class="col-md-6"
+                = f.input :email, input_html: { class: 'form-control' }
+            .row
+              div class="col-md-6"
+                = f.input :first_name, input_html: { class: 'form-control' }
+            .row
+              div class="col-md-6"
+                = f.input :last_name, input_html: { class: 'form-control' }
+            .row
+              div class="col-md-6"
+                = f.input :mobile, input_html: { class: 'form-control' }
+            .row
+              div class="col-md-6"
+                = f.input :phone, input_html: { class: 'form-control' }
+            = f.submit 'Update', class: 'btn-action pull-down'
+

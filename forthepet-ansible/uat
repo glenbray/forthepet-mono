@@ -1,0 +1,9 @@
+[webservers]
+uat.forthepet.com.au
+
+[databases]
+uat.forthepet.com.au
+
+[uat:children]
+webservers
+databases

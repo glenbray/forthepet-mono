@@ -1,0 +1,12 @@
+.container
+  .row
+    .col-md-5.col-md-offset-3
+      .default-panel
+        = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+          div class="form-group"
+            h2 Sign In
+            = f.input :login, required: false, autofocus: true
+            = f.input :password, required: false
+            div class="checkbox"
+              = f.input :remember_me, as: :boolean, input_html: { checked: true } if devise_mapping.rememberable?
+          = f.button :submit, "Sign in", class: 'btn btn-default'

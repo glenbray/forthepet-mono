@@ -1,0 +1,24 @@
+.container
+  .row
+    div class="col-lg-12"
+      .admin-panel
+        div class="admin-title"
+          h3 Deal Orders
+        div class="admin-body"
+          table.table
+            thead
+              th Deal
+              th Start
+              th End
+              th Status
+              th Orders
+              th
+            tbody
+              - @deal_orders.each do |deal|
+                tr
+                  td = deal.name
+                  td = deal.available_on
+                  td = deal.ends_on
+                  td = deal.status
+                  td = deal.order_items.count
+                  td = link_to 'Process', admin_order_deal_path(deal.id) if deal.process_deal?

@@ -1,0 +1,341 @@
+// Place all the styles related to the deal controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.modal-open {
+  overflow: auto;
+}
+
+// INDEX.HTML.SLIM
+.deal-box {
+  width: 100%;
+  margin-bottom: 25px;
+  border: 1px solid #E5E5E5;
+
+  @media (max-width: 768px) {
+    margin: 0 auto;
+    margin-bottom: 30px;
+  }
+
+  a.deal-link {
+    text-decoration: none;
+  }
+
+  .deal-img{
+    background-color: #fff;
+    border-bottom: 1px solid #F0F0F0;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+  }
+
+  .deal-time-container {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    padding: 5px 15px;
+    color: #CB0202;
+    background: #ffffff;
+    border-radius: 3px;
+
+    .deal-time {
+      border-radius: 5px;
+      display: inline-block;
+      padding-left: 3px;
+    }
+  }
+
+  .price-box {
+    display: inline-block;
+  }
+
+  .deal-content {
+    background: #fff;
+    padding: 15px 10px 10px 10px;
+
+    .title {
+      margin-bottom: 3px;
+      font-size: 0.9em;
+      margin-top: 0;
+      padding-top: 0;
+      color: #353535;
+      text-transform: uppercase;
+      text-overflow: clip;
+      white-space: nowrap;
+      overflow: hidden;
+
+      @media (max-width: 769px) {
+        font-size: 0.8em !important;
+      }
+    }
+
+    h4 {
+      font-family: inherit;
+    }
+
+    p {
+      color: #595959;
+      margin-bottom: 0;
+      min-height: 40px;
+      font-size: 0.8em;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      height: 38px;
+      margin-bottom: 12px
+    }
+
+    .deal-bottom {
+      img {
+        height: 40px;
+        margin-left: 60px;
+        position: absolute;
+        right: 15px;
+        bottom: 28px;
+
+        @media (max-width: 769px) {
+          height: 37px;
+          bottom: 34px;
+        }
+      }
+
+      span {
+        @media (max-width: 769px) {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
+
+@mixin pricing {
+  display: inline-block;
+  padding-left: 0 !important;
+  margin-left: 0px;
+  margin-right: 4px;
+  h4 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 1em;
+  }
+}
+
+.product-price {
+  @include pricing;
+  display: block;
+  h4 {
+    color: #04aff7;
+    font-weight: bold;
+  }
+}
+
+.deal-price {
+  @include pricing;
+  h4 {
+    text-decoration: line-through;
+    font-size: 13px;
+    color: #ff6501;
+
+    @media only screen and (max-width: 991px) {
+      font-size: 11px;
+    }
+  }
+}
+
+.deal-discount {
+  @include pricing;
+  h4 {
+    color: #04aff7;
+    font-weight: bold;
+  }
+
+  @media only screen and (max-width: 991px) {
+    display: block;
+  }
+}
+
+.price {
+  display: inline;
+  font-family: 'Overlock', cursive;
+  margin: 5px;
+  font-weight: bold;
+  text-decoration: line-through;
+}
+
+.discount {
+  display: inline;
+  font-family: 'Overlock', cursive;
+  margin: 5px;
+  font-weight: bold;
+  font-size: 26px;
+  color: green;
+  margin-left: 40px;
+}
+
+.deal-item-box {
+  border: 1px solid #000;
+  background: #fff;
+  border: 1px solid #E9E9E9;
+  padding: 20px;
+}
+
+// SHOW.HTML.SLIM
+.single-deal-time {
+  text-align: center;
+  border: 2px solid #FF6B00;
+  max-width: 400px;
+  padding: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #47423D;
+
+  span {
+    font-size: 1em;
+  }
+}
+
+.show-item {
+  .time-remaining {
+    margin-top: 10px;
+  }
+}
+
+.gallery {
+  margin: 0 auto;
+  margin-bottom: 10px;
+
+  .elastislide-wrapper {
+    min-height: 0;
+    box-shadow: none;
+    padding: 10px 50px;
+    nav span {
+      background-color: #00B8FF;
+    }
+  }
+  .elastislide-list {
+    li {
+      border: 2px solid #fff;
+      margin-right: 3px;
+    }
+    .current-img {
+      border: 2px solid #FF8500;
+    }
+  }
+
+  #preview {
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+  }
+}
+
+
+.default-panel {
+  background: #ffffff;
+  padding: 30px 20px 20px 20px;
+  border: 1px solid #DDDDDD;
+
+  @media (max-width: 768px) {
+    padding: 25px;
+  }
+
+  .show-title {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #E8E8E8;
+    padding-bottom: 5px;
+    font-size: 24px;
+    color: #FD6200;
+  }
+
+  .show-price {
+    .original-price {
+      color: #ff6501;
+      padding-right: 10px;
+      text-decoration: line-through;
+      margin-right: 0px;
+      font-size: 20px;
+      position: relative;
+      top: -2px;
+    }
+
+    .current-price {
+      color: #04aff7;
+      font-weight: bold;
+      font-size: 30px;
+      padding-right: 10px;
+    }
+  }
+
+  .quantity-wrapper {
+    display: inline-block;
+    margin-right: 15px;
+
+    .show-quantity {
+      max-width: 60px;
+      margin-right: 10px;
+    }
+  }
+}
+
+.item-show-info {
+  h3 {
+    margin-top: 0;
+    text-transform: uppercase;
+    border-bottom: 1px solid;
+  }
+
+  ul {
+    padding-left: 18px;
+  }
+}
+
+.show-referal {
+  a {
+    text-align: center;
+    border: 1px solid #eeeeee;
+    background: #fff;
+    color: #ffffff;
+    padding: 5px 20px;
+    margin-right: 3%;
+    display: inline-block;
+    text-decoration: none;
+    i {
+      margin-right: 8px;
+    }
+  }
+ .facebook {
+    background: #3B5998;
+  }
+  .twitter {
+    background: #4099FF;
+  }
+  .email {
+    background: #292929;
+  }
+}
+
+.alert {
+  margin-top: 10px;
+}
+
+@media (max-width: 991px) {
+  .current-price { font-size: 25px !important; }
+  .original-price { top: 0 !important; }
+  .email, .facebook, .twitter {
+    font-size: 1.4rem;
+  }
+}
+
+.modal-content {
+  border-radius: 0px;
+
+  .modal-body {
+    padding: 25px 15px;
+  }
+}
+
+.deal-features {
+  ul {
+    padding-left: 18px;
+  }
+}

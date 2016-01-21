@@ -1,0 +1,88 @@
+source 'https://rubygems.org'
+
+gem 'rails', '4.2.5'
+
+group :assets do
+  gem 'sass-rails'
+  gem 'uglifier'
+end
+
+group :development do
+  gem 'pry-rails'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'quiet_assets'
+  gem 'guard-rspec'
+  gem 'spring'
+  gem 'rubocop', require: false
+  gem 'rack-mini-profiler'
+  gem 'bullet'
+  gem 'capistrano'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-rails'
+  gem 'capistrano-nc'
+  gem 'capistrano3-delayed-job', '~> 1.0'
+  gem 'capistrano-passenger', '= 0.0.1'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'faker'
+  gem 'shoulda-matchers'
+  gem 'simplecov', :require => false
+end
+
+group :development, :test do
+  gem 'foreman', require: false
+  gem 'rspec-rails'
+  gem 'rspec-collection_matchers'
+  gem 'spring-commands-rspec'
+  gem 'factory_girl_rails'
+end
+
+# admin specific gems
+gem 'tinymce-rails'
+gem 'ransack'
+gem 'aasm'
+gem 'cancancan'
+gem 'kaminari'
+
+# other gems
+gem 'keen'
+gem 'exception_handler'
+gem 'autoprefixer-rails'
+gem 'bootstrap-sass'
+gem 'momentjs-rails', '~> 2.8.1'
+gem 'bootstrap3-datetimepicker-rails'
+gem 'roadie-rails'
+gem 'metamagic'
+gem 'delayed_job_active_record'
+gem 'zeroclipboard-rails'
+gem 'roboto'
+gem 'jquery-cookie-rails'
+gem 'acts_as_list'
+
+gem 'pg', '~> 0.18.1'
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
+gem 'devise'
+gem 'carrierwave'
+gem 'cloudinary'
+gem 'mandrill-api'
+gem 'wicked'
+gem 'simple_form', git: 'https://github.com/plataformatec/simple_form.git'
+gem 'crummy', '~> 1.8.0'
+gem 'friendly_id'
+gem 'slim-rails', git: 'https://github.com/slim-template/slim-rails.git'
+gem 'newrelic_rpm'
+gem 'braintree'
+gem 'draper'
+gem 'font-awesome-rails'
+gem 'seed_dumper'
+gem 'gibbon'
+gem 'daemons'
+gem 'rollbar'
+gem 'skylight'
+gem 'reform'
+gem 'daemon_controller'

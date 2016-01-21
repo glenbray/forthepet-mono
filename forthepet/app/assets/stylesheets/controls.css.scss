@@ -1,0 +1,301 @@
+.btn-action, .btn-cart {
+  border: 0px;
+  padding: 10px 15px;
+  color: #fff;
+  border-radius: 1px;
+  font-weight: lighter;
+  font-size: 16px;
+  background: #00abff;
+  outline: none;
+  text-transform: uppercase;
+  font-weight: bold;
+  &:hover {
+    background: #0393da;
+    color: #ffffff;
+  }
+  &:focus {
+    color: #ffffff;
+  }
+}
+
+.btn-cart {
+  background: #36A817;
+  &:hover {
+    background: #298411;
+  }
+}
+
+.btn-footer {
+  border: 0px;
+  padding: 10px 15px;
+  color: #fff;
+  border-radius: 4px;
+  font-weight: lighter;
+  font-size: 18px;
+  background: #00abff;
+  outline: none;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  margin-left: 10px;
+  &:hover {
+    background: #0393da;
+  }
+}
+
+.btn-blue {
+  display: block;
+  padding: 10px 15px;
+  text-decoration: none;
+  margin-bottom: 5px;
+  color: white;
+  font-weight: bold;
+  border: 0;
+  background: #00C2FF;
+  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.15);
+  position: relative;
+  width: 100%;
+  font-size: 20px;
+  text-shadow: 3px 1px 1px rgba(94, 94, 94, 0.62);
+  transition: background 0.15s linear, top 0.08s linear, box-shadow 0.08s linear;
+  border-radius: 5px;
+  text-align: center;
+  &:hover {
+    background: #00AFE6;
+    color: #fff;
+    text-decoration: none;
+  }
+  &:focus {
+    background: #00AFE6;
+    outline: 0;
+    color: #ffffff;
+    text-decoration: none;
+  }
+  &:active {
+    top: 3px;
+    box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.35);
+  }
+}
+
+.generic-btn {
+  background: #2E2E2E;
+  border: 0;
+  color: #fff;
+  padding: 13px 36px;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background .15s linear,top .08s linear;
+  text-decoration: none;
+  display: inline-block;
+  i {
+    margin-right: 8px;
+  }
+  &:hover {
+    text-decoration: none;
+    background: #00ABFF;
+    color: #fff;
+  }
+  &:focus {
+    outline: 0;
+  }
+}
+
+.generic-outlined-btn {
+  background: #ffffff;
+  color: #3D3D3D !important;
+  padding: 12px 35px;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background 0.15s linear, top 0.08s linear, border 0.15s linear;
+  text-decoration: none;
+  display: inline-block;
+  border: 2px solid lighten(#00aeff, 25%);//#CECECE;
+  border-radius: 0 !important;
+  text-transform: uppercase;
+  i {
+    margin-right: 8px;
+  }
+  &:hover {
+    text-decoration: none;
+    background: lighten(#00aeff, 0%);
+    color: #fff !important;
+    border: 2px solid lighten(#00aeff, 0%);
+  }
+  &:focus {
+    outline: 0;
+    text-decoration: none;
+  }
+}
+
+.cart-btn {
+  background: #00aeff;
+  margin-top: 4px;
+  padding: 8px 20px !important;
+  border-radius: 0;
+  text-decoration: none;
+  transition: background 0.15s linear, top 0.08s linear, box-shadow 0.08s linear;
+  color: white;
+  border: 2px solid #efefef;
+  i {
+    margin-right: 10px;
+    color: #fff;
+  }
+  span {
+    color: #fff;
+    font-size: 12px;
+  }
+  &:hover {
+    text-decoration: none;
+    color: white;
+    background: #0092d6 !important;
+    i, span {
+      color: #fff;
+    }
+  }
+}
+
+.account-btn {
+  margin-top: 4px;
+  margin-right: 10px;
+  padding: 9px 10px !important;
+  border-radius: 0 !important;
+  text-decoration: none;
+  transition: background 0.15s linear, top 0.08s linear, box-shadow 0.08s linear;
+  border: 2px solid #efefef;
+  color: #fff !important;
+  text-transform: uppercase;
+  i {
+    margin-right: 7px;
+    margin-top: 1px;
+  }
+  &:hover {
+    text-decoration: none;
+    background: #0092d6 !important;
+    color: #fff !important;
+  }
+}
+
+.btn-forthepet {
+  color: #fff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  font-weight: bold;
+  border: 0;
+  background: #00ADFF;
+  padding: 7px;
+  border-top-right-radius: 2px !important;
+  border-bottom-right-radius: 2px !important;
+  height: 34px;
+  margin: 0;
+  &:hover {
+    background: #0496DB;
+    color: #fff;
+  }
+  &:focus {
+    color: #fff;
+    outline: 0;
+  }
+}
+
+.m-pikabu-nav-toggle {
+  background-color: inherit !important;
+  outline: 0;
+
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
+  line-height: 50px;
+  padding: 0 15px;
+  font-size: 1.2em;
+
+  color: #fff;
+  .fa-bars {
+    color: #fff;
+  }
+  span {
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    margin-left: 5px;
+  }
+  &:hover, &:focus {
+    border-color: inherit !important;
+    color: #fff !important;
+    background: #0092d6 !important;
+  }
+}
+
+.btn-primary {
+  background: lighten(#04aff7, 10%);
+  color: #ffffff !important;
+  padding: 5px 15px;
+  border-radius: 0;
+  font-weight: bold;
+  transition: background 0.15s linear, top 0.08s linear, border 0.15s linear;
+  text-decoration: none;
+  display: inline-block;
+  border: 2px solid lighten(#04aff7, 10%);//#CECECE;
+  border-radius: 0 !important;
+  text-transform: uppercase;
+  padding-left: 20px;
+  i {
+    margin-right: 8px;
+  }
+  &:hover {
+    text-decoration: none;
+    background: lighten(#04aff7, 0%);
+    color: #fff !important;
+    border: 2px solid lighten(#04aff7, 0%);
+  }
+  &:focus {
+    outline: 0;
+  }
+}
+.btn-warning {
+  background: lighten(#ff6501, 10%);
+  color: #ffffff !important;
+  padding: 5px 15px;
+  border-radius: 0;
+  font-weight: bold;
+  transition: background 0.15s linear, top 0.08s linear, border 0.15s linear;
+  text-decoration: none;
+  display: inline-block;
+  border: 2px solid lighten(#ff6501, 10%);//#CECECE;
+  border-radius: 0 !important;
+  text-transform: uppercase;
+
+  &:hover {
+    text-decoration: none;
+    background: lighten(#ff6501, 0%);
+    color: #fff !important;
+    border: 2px solid lighten(#ff6501, 0%);
+  }
+  &:focus {
+    outline: 0;
+  }
+}
+
+.generic-btn {
+  background: lighten(#04aff7, 10%);
+  color: #ffffff !important;
+  padding: 5px 15px;
+  border-radius: 0;
+  font-weight: bold;
+  transition: background 0.15s linear, top 0.08s linear, border 0.15s linear;
+  text-decoration: none;
+  display: inline-block;
+  border: 2px solid lighten(#04aff7, 10%);//#CECECE;
+  border-radius: 0 !important;
+  text-transform: uppercase;
+  height: 40px;
+  i {
+    margin-right: 8px;
+  }
+  &:hover {
+    text-decoration: none;
+    background: lighten(#04aff7, 0%);
+    color: #fff !important;
+    border: 2px solid lighten(#04aff7, 0%);
+  }
+  &:focus {
+    outline: 0;
+  }
+}

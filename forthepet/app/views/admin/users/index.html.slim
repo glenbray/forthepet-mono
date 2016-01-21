@@ -1,0 +1,41 @@
+.container
+  .row
+    div class="col-lg-12"
+      = link_to admin_users_logout_and_register_path, method: :post, class: 'generic-outlined-btn push-down', data: { confirm: 'This will sign you out of your user account and redirect you to the registration page. Your admin session will remain signed in if you wish to navigate back here. Do you wish to continue?' } do
+        i class="fa fa-plus"
+        | New User
+
+      .admin-panel
+        div class="admin-title"
+          h3 Users
+        div class="admin-body"
+          div class="search"
+            = search_form_for @q, url: admin_users_path do |f|
+              div class="input-group col-xs-7"
+                = f.text_field :email_cont, class: 'input-group form-control', placeholder: 'Search by id, email, name, or phone'
+                span class="input-group-btn"
+                  = f.submit 'Search', class: 'btn btn-info'
+          hr
+          table.table
+            thead
+              th #
+              th Email
+              th First Name
+              th Surname
+              th Mobile
+              th Phone
+              th
+              / th
+            tbody
+              - @users.each do |u|
+                tr
+                  td = u.id
+                  td = u.email
+                  td = u.first_name
+                  td = u.last_name
+                  td = u.mobile
+                  td = u.phone
+                  td = link_to 'Edit', edit_admin_user_path(u)
+                  / - if !(Admin.where(email: u.email)) # Do not delete admins user accounts.
+                  /   td = link_to 'Delete', admin_user_path(u), method: :delete, data: { confirm: 'Destructive operation! Continue?'}
+          = paginate @users
