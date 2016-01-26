@@ -1,2 +1,2 @@
-web:    passenger start
+web:     passenger start
 delayed: bundle exec rake jobs:work
