@@ -11,9 +11,5 @@ class AddForthepetAdmins < ActiveRecord::Migration
       admin.roles = [Admin::ROLES[1]]
       admin.save
     end
-
-    me = Admin.find_by_username('glen')
-    me.roles = [Admin::ROLES[0]]
-    me.save
   end
 end

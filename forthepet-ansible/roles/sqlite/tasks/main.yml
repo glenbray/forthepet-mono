@@ -1,0 +1,4 @@
+- name: install sqlite3
+  apt: pkg=libsqlite3-dev state=latest
+  tags:
+    - sqlite
