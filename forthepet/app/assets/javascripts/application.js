@@ -33,8 +33,11 @@
 //= require footer
 //= require zeroclipboard
 
-$(document).ready(function(){
+//= require react
+//= require react_ujs
+//= require components
 
+$(document).ready(function(){
   var offset = 220;
   var duration = 1;
   jQuery(window).scroll(function() {

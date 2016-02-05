@@ -1,4 +1,5 @@
 module ApplicationHelper
+
   def is_active?(page_name, controller)
     active = false
     if params[:controller] == controller
@@ -10,6 +11,18 @@ module ApplicationHelper
     'active' if active
   end
 
+  def nav_links
+    [
+      {name: 'All Deals',       url: root_path},
+      {name: 'Dog Deals',       url: dog_deals_products_path},
+      {name: 'Cat Deals',       url: cat_deals_products_path},
+      {name: 'Misc',            url: misc_deals_products_path},
+      {name: 'Refer a Friend',  url: referrals_path},
+      {name: 'How it works',    url: how_it_works_path},
+      {name: 'About',           url: about_path}
+    ]
+  end
+
   def nav_link(link_text, link_path, &block)
     class_name = current_page?(link_path) ? 'menu-active' : ''
 
@@ -18,17 +31,4 @@ module ApplicationHelper
     end
   end
 
-  # def menu_link(args, &block)
-  #   active = false
-
-  #   active = true if params[:controller] == args[:controller]
-  #   active = false if args[:controller] == 'static_pages' && params[:action] != args[:page_name]
-
-  #   active_class = ''
-  #   active_class = 'menu-active' if active
-
-  #   content_tag :li, class: active_class do
-  #     block.call
-  #   end
-  # end
 end

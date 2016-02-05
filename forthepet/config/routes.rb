@@ -1,7 +1,9 @@
 Forthepet::Application.routes.draw do
 
-  root to: 'deals#index'
+  root to: 'products#index'
   mount_roboto
+
+  resources :products, only: [:index, :show]
 
   namespace :deals do
     resources :product_deals, only: [:index], path: 'products', as: 'products' do

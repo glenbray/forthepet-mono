@@ -1,30 +1,5 @@
-nav class="navbar navbar-default menu-navbar"
-  .container
-    .navbar-header
-      div class="navbar-toggle cart-box pull-right"
-        = render partial: 'shared/cart_menu', locals: { cart: session_cart }
-
-      div class="navbar-toggle account-box pull-right"
-          = link_to account_root_path, class: 'account-btn' do
-            i class="fa fa-user"
-            span Account
-
-      button class="m-pikabu-nav-toggle navbar-toggle pull-left nav-bars" type="button" data-role="left"
-        i class="fa fa-bars"
-        span MENU
-
-    div class="collapse navbar-collapse navbar-responsive-collapse"
-      ul class="nav navbar-nav"
-        = nav_link 'All Deals', root_path
-        = nav_link 'Dog Deals', dog_deals_products_path
-        = nav_link 'Cat Deals', cat_deals_products_path
-        = nav_link 'Misc', misc_deals_products_path
-        = nav_link 'Refer a Friend', referrals_path
-        = nav_link 'How it works', how_it_works_path
-        = nav_link 'About', about_path
-
-      ul class="nav navbar-nav navbar-right hidden-xs"
-        li
-          = link_to account_root_path, class: 'account-btn' do
-            i class="fa fa-user"
-            span Account
+= react_component('Navigation', { navLinks: nav_links, 
+                                  cartQuantity: session_cart.cart_quantity,
+                                  accountPath: account_root_path, 
+                                  cartPath: cart_index_path}, 
+                                  {prerender: true}) 
