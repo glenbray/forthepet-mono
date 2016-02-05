@@ -24,6 +24,7 @@ group :development do
   gem 'capistrano-nc'
   gem 'capistrano3-delayed-job', '~> 1.0'
   gem 'capistrano-passenger', '= 0.0.1'
+  gem "capistrano-scm-gitcopy"
 end
 
 group :test do

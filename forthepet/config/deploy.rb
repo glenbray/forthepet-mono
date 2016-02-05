@@ -4,6 +4,7 @@ lock '3.4.0'
 set :application, 'forthepet'
 set :deploy_to, '/var/www/forthepet'
 set :repo_url, 'git@bitbucket.org:glenbray/forthepet.git'
+# set :scm, :gitcopy
 
 set :rbenv_ruby, "#{File.read('.ruby-version').chomp}"
 set :rbenv_type, :system
