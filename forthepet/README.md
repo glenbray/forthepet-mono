@@ -16,6 +16,13 @@ Currently production is setup to deploy to staging.forthepet.com.au - Running `c
 For this app to connect to the database the environment variables FORTHEPET_DB_DEV, FORTHEPET_DB_TEST need to be available.
 eg `export FORTHEPET_DB_DEV=postgresql://devuser:abcd1234@localhost/forthepet_dev?pool=5 >> ~/.bash_profile` this command will export the environment variable postgres dev db url to your bash_profile (assuming your running mac)  you may want to change this to bashrc if running ubuntu.
 
+# Set up with Docker
+
+- docker-compose build
+- docker-compose run web bundle exec rake db:create
+- docker-compose run web bundle exec rake db:migrate
+- docker-compose up
+
 # Set up with vagrant
 
 This setup is the exact same as production setup.
