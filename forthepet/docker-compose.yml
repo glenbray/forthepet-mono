@@ -1,0 +1,17 @@
+db:
+  image: postgres
+  ports:
+    - "5432:5432"
+  environment:
+    - POSTGRES_PASSWORD=password
+web:
+  build: .
+  command: bundle exec rails s -b '0.0.0.0'
+  volumes:
+    - .:/forthepet
+  ports:
+    - "3000:3000"
+  environment:
+    - FORTHEPET_DB_DEV=postgresql://postgres:password@db:5432/postgres?pool=5
+  links:
+    - db
