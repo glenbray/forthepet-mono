@@ -7,7 +7,7 @@ ssh-keyscan github.com >> /home/vagrant/.ssh/known_hosts
 sudo apt-get -y install sqlite3 libsqlite3-dev postgresql-client-9.3
 gem install mailcatcher
 
-sudo curl -o /usr/local/bin/forego -O https://godist.herokuapp.com/projects/ddollar/forego/releases/current/linux-amd64/forego
+sudo curl -sS -o /usr/local/bin/forego -O https://godist.herokuapp.com/projects/ddollar/forego/releases/current/linux-amd64/forego
 sudo chown vagrant:vagrant /usr/local/bin/forego
 sudo chmod a+x /usr/local/bin/forego
 
