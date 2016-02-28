@@ -27,5 +27,3 @@ cd /forthepet && rake db:create
 echo 'cd /forthepet' >> /home/vagrant/.bashrc
 echo 'export COVERAGE=true' >> /home/vagrant/.bashrc
 echo 'alias b="bundle exec"' >> /home/vagrant/.bashrc
-
-# curl http://j.mp/spf13-vim3 -L -o - | sh

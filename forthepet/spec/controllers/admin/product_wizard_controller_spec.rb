@@ -9,30 +9,10 @@ RSpec.describe Admin::ProductWizardController, :type => :controller do
       sign_in admin
     end
 
-    describe 'incomplete step' do
-      it 'renders incomplete template if there are multiple incomplete products'
-      it 'does not render incomplete template if there is no incomplete products'
-      it 'does not render incomplete template if there is only one incomplete products'
-      it 'updates product_id session to the selected product'
-    end
-
     describe 'category step' do
-      it 'should not create a product for show action'
-
       it 'renders category template' do
         get :show, id: 'category'
         expect(response).to render_template('category')
-      end
-
-      it 'updates product category id' do
-        category = FactoryGirl.create(:dog)
-        product = Product.create
-        session[:product_id] = product.id
-
-        put :update, id: 'category', product: { category: category.id }
-
-        expect(assigns(:product)).to eq(product)
-        expect(product.reload.category).to eq(category)
       end
     end
 
@@ -40,15 +20,6 @@ RSpec.describe Admin::ProductWizardController, :type => :controller do
       it 'renders supplier page' do
         get :show, id: 'supplier'
         expect(response).to render_template('supplier')
-      end
-
-      it 'updates supplier id' do
-        supplier = FactoryGirl.create(:mango)
-        product = Product.create
-        session[:product_id] = product.id
-
-        put :update, id: 'supplier', supplier_id: supplier.id
-        expect(product.reload.supplier).to eq(supplier)
       end
     end
 

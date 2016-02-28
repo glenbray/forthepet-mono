@@ -2,16 +2,15 @@ require 'rails_helper'
 
 feature 'product wizard', :type => :feature do
 
-  before :each do
-    include Warden::Test::Helpers
-    Warden.test_mode!
+  background do
+    admin = FactoryGirl.create(:admin)
+    login_as(admin, :scope => :admin)
 
-    FactoryGirl.create(:admin)
-
-    visit '/admin/sign-in'
-    fill_in 'Login', with: 'test@admin.com'
-    fill_in 'Password', with: 'password'
-    click_button 'Sign in'
+    FactoryGirl.create(:dog)
+    FactoryGirl.create(:cat)
+    FactoryGirl.create(:apple)
+    FactoryGirl.create(:orange)
+    FactoryGirl.create(:mango)
   end
 
   scenario 'admin user should be able to navigate to product wizard page' do
@@ -21,10 +20,6 @@ feature 'product wizard', :type => :feature do
 
   scenario 'admin should be able to create a product through wizard' do
 
-    # Categories
-    FactoryGirl.create(:dog)
-    FactoryGirl.create(:cat)
-
     visit '/admin/product-wizard'
     expect(page).to have_content('Select Category')
     choose('Dog')
@@ -33,9 +28,6 @@ feature 'product wizard', :type => :feature do
     # Suppliers
     expect(page).to have_content('Select Supplier')
 
-    FactoryGirl.create(:apple)
-    FactoryGirl.create(:orange)
-    FactoryGirl.create(:mango)
 
     fill_in 'q_name_cont', with: 'mango'
     click_button 'Search'

@@ -22,7 +22,8 @@ class Admin::ProductWizardController < Admin::AdminController
 
     case step
     when :category
-      @product.update_attributes(category_id: params[:product][:category])
+      category = Category.find(params[:product][:category])
+      @product.categories << category
       render_wizard @product
     when :supplier
       @product.update_attributes(supplier_id: params[:supplier_id])

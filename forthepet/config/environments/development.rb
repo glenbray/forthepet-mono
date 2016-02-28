@@ -33,15 +33,20 @@ Rails.application.configure do
   config.assets.raise_runtime_errors = true
 
   config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #   :user_name => '21539215f8690cbd5',
+  #   :password => 'd595dea28f90de',
+  #   :address => 'mailtrap.io',
+  #   :domain => 'mailtrap.io',
+  #   :port => '2525',
+  #   :authentication => :cram_md5
+  # }
   config.action_mailer.smtp_settings = {
-    :user_name => '21539215f8690cbd5',
-    :password => 'd595dea28f90de',
-    :address => 'mailtrap.io',
-    :domain => 'mailtrap.io',
-    :port => '2525',
-    :authentication => :cram_md5
+    :address => "maildev",
+    :port => 1025
   }
   config.action_mailer.default_url_options = { host: 'forthepet:3000' }
+
 
   config.logger = Logger.new(STDOUT)
   config.logger.level = Logger.const_get(

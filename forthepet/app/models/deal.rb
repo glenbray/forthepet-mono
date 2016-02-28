@@ -4,7 +4,7 @@ class Deal < ActiveRecord::Base
   has_many :order_items
   has_and_belongs_to_many :fine_prints, join_table: 'deal_fine_prints'
 
-  scope :load_associations,    -> { includes(deal_prices: [:variant], product: [:category, :photos, :master_variant, :variants]) }
+  scope :load_associations,    -> { includes(deal_prices: [:variant], product: [:categories, :photos, :master_variant, :variants]) }
   scope :deal,                 -> (id) { includes(product: [:photos]).friendly.find(id) }
   scope :active,               -> { where('deals.available_on <= ? AND deals.ends_on > ? AND deals.product_id is not NULL', Time.now, Time.now) }
   scope :active_deals,         -> { load_associations.active.order(:ends_on) }

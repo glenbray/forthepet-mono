@@ -3,8 +3,6 @@ Forthepet::Application.routes.draw do
   root to: 'products#index'
   mount_roboto
 
-  resources :products, only: [:index, :show]
-
   namespace :deals do
     resources :product_deals, only: [:index], path: 'products', as: 'products' do
       collection do
@@ -27,6 +25,7 @@ Forthepet::Application.routes.draw do
   get '/shipping-information', to: 'static_pages#shipping_information', as: 'shipping_information'
   get '/purchase-terms-and-conditions', to: 'static_pages#purchase_terms_and_conditions', as: 'purchase_terms_and_conditions'
   get '/checkout-payment-process', to: 'static_pages#checkout_payment_process', as: 'checkout_payment_process'
+
 
   devise_for :users, path: '', path_names: { sign_in: 'sign-in', sign_out: 'sign-out', sign_up: 'sign-up' }
 
@@ -114,5 +113,8 @@ Forthepet::Application.routes.draw do
     resources :admins do
       resources :admin_password, only: [:index, :create], as: 'password', path: 'password'
     end
+
   end
+
+  resources :products, only: [:show], as: 'products', path: '/'
 end

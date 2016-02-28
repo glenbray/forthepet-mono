@@ -8,7 +8,7 @@ FactoryGirl.define do
     permalink 'some-brand'
 
     after(:create) do |product|
-      product.category = FactoryGirl.create(:all)
+      product.categories << FactoryGirl.create(:all)
       product.master_variant = FactoryGirl.create(:variant, product_id: product.id)
       product.save
     end
@@ -18,7 +18,7 @@ FactoryGirl.define do
     name 'doggy product'
 
     after(:create) do |product|
-      product.category = FactoryGirl.create(:dog)
+      product.categories << FactoryGirl.create(:dog)
       product.master_variant = FactoryGirl.create(:variant, product_id: product.id)
       product.save
     end
@@ -28,7 +28,7 @@ FactoryGirl.define do
     name 'cat product'
 
     after(:create) do |product|
-      product.category = FactoryGirl.create(:cat)
+      product.categories << FactoryGirl.create(:cat)
       product.master_variant = FactoryGirl.create(:variant, product_id: product.id)
       product.save
     end

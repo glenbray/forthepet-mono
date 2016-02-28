@@ -1,3 +1,20 @@
-Category.create(name: 'All')
+Category.delete_all
+
 Category.create(name: 'Dog')
 Category.create(name: 'Cat')
+Category.create(name: 'Fish')
+Category.create(name: 'Small Pet')
+Category.create(name: 'Bird')
+Category.create(name: 'Reptile')
+
+Category.create(name: 'Food')
+Category.create(name: 'Flea & Worming')
+Category.create(name: 'Litter')
+Category.create(name: 'Toys')
+Category.create(name: 'Treats')
+Category.create(name: 'Collars & Leads')
+Category.create(name: 'Accessories')
+Category.create(name: 'Clean up')
+Category.create(name: 'Beds')
+Category.create(name: 'Grooming')
+Category.create(name: 'Health')

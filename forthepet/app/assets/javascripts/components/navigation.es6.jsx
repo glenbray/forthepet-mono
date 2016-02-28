@@ -32,7 +32,9 @@ class Navigation extends React.Component {
           <div className="collapse navbar-collapse navbar-responsive-collapse">
             <ul className="nav navbar-nav">
               {this.props.navLinks.map((n) => (
-                <li><a href={n.url}>{n.name}</a></li>
+                <li className={n.class} key={n.name}>
+                  <a href={n.url}>{n.name}</a>
+                </li>
               ))}
             </ul>
             <ul className="nav navbar-nav navbar-right hidden-xs">

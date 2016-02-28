@@ -1,6 +1,6 @@
 class Product < ActiveRecord::Base
   belongs_to :supplier, autosave: true
-  belongs_to :category, autosave: true
+  has_and_belongs_to_many :categories
   has_many :photos, -> { order("position ASC") }
   has_many :deals
   has_many :features
