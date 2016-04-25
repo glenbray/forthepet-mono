@@ -1,0 +1,11 @@
+version: '2'
+services:
+  common_web:
+    build: .
+    volumes:
+      - .:/forthepet
+    working_dir: /forthepet
+    environment:
+      - FORTHEPET_DB_DEV=postgresql://postgres:password@db:5432/forthepet_dev?pool=5
+      - FORTHEPET_TESt_DEV=postgresql://postgres:password@db:5432/forthepet_test?pool=5
+      - BUNDLE_PATH=/bundle

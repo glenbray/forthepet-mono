@@ -1,17 +1,51 @@
-db:
-  image: postgres
-  ports:
-    - "5432:5432"
-  environment:
-    - POSTGRES_PASSWORD=password
-web:
-  build: .
-  command: bundle exec rails s -b '0.0.0.0'
-  volumes:
-    - .:/forthepet
-  ports:
-    - "3000:3000"
-  environment:
-    - FORTHEPET_DB_DEV=postgresql://postgres:password@db:5432/postgres?pool=5
-  links:
-    - db
+version: '2'
+services:
+  pg_data:
+    image: busybox
+    volumes:
+      - /var/lib/postgresql/data
+      - ./backups/:/backups
+
+  bundle:
+    image: busybox
+    volumes:
+      - /bundle
+
+  db:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=password
+      - PGPASSWORD=password
+    volumes_from:
+    - pg_data
+
+  maildev:
+    image: djfarrelly/maildev
+    ports:
+      - "1080:80"
+      - "1025:25"
+
+  delayed_job:
+    extends:
+      file: common.yml
+      service: common_web
+    command: bundle exec rake jobs:work
+    volumes_from:
+      - bundle
+    links:
+      - db
+      - maildev
+
+  web:
+    extends:
+      file: common.yml
+      service: common_web
+    command: passenger start
+    volumes_from:
+      - bundle
+    ports:
+      - "3000:3000"
+    links:
+      - db
