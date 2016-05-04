@@ -3,39 +3,33 @@ div class="container"
 
     div class="col-sm-7 col-xs-12"
       section class="login register"
-        h2 New Customer
+        h2 Register for an account
 
-        = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'form-horizontal' }) do |f|
+        = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
           = devise_error_messages!
 
           .form-group
-            = f.label :first_name, class: 'col-sm-4 control-label'
-            .col-sm-8
-              = f.text_field :first_name, :autofocus => true, class: 'form-control'
+            = f.label :first_name, class: 'control-label'
+            = f.text_field :first_name, :autofocus => true, class: 'form-control'
 
           .form-group
-            = f.label :last_name, class: 'col-sm-4 control-label'
-            .col-sm-8
-              = f.text_field :last_name, :autofocus => true, class: 'form-control'
+            = f.label :last_name, class: 'control-label'
+            = f.text_field :last_name, :autofocus => true, class: 'form-control'
 
           .form-group
-            = f.label :email, class: 'col-sm-4 control-label'
-            .col-sm-8
-              = f.text_field :email, :autofocus => true, class: 'form-control'
+            = f.label :email, class: 'control-label'
+            = f.text_field :email, :autofocus => true, class: 'form-control'
 
           .form-group
-            = f.label :password, class: 'col-sm-4 control-label'
-            .col-sm-8
-              = f.text_field :password, :autofocus => true, class: 'form-control'
+            = f.label :password, class: 'control-label'
+            = f.password_field :password, :autofocus => true, class: 'form-control'
 
           .form-group
-            = f.label :password_confirmation, 'Confirm Password', class: 'col-sm-4 control-label'
-            .col-sm-8
-              = f.text_field :password_confirmation, :autofocus => true, class: 'form-control'
+            = f.label :password_confirmation, 'Confirm Password', class: 'control-label'
+            = f.password_field :password_confirmation, :autofocus => true, class: 'form-control'
 
           .form-group
-            div class="col-sm-offset-4 col-sm-8"
-              = f.submit "Register", class: 'generic-btn'
+            = f.submit "Register", class: 'generic-btn'
 
     div class="col-sm-5 col-xs-12"
       section class="login-register"
