@@ -4,36 +4,32 @@ div class="container"
       section class="login"
         h2 Existing Customer
 
-        = form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form-horizontal' }) do |f|
+        = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
           .form-group
-            = f.label :email, class: 'col-sm-3 control-label'
-            .col-sm-9
-              = f.email_field :email, autofocus: true, class: 'form-control'
+            = f.label :email, class: 'control-label'
+            
+            = f.email_field :email, autofocus: true, class: 'form-control'
 
           .form-group
-            = f.label :password, class: 'col-sm-3 control-label'
-            .col-sm-9
-              = f.password_field :password, autofocus: true, class: 'form-control'
+            = f.label :password, class: 'control-label'
+            
+            = f.password_field :password, autofocus: true, class: 'form-control'
 
           .form-group
-            div class="col-sm-offset-3 col-sm-9"
-              .checkbox
-                label
-                  = f.check_box :remember_me, checked: true
-                  | Remember me
+            .checkbox
+              label
+                = f.check_box :remember_me, checked: true
+                | Remember me
 
           .form-group
-            div class="col-sm-offset-3 col-sm-9"
-              = f.submit "Sign in", class: 'generic-btn'
+            = f.submit "Sign in", class: 'generic-btn', style: "margin-bottom: 10px; margin-top: 10px"
 
-          .row
-            .col-sm-9.col-sm-offset-3
-              - if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
+          .form-group
+            - if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
+              div
                 = link_to "Forgot your password?", new_password_path(resource_name)
-
-          .row
-            .col-sm-9.col-sm-offset-3
-              - if devise_mapping.confirmable? && controller_name != 'confirmations'
+            - if devise_mapping.confirmable? && controller_name != 'confirmations'
+              div
                 = link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name)
 
     div class="col-md-6 col-xs-12"
