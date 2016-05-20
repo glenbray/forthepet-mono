@@ -1,0 +1,39 @@
+- name: add postgres key
+  apt_key: url="http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc"
+  tags: database_setup
+
+- name: add postgres repo
+  apt_repository: repo='deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main' state=present
+  tags: database_setup
+
+- name: Install postgresql
+  apt: name={{ item }} state=present update_cache=yes
+  with_items:
+    - "postgresql-{{ postgres_version }}"
+    - "postgresql-contrib-{{ postgres_version }}"
+    - libpq-dev
+    - python-psycopg2
+  tags: database_setup
+
+- name: Set up postgres database
+  postgresql_db: name=forthepet state=present
+  sudo_user: postgres
+  tags: database_setup
+
+- name: Set up postgres user
+  postgresql_user: name=ftp_user role_attr_flags=SUPERUSER state=present db=forthepet password={{ postgres_forthepet_password }}
+  sudo_user: postgres
+  tags: database_setup
+
+- name: update postgresql.conf
+  replace: dest="/etc/postgresql/{{ postgres_version }}/main/postgresql.conf" regexp="#listen_addresses = 'localhost'" replace="listen_addresses = '*'"
+  sudo_user: postgres
+  tags: database_setup
+
+- name: update pg_hba.conf
+  lineinfile: dest="/etc/postgresql/{{ postgres_version }}/main/pg_hba.conf" state=present insertafter="# Put your actual configuration here" line="host        all        all        0.0.0.0/0        md5"
+  sudo_user: postgres
+  tags: database_setup
+
+- service: name=postgresql state=restarted
+  tags: database_setup
