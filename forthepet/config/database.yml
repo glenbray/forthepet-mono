@@ -1,5 +1,4 @@
 development:
-#  url: <%= ENV["FORTHEPET_DB_PRODUCTION"] %>
   url: <%= ENV["FORTHEPET_DB_DEV"] %>
 
 test:
