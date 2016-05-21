@@ -1,11 +1,13 @@
 version: '2'
 services:
   common_web:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile-dev
     volumes:
-      - .:/forthepet
-    working_dir: /forthepet
+      - .:/home/app/forthepet
     environment:
       - FORTHEPET_DB_DEV=postgresql://postgres:password@db:5432/forthepet_dev?pool=5
       - FORTHEPET_DB_TEST=postgresql://postgres:password@db:5432/forthepet_test?pool=5
       - BUNDLE_PATH=/bundle
+      - SECRET_KEY_BASE=secretkey

@@ -1,19 +1,15 @@
 FROM phusion/passenger-ruby22
 
-# Postgres client
-RUN apt-get update
-RUN apt-get install wget
-RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
+RUN curl -sL https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
 RUN sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main" >> /etc/apt/sources.list.d/postgresql.list'
 
 # Nodejs
 RUN curl -sL https://deb.nodesource.com/setup_5.x | bash -
 
-# # Install system dependencies
+# Install system dependencies
 RUN apt-get update
 RUN apt-get install -y build-essential libpq-dev sqlite3 libsqlite3-dev postgresql-client-9.3 nodejs
 
-# # Set Sydney time
 RUN rm -f /etc/localtime
 RUN ln -sf /usr/share/zoneinfo/Australia/Sydney /etc/localtime
 
@@ -25,10 +21,10 @@ WORKDIR /home/app/forthepet/
 ADD Gemfile /home/app/forthepet/Gemfile
 ADD Gemfile.lock /home/app/forthepet/Gemfile.lock
 
-# # Install project dependencies
-ENV BUNDLE_JOBS 4
+# Install project dependencies
+ENV BUNDLE_JOBS=4 BUNDLE_PATH=/bundle
 
-RUN gem update bundler
+RUN gem install bundler -v '1.12.4'
 RUN bundle install --without development test
 
 # Add forthepet project to docker image
