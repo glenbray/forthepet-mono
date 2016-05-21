@@ -1,0 +1,10 @@
+Dockerfile*
+spec/
+config/deploy/
+tasks.rake
+wercker.yml
+log/*
+devops
+db/seeds/
+coverage/
+backups/
