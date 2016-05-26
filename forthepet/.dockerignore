@@ -5,6 +5,7 @@ tasks.rake
 wercker.yml
 log/*
 devops
-db/seeds/
+db/seedts/
 coverage/
 backups/
+bundle/

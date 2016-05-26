@@ -24,3 +24,26 @@ desc "Run the projects specs"
 task :spec do
   system("docker-compose run web bundle exec rspec")
 end
+
+
+namespace :db do
+  desc "backup production db excluding all images"
+  task :backup do
+    backup = `echo forthepet_$(date +%Y%m%d_%H%M%S).bak`
+    # db_import_command = "sudo su - postgres -c 'cd /forthepet && psql forthepet_dev < backups/#{backup}'"
+
+    system("pg_dump -v -d forthepet -U ftp_user -h db.forthepet.com.au --exclude-table-data photos > backups/#{backup}")
+    # system('docker-compose run db bash -c "#{db_import_command}"')
+    system('psql -h localhost -U postgres -d forthepet_dev -f backups/"#{backup}"')
+  end
+
+  desc "backup production db including images"
+  task :backup_with_images do
+    backup = `echo forthepet_$(date +%Y%m%d_%H%M%S).bak`
+    # db_import_command = "sudo su - postgres -c 'cd /forthepet && psql forthepet_dev < backups/#{backup}'"
+
+    system("pg_dump -v -d forthepet -U ftp_user -h db.forthepet.com.au > backups/#{backup}")
+    # system('docker-compose run db bash -c "#{db_import_command}"')
+    system('psql -h localhost -U postgres -d forthepet_dev -f backups/"#{backup}"')
+  end
+end

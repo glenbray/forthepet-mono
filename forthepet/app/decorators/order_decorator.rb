@@ -38,4 +38,9 @@ class OrderDecorator < BaseDecorator
     order_id.to_i == object.id ? 'active' : ''
   end
 
+  def order_items_total
+    total = object.order_items.total
+    h.number_to_currency(total)
+  end
+
 end

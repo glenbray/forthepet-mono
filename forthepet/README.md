@@ -21,7 +21,7 @@ eg `export FORTHEPET_DB_DEV=postgresql://devuser:abcd1234@localhost/forthepet_de
 
 If you would like to use data from production run `rake db:backup`
 
-# Set up with vagrant
+# Set up with vagrant (DEPRECATED - user docker)
 
 This setup is the exact same as production setup.
 
@@ -52,7 +52,7 @@ You will still be able to use your mac to update your code. The only difference 
 
 Once `vagrant up` has been run, the only commands you should be interested are - `vagrant suspend` and `vagrant resume`.
 
-# Set up on mac (Consider using vagrant instead - setup is automated and simpler)
+# Set up on mac (DEPRECATED - use docker)
 
 1. Install rbenv and ruby 2.1.5
 2. Install postgres - set up users

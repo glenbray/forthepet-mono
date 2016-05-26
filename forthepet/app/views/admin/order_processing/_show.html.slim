@@ -12,10 +12,7 @@ div class="admin-panel" style="margin-bottom: 30px;"
               span.input-group-btn
                 = f.submit 'Save', class: 'btn btn-info'
 
-      - unless order.has_active_deals?
-        = link_to 'Ship Order', admin_order_processing_ship_it_path(order), class: 'btn btn-danger pull-right', style: 'padding: 12px; border: 0px; margin-top: 15px;', data: { confirm: 'Are all items ready to be shipped?' }, method: :put
-      - else
-        span.pull-right style="color: #E50000; margin-right: 15px;" Order has deals that are currently active
+      = link_to 'Ship Order', admin_order_processing_ship_it_path(order), class: 'btn btn-danger pull-right', style: 'padding: 12px; border: 0px; margin-top: 15px;', data: { confirm: 'Are all items ready to be shipped?' }, method: :put
 
     .push-down
 
@@ -62,15 +59,10 @@ div class="admin-panel" style="margin-bottom: 30px;"
             td.center = item.quantity
             td = item.aasm_state
             td = item.print_total
-            / td
-            /   - unless item.currently_active?
-            /     = link_to 'Recieved', admin_order_processing_received_path(item), method: :patch
-            /   - else
-            /     span style="border: 2px solid #248802; padding: 6px; color: #248802;" currently active
         tr
           td
           td
           td
           td
           td
-          td = order.order_items.sum(&:total)
+          td = order.order_items_total

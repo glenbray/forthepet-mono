@@ -58,12 +58,7 @@ class Order < ActiveRecord::Base
     order_items.pluck(:quantity).sum
   end
 
-  def has_active_deals?
-    order_items.joins(:deal).where("deals.ends_on > ?", Time.now).exists?
-  end
-
   def ship_it
-    return false if has_active_deals?
     order_items.update_all(aasm_state: 'shipped')
     ship!
   end
