@@ -7,6 +7,10 @@ class OrderItem < ActiveRecord::Base
 
   scope :pending_orders_group_by_deals, -> { joins(:deal).where(order_id: Order.pending_orders.pluck(:id)).group_by(&:deal_id) }
 
+  def self.total
+    sum("quantity * price")
+  end
+
   aasm do
     state :pending, initial: true
     state :paid
@@ -33,10 +37,6 @@ class OrderItem < ActiveRecord::Base
 
   def total
     @total ||= quantity * price
-  end
-
-  def currently_active?
-    @active_deal ||= deal.ends_on > Time.now
   end
 
 end

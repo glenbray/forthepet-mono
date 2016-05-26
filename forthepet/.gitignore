@@ -31,3 +31,4 @@ public/assets/**
 .idea
 *.back
 forthepet_*
+/bundle

@@ -11,3 +11,4 @@ services:
       - FORTHEPET_DB_TEST=postgresql://postgres:password@db:5432/forthepet_test?pool=5
       - BUNDLE_PATH=/bundle
       - SECRET_KEY_BASE=secretkey
+      - BETTER_ERRORS_TRUSTED_IP=$BETTER_ERRORS_TRUSTED_IP
