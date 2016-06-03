@@ -14,7 +14,7 @@ Rails.application.configure do
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
@@ -34,18 +34,10 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :address => "172.19.0.2",
-    :port => 1025
+    :address => "mailcatcher",
+    :port => 25
   }
-  # config.action_mailer.delivery_method = :smtp
-  # config.action_mailer.smtp_settings = {
-  #   :user_name => '21539215f8690cbd5',
-  #   :password => 'd595dea28f90de',
-  #   :address => 'mailtrap.io',
-  #   :domain => 'mailtrap.io',
-  #   :port => '2525',
-  #   :authentication => :cram_md5
-  # }
+
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
 
   config.logger = Logger.new(STDOUT)
