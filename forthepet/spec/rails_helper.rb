@@ -7,6 +7,8 @@ require 'capybara/rails'
 require 'capybara/rspec'
 require 'support/factory_girl'
 require 'database_cleaner'
+require 'capybara/poltergeist'
+Capybara.javascript_driver = :poltergeist
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -65,5 +67,9 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
+  config.include Capybara::DSL
+
+  config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
+  config.include Rails.application.routes.url_helpers
 end

@@ -1,32 +1,24 @@
 .container
   .row
     div class="col-lg-12"
-      = link_to '#', class: 'generic-outlined-btn push-down' do
+      = link_to new_admin_admin_path, class: 'generic-outlined-btn push-down' do
         i class="fa fa-plus"
         | New Admin
-
       .admin-panel
         div class="admin-title"
           h3 Admins
         div class="admin-body"
-          div class="search"
-            = search_form_for @q, url: admin_admins_path do |f|
-              div class="input-group col-xs-7"
-                = f.text_field :email_cont, class: 'input-group form-control', placeholder: 'Search by id, email, name, or phone'
-                span class="input-group-btn"
-                  = f.submit 'Search', class: 'btn btn-info'
-          hr
+
           table.table
             thead
               th #
               th Email
               th
-              / th
+              th
             tbody
               - @admins.each do |u|
                 tr
                   td = u.id
                   td = u.email
                   td = link_to 'Edit', edit_admin_admin_path(u)
-                  / - if !(Admin.where(email: u.email)) # Do not delete admins user accounts.
-                  /   td = link_to 'Delete', admin_admin_path(u), method: :delete, data: { confirm: 'Destructive operation! Continue?'}
+                  td = link_to 'Delete', admin_admin_path(u), :method =>  :delete, :data => {:confirm => 'Are you sure to destroy this record?'}, :id => 'delete'

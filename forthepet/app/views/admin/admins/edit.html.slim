@@ -9,9 +9,11 @@
         div class="admin-title"
           h3 Admin Details
         div class="admin-body"
-          = render "admins_tabs"
           = simple_form_for @admin, url: admin_admin_path do |f|
             .row
               div class="col-md-6"
                 = f.input :email, input_html: { class: 'form-control' }
+                = f.input :username, input_html: { class: 'form-control' }
+                = f.input :password, class: 'form-control'
+                = f.input :password_confirmation, class: 'form-control'
             = f.submit 'Update', class: 'btn-action pull-down'

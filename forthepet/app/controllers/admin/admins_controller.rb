@@ -7,6 +7,22 @@ class Admin::AdminsController < Admin::AdminController
     @admins = @q.result.page params[:page]
   end
 
+  def new
+    @admin = Admin.new
+  end
+
+  def create
+    @admin = Admin.new(admin_params)
+
+    if @admin.save
+      flash[:success] = 'Admin created'
+      redirect_to admin_admins_path
+    else
+      flash[:danger] = 'Unable to create admin'
+      redirect_to new_admin_admin_path
+    end
+  end
+
   def edit
     @admin = Admin.find(params[:id])
     add_crumb 'Edit Admin', "/admin/admins/#{params[:id]}/edit"
@@ -43,7 +59,7 @@ class Admin::AdminsController < Admin::AdminController
   private
 
   def admin_params
-    params.require(:admin).permit(:email)
+    params.require(:admin).permit(:email,:password, :password_confirmation, :username)
   end
 
   def admin_password_params
