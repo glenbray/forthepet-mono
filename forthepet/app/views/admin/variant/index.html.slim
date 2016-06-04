@@ -1,6 +1,6 @@
 .container
   .row
-    div class="col-lg-10 col-lg-offset-1 push-down"
+    div class="col-lg-12 push-down"
       = link_to admin_product_index_path, class: 'generic-outlined-btn push-down' do
         i class="fa fa-arrow-circle-o-left fa-2"
         | Return
@@ -15,6 +15,7 @@
                 div class="col-md-3"
                   = v.input :sku, input_html: { value: @product.master_variant.sku }
                   = v.input :price, input_html: { value: @product.master_variant.price }
+                  = v.input :original_price, input_html: { value: @product.master_variant.original_price }
                   = v.input :cost, input_html: { value: @product.master_variant.cost }
                   = v.input :quantity, input_html: { value: @product.master_variant.quantity }
 
@@ -39,6 +40,7 @@
                       th
                       th SKU
                       th Price
+                      th Original Price
                       th Cost
                       th Quantity
                       th Options
@@ -50,6 +52,7 @@
                             i class="fa fa-bars fa-2x"
                           td = v.sku
                           td = v.price
+                          td = v.original_price
                           td = v.cost
                           td = v.quantity
                           td: ul

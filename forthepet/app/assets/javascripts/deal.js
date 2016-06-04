@@ -18,36 +18,6 @@ $(document).ready(function(){
     })
   }
 
-  $('.single-deal-time').countdown($('.single-deal-time').data('end'), function(event) {
-    var totalDays = event.offset.totalDays;
-
-    var $this = $(this).html(event.strftime(''
-      + '<span>' + totalDays + '</span> days '
-      + '<span>%H</span> hrs '
-      + '<span>%M</span> min '
-      + '<span>%S</span> sec'));
-  });
-
-  $('.deal-time').each(function() {
-    unparsedDate = $(this).data('end');
-    var finalDate = moment(unparsedDate).format('YYYY/MM/DD HH:mm:ss');
-
-    $(this).countdown(finalDate, function(event) {
-      var totalDays = event.offset.totalDays;
-      var dateFormat = '';
-
-      if (totalDays > 1) {
-        dateFormat = '<span>' + totalDays + '</span> day%!d'
-      } else {
-        dateFormat = '<span>%-H</span>:'
-                   + '<span>%M</span>:'
-                   + '<span>%S</span>'
-      }
-
-      $(this).html(event.strftime(dateFormat));
-    });
-  });
-
   var current = 0,
     $preview = $('#preview'),
     $carouselEl = $('#carousel'),

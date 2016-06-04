@@ -19,6 +19,7 @@ module Forthepet
     # config.time_zone = 'Central Time (US & Canada)'
 
     config.active_record.raise_in_transactional_callbacks = true
+    config.action_view.embed_authenticity_token_in_remote_forms = true
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
@@ -26,5 +27,7 @@ module Forthepet
     config.autoload_paths += %W(#{config.root}/lib)
 
     config.assets.precompile += %w(admin.js admin.css shopping/details_autocomplete.js)
+
+    config.active_job.queue_adapter = :delayed_job
   end
 end

@@ -1,13 +1,11 @@
 require 'rails_helper'
 
 describe ProcessOrder do
-
   let(:cart) { Cart.create }
   let(:order) { Order.create(email: 'test@test.com') }
 
   def create_cart_item(params)
     cart_item = CartItem.new(variant_id: params[:variant_id], quantity: params[:quantity])
-    cart_item.deal_id = params[:deal_id]
     cart_item
   end
 
@@ -15,10 +13,9 @@ describe ProcessOrder do
 
     before :each do
       Delayed::Worker.delay_jobs = false
-      deal = FactoryGirl.create(:deal)
-      product = deal.product
+      product = FactoryGirl.create(:product)
 
-      params = { variant_id: product.master_variant.id, quantity: 1, deal_id: deal.id }
+      params = { variant_id: product.master_variant.id, quantity: 1 }
       cart_item = create_cart_item(params)
       cart.add_item(cart_item)
     end
@@ -42,10 +39,8 @@ describe ProcessOrder do
       order_item = order.order_items.first
       cart_item = cart.cart_items.first
 
-      expect(order_item.deal_id).to eq(cart_item.deal_id)
       expect(order_item.quantity).to eq(cart_item.quantity)
       expect(order_item.variant_id).to eq(cart_item.variant_id)
-      expect(order_item.price).to eq(cart_item.deal.deal_prices.first.price)
     end
 
     it 'updates each item state from pending to paid' do
@@ -110,9 +105,6 @@ describe ProcessOrder do
 
         expect(referrer.user_discounts.count).to eq(1)
       end
-
     end
-
   end
-
 end
