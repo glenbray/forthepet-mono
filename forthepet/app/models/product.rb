@@ -13,8 +13,6 @@ class Product < ActiveRecord::Base
 
   accepts_nested_attributes_for :master_variant, allow_destroy: true
 
-  # scope :load_associations,    -> { includes(deal_prices: [:variant], product: [:category, :photos, :master_variant, :variants]) }
-
   scope :load_associations, -> { includes(:category, :photos, :master_variant, :variants) }
   scope :active, -> { load_associations.where(is_active: true) }
   scope :filter_categories, -> (categories) { active.where(categories: { name: ['All', categories] }) }
