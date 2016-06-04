@@ -37,10 +37,12 @@ class Product < ActiveRecord::Base
   end
 
   def highest_percentage_saved
-    if has_variants?
-      variants.maximum(:percentage_saved)
-    else
-      master_variant.percentage_saved
+    @savings ||= begin
+      if has_variants?
+        variants.maximum(:percentage_saved)
+      else
+        master_variant.percentage_saved
+      end
     end
   end
 
