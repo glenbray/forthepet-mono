@@ -15,7 +15,6 @@
  *= require footer
  *= require nav
  *= require product
- *= require profile
  *= require font-awesome
  *= require_directory ./static_pages
  *= require_directory ./shopping
