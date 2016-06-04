@@ -21,17 +21,18 @@
           div class="col-sm-6 col-xs-12"
             h2.show-title.default-h = "#{@product.brand} #{@product.name}"
             div
-              span class="label label-info" Free shipping
-              span class="label label-info" style="margin-left: 5px;" = @product.percentage_saved
+              span class="label label-default" Free shipping
+              span class="label label-default" style="margin-left: 5px;" = @product.percentage_saved
 
             hr
+            .push-down
 
             = simple_form_for @cart_item, url: cart_items_create_variant_path, remote: true do |c|
               - if @product.has_variants?
                 = c.input :variant_id, as: :select, collection: variants_select, include_blank: false, label: 'Options'
               - else
                 = c.input :variant_id, as: :hidden, input_html: { value: @product.master_variant.id }
-                
+
               div
                 div class="show-price"
                   = @product.price
@@ -40,8 +41,9 @@
                 = c.submit "Add to Cart", class: 'btn-cart'
 
             hr
-
-            h1 Spread the Joy!
+            .push-down
+            
+            h1.joy Spread the Joy!
             h2.share Sharing earns you rewards and discounts!
             div class="show-referal"
               = link_to facebook_share_url, class: 'facebook', :target => "_blank" do
@@ -52,17 +54,18 @@
                 | Tweet
             .push-down
 
-            div class="alert alert-notice"
-              | Refer friends to recieve $5 off your next purchase when your referal makes a purchase.&nbsp;
+            div class="alert alert-default"
+              | Refer friends to recieve $5 off your next purchase when your referral makes a purchase. 
               =link_to 'Read more about how it works here!', referrals_url
           
             - if @product.features.present?
               hr
-              .deal-features
-                b style="font-size: 1.1em; padding-bottom: 10px; display: block;" Features:
+              .product-features
+                h1.features Features
+                
                 ul
                   - @product.features.each do |feature|
-                    li = feature.description
+                    li = feature.description.capitalize
 
   .row.push-down
     div class="col-xs-12"

@@ -55,7 +55,6 @@ Forthepet::Application.routes.draw do
       post '/email', to: 'orders#email'
     end
 
-    # resources :order_deals, only: [:index, :show]
     resources :order_summaries, only: [:index], path: 'order-summaries'
     post 'order_summaries/email', to: 'order_summaries#email'
 

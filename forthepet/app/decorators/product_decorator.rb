@@ -20,13 +20,13 @@ class ProductDecorator < BaseDecorator
       end
     else
       master_variant_price = object.master_variant.price
-      if master_variant_price == price
+      if master_variant_price == object.master_variant.original_price
         tag = h.content_tag(:div, class: 'product-price') do
           h.content_tag(:h4, "Low as #{price}")
         end
       else
         tag = h.content_tag(:div, class: 'product-original-price') do
-          h.content_tag(:h4, "was #{h.number_to_currency(master_variant_price)}")
+          h.content_tag(:h4, "was #{h.number_to_currency(object.master_variant.original_price)}")
         end
 
         tag += h.content_tag(:div, class: 'product-discount') do
