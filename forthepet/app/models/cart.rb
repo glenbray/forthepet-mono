@@ -1,6 +1,6 @@
 class Cart < ActiveRecord::Base
   belongs_to :user
-  has_many :cart_items, -> { includes(:deal).where('cart_items.is_active = ?', true).order(created_at: :desc) }
+  has_many :cart_items, -> { includes(:variant).where('cart_items.is_active = ?', true).order(created_at: :desc) }
 
   default_scope { includes(:cart_items) }
 

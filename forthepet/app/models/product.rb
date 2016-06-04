@@ -12,9 +12,21 @@ class Product < ActiveRecord::Base
   has_and_belongs_to_many :options
 
   accepts_nested_attributes_for :master_variant, allow_destroy: true
-  scope :active, -> { where is_active: true }
+
+  scope :products, -> { load_associations.active }
+  scope :single, -> { load_associations.active.includes(variants: [:option_values]) }
+  scope :load_associations, -> { includes(:category, :photos, :master_variant) }
+  scope :active, -> { load_associations.where(is_active: true) }
+  scope :filter_categories, -> (categories) { active.where(categories: { name: ['All', categories] }) }
+
+  extend FriendlyId
+  friendly_id :title, use: [:slugged, :finders]
 
   paginates_per 25
+
+  def title
+    "#{brand} #{name}"
+  end
 
   def short_description
     description[0..150]
@@ -22,6 +34,24 @@ class Product < ActiveRecord::Base
 
   def master_variant?
     variants.empty? ? true : false
+  end
+
+  def highest_percentage_saved
+    @savings ||= begin
+      if has_variants?
+        variants.maximum(:percentage_saved)
+      else
+        master_variant.percentage_saved
+      end
+    end
+  end
+
+  def price_or_lowest_price
+    if has_variants?
+      variants.map(&:price).min
+    else
+      master_variant.price
+    end
   end
 
   def photos?
@@ -36,5 +66,4 @@ class Product < ActiveRecord::Base
   def has_variants?
     variants.present?
   end
-
 end

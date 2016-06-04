@@ -26,7 +26,7 @@ class Shopping::CartItemsController < ApplicationController
   private
 
   def cart_item_params
-    params.require(:cart_item).permit(:deal_id, :variant_id, :quantity)
+    params.require(:cart_item).permit(:variant_id, :quantity)
   end
 
   def cart_items

@@ -39,9 +39,9 @@ FactoryGirl.define do
 
     after(:create) do |product|
       product.master_variant = FactoryGirl.create(:variant, product_id: product.id)
-      product.variants.build(price: 22)
-      product.variants.build(price: 45)
-      product.variants.build(price: 88)
+      product.variants.build(price: 22, original_price: 30)
+      product.variants.build(price: 45, original_price: 73)
+      product.variants.build(price: 88, original_price: 120)
       product.save
     end
   end

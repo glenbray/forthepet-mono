@@ -19,10 +19,10 @@ html
       div class="m-pikabu-sidebar m-pikabu-left"
         nav class="off-canvas-left"
           ul
-            = nav_link 'All Deals', root_path
-            = nav_link 'Dog Deals', dog_deals_products_path
-            = nav_link 'Cat Deals', cat_deals_products_path
-            = nav_link 'Misc', misc_deals_products_path
+            = nav_link 'Home', root_path
+            = nav_link 'Dog', dog_products_path
+            = nav_link 'Cat', cat_products_path
+            = nav_link 'Misc', misc_products_path
             = nav_link 'Refer a Friend', referrals_path
             = nav_link 'How it works', how_it_works_path
             = nav_link 'About', about_path
@@ -37,6 +37,38 @@ html
 
         header
           = render 'layouts/menu'
+          
+          .header-notify.hidden-sm.hidden-xs
+            .container
+              .row
+                .col-md-3
+                  .icon
+                    i class="fa fa-usd fa-2" aria-hidden="true"
+                    .notify-text
+                      strong Free shipping 
+                      | on all orders
+                    
+                .col-md-3
+                  .icon
+                    i class="fa fa-truck fa-3" aria-hidden="true"
+                    .notify-text
+                      strong Fast shipping 
+                      | direct to your door
+                    
+                .col-md-3
+                  .icon
+                    i class="fa fa-tag fa-3" aria-hidden="true"
+                    .notify-text
+                      strong Lowest Prices 
+                      | online in Australia Guaranteed
+                    
+                .col-md-3
+                  .icon
+                    i class="fa fa-map-marker fa-3" aria-hidden="true"
+                    .notify-text
+                      strong Buy Local 
+                      | and your money stays local
+                      
         section style="background: #fff; min-height: 400px;"
           .body
             - unless flash.empty?

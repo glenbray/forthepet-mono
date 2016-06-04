@@ -53,7 +53,7 @@ class DealDecorator < BaseDecorator
   end
 
   def percentage_saved
-    if object.product.has_variants?
+    if object.has_variants?
       "Save up to #{highest_percentage_saved}%"
     else
       "Save #{highest_percentage_saved}%"

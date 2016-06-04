@@ -8,7 +8,7 @@
   background: #00abff;
   outline: none;
   text-transform: uppercase;
-  font-weight: bold;
+  font-weight: 100;
   &:hover {
     background: #0393da;
     color: #ffffff;
@@ -19,7 +19,10 @@
 }
 
 .btn-cart {
-  background: #36A817;
+  background: #30A710;
+  border-radius: 4px;
+  min-width: 100%;
+
   &:hover {
     background: #298411;
   }

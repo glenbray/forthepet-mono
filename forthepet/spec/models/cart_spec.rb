@@ -11,10 +11,9 @@ describe Cart, type: :model do
   end
 
   before :each do
-    deal = FactoryGirl.create(:deal)
-    product = deal.product
+    @product = FactoryGirl.create(:product)
 
-    params = { variant_id: product.master_variant.id, quantity: 1, deal_id: deal.id }
+    params = { variant_id: @product.master_variant.id, quantity: 1 }
     @cart_item = create_cart_item(params)
   end
 
@@ -48,21 +47,21 @@ describe Cart, type: :model do
 
     it 'returns the total for a cart item' do
       cart.add_item(@cart_item)
-      expect(cart.total).to eq(33.00)
+      expect(cart.total).to eq(@product.master_variant.price)
     end
 
     it 'returns correct total for cart items with quantity' do
       cart.add_item(@cart_item)
       cart.add_item(@cart_item)
-      expect(cart.total).to eq(66.00)
+      expect(cart.total).to eq(@product.master_variant.price * 2)
     end
 
     it 'returns correct total with multiple cart items and differing quantities' do
-      deal = FactoryGirl.create(:deal_with_variants)
-      variant_ids = deal.product.variants.map(&:id)
+      product = FactoryGirl.create(:product_with_variants)
+      variant_ids = product.variants.map(&:id)
 
-      params1 = { variant_id: variant_ids[0], quantity: 1, deal_id: deal.id }
-      params2 = { variant_id: variant_ids[1], quantity: 2, deal_id: deal.id }
+      params1 = { variant_id: variant_ids[0], quantity: 1 }
+      params2 = { variant_id: variant_ids[1], quantity: 2 }
 
       item1 = create_cart_item(params1)
       item2 = create_cart_item(params2)

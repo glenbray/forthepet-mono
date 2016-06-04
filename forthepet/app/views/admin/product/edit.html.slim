@@ -5,10 +5,6 @@
         i class="fa fa-arrow-circle-o-left fa-2"
         | Return
 
-      = link_to new_admin_deal_path(product_id: @product), class: 'generic-outlined-btn push-down', style: 'margin-left: 10px;' do
-        i class="fa fa-plus"
-        | New Deal
-
       = link_to admin_product_clone_path(@product), method: :post, class: 'generic-outlined-btn push-down', style: 'margin-left: 10px;' do
         i class="fa fa-plus"
         | Clone
@@ -35,6 +31,9 @@
                   = v.input :price
               .row
                 div class="col-md-2"
+                  = v.input :original_price
+              .row
+                div class="col-md-2"
                   = v.input :cost
               .row
                 div class="col-md-2"
@@ -45,6 +44,5 @@
               .row
                 div class="col-md-12"
                   = f.input :meta_description
-                  / = f.input :meta_keywords
                   = f.input :description, as: :text, input_html: { rows: 15, class: 'editor' }
             = f.submit 'Update', class: 'btn-action pull-down'
