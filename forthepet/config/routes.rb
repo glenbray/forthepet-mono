@@ -55,7 +55,7 @@ Forthepet::Application.routes.draw do
       post '/email', to: 'orders#email'
     end
 
-    resources :order_deals, only: [:index, :show]
+    # resources :order_deals, only: [:index, :show]
     resources :order_summaries, only: [:index], path: 'order-summaries'
     post 'order_summaries/email', to: 'order_summaries#email'
 
@@ -89,13 +89,6 @@ Forthepet::Application.routes.draw do
 
     resources :category
     resources :fine_prints, as: 'fine_prints', path: 'fine-prints'
-
-    # resources :deals do
-    #   get 'attach', to: 'deals#attach', path: 'attach'
-    #   resources :deal_fine_prints, path: 'fine-prints', as: 'fine_prints'
-    #   match 'detach_product',     to: 'deals#detach_product', as: 'detach_product', path: 'detach-product',     via: 'delete'
-    #   match 'attach_product/:id', to: 'deals#attach_product', as: 'attach_product', path: 'attach-product/:id', via: 'patch'
-    # end
 
     resources :users do
       resources :user_addresses, only: [:index, :update, :create], path: 'addresses', as: 'addresses'
