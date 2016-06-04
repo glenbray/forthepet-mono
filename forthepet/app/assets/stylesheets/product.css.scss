@@ -318,22 +318,24 @@
 .show-referal {
   a {
     text-align: center;
-    border: 1px solid #DDDDDD;
     background: #fff;
     color: #ffffff;
     padding: 5px 20px;
     margin-right: 3%;
     display: inline-block;
     text-decoration: none;
+    border-radius: 2px;
     i {
       margin-right: 8px;
     }
   }
  .facebook {
+   border: 1px solid #3B5998;
    background: #FFFFFF;
    color: #3B5998;
   }
   .twitter {
+    border: 1px solid #4099FF;
     background: #FFFFFF;
     color: #4099FF;
   }
