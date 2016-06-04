@@ -17,21 +17,4 @@
         div class="col-xs-12 col-md-3"
           - unless session_cart.empty?
             div class="cart-summary"
-              h4 Cart Summary
-              hr
-              .push-down
-              h3 = number_to_currency(@cart.total)
-              .push-down
-              b.shipping Shipping method
-              p.shipping Items are shipped when all deals in your order have completed
-              .push-down
-              p.shipping: b Australian Customers Only
-              a class="shipping" href="/shipping-information" style="font-size: 12px;" target="_blank" Shipping and Delivery Information
-              .push-down
-              = link_to 'Checkout', checkout_path(:details), class: 'btn btn-cart'
-              = link_to 'Continue Shopping', root_path, class: 'continue-link'
-              p.payment-methods
-                .push-down
-                span style="display: block; margin-bottom: 8px": b style="font-size: 0.8em" Available Payment Methods
-                = image_tag "payment_methods.png", style: "display: inline-block;"
-                = image_tag "amex.png", style: "display: inline-block; margin-left: 4px;"
+              = render partial: 'summary', locals: { cart: @cart }

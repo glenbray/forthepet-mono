@@ -2,7 +2,6 @@ require 'rails_helper'
 describe CartItem, type: :model do
 
   let(:product) { FactoryGirl.create(:product) }
-  # let(:deal) { FactoryGirl.create(:deal) }
 
   it { is_expected.to belong_to :cart }
   it { is_expected.to belong_to :deal }
@@ -11,12 +10,12 @@ describe CartItem, type: :model do
   describe '.total' do
     it 'should return correct total' do
       cart_item = CartItem.new(variant: product.master_variant, quantity: 1)
-      expect(cart_item.total).to eq(33.00)
+      expect(cart_item.total).to eq(product.master_variant.price)
     end
 
     it 'multiplies by quantity' do
       cart_item = CartItem.new(variant: product.master_variant, quantity: 2)
-      expect(cart_item.total).to eq(66.00)
+      expect(cart_item.total).to eq(product.master_variant.price * 2)
     end
   end
 

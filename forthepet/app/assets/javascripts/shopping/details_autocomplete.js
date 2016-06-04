@@ -30,7 +30,7 @@ function detectIE() {
     return ieBrowser;
 }
 
-if(detectIE() == false) {
+if(detectIE() === false) {
   var autocomplete_options = {
     types: ['address'],
     componentRestrictions: {country: "au"}

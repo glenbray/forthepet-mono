@@ -89,7 +89,7 @@ p {
 
   .top-wrapper {
     position: relative;
-    padding: 35px 0;
+    padding: 30px 0;
   }
 
   @media (max-width: 767px) {
@@ -113,6 +113,9 @@ p {
   padding-bottom: 5px;
 
   .icon {
+    display: table-cell;
+    vertical-align: middle;
+
     i {
       font-size: 1.5em;
       display: table-cell;
@@ -129,7 +132,6 @@ p {
   p {
     font-size: 0.8em
   }
-
 }
 
 .login {
@@ -300,7 +302,7 @@ p {
 .body {
   min-height: 400px;
   background: #eeeeee;
-  padding-top: 40px;
+  padding-top: 50px;
   padding-bottom: 40px;
 }
 
