@@ -8,6 +8,7 @@ class Admin::CreateProductForm < Reform::Form
   property :master_variant do
     property :sku
     property :price, validates: { presence: true, numericality: true }
+    property :original_price
     property :quantity, validates: { presence: true, numericality: true }
   end
 

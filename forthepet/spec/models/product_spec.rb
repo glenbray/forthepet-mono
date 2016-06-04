@@ -62,7 +62,18 @@ describe Product, type: :model do
 
       expect(product.options).to match_array([])
     end
+  end
 
+  describe '#highest_percentage_saved' do
+    it 'returns percentage for master variant' do
+      product = FactoryGirl.create(:product)
+      expect(product.highest_percentage_saved).to eq(196)
+    end
+
+    it 'returns highest percentage if a product has many variants' do
+      product = FactoryGirl.create(:product_with_variants)
+      expect(product.highest_percentage_saved).to eq(62)
+    end
   end
 
 end

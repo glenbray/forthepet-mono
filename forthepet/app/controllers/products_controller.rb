@@ -1,10 +1,10 @@
 class ProductsController < ApplicationController
   def index
-    @products = ProductDecorator.decorate_collection(Product.active)
+    @products = ProductDecorator.decorate_collection(Product.products)
   end
 
   def show
-    @product = Product.find(params[:id]).decorate
+    @product = Product.single.find(params[:id]).decorate
     @cart_item = CartItem.new(quantity: 1)
   end
 
