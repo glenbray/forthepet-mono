@@ -26,5 +26,7 @@ module Forthepet
     config.autoload_paths += %W(#{config.root}/lib)
 
     config.assets.precompile += %w(admin.js admin.css shopping/details_autocomplete.js)
+
+    config.active_job.queue_adapter = :delayed_job
   end
 end

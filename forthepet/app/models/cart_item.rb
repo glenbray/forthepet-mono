@@ -11,8 +11,9 @@ class CartItem < ActiveRecord::Base
   end
 
   def total
-    v_id = variant.id
-    deal.deal_prices.find_by_variant_id(v_id).price * quantity
+    # v_id = variant.id
+    # deal.deal_prices.find_by_variant_id(v_id).price * quantity
+    variant.price * quantity
   end
 
   def first_photo
@@ -20,7 +21,7 @@ class CartItem < ActiveRecord::Base
   end
 
   def name
-    deal.product_name
+    variant.product.name
   end
 
 end

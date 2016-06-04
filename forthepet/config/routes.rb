@@ -1,19 +1,15 @@
 Forthepet::Application.routes.draw do
 
-  root to: 'deals#index'
+  root to: 'products#index'
   mount_roboto
 
-  namespace :deals do
-    resources :product_deals, only: [:index], path: 'products', as: 'products' do
-      collection do
-        get 'dog'
-        get 'cat'
-        get 'misc'
-      end
+  resources :products, only: [:index, :show], path: 'product' do
+    collection do
+      get 'dog'
+      get 'cat'
+      get 'misc'
     end
   end
-
-  resources :deals, only: [:index, :show]
 
   get '/how-it-works', to: 'static_pages#how_it_works'
   get '/about', to: 'static_pages#about'
@@ -94,12 +90,12 @@ Forthepet::Application.routes.draw do
     resources :category
     resources :fine_prints, as: 'fine_prints', path: 'fine-prints'
 
-    resources :deals do
-      get 'attach', to: 'deals#attach', path: 'attach'
-      resources :deal_fine_prints, path: 'fine-prints', as: 'fine_prints'
-      match 'detach_product',     to: 'deals#detach_product', as: 'detach_product', path: 'detach-product',     via: 'delete'
-      match 'attach_product/:id', to: 'deals#attach_product', as: 'attach_product', path: 'attach-product/:id', via: 'patch'
-    end
+    # resources :deals do
+    #   get 'attach', to: 'deals#attach', path: 'attach'
+    #   resources :deal_fine_prints, path: 'fine-prints', as: 'fine_prints'
+    #   match 'detach_product',     to: 'deals#detach_product', as: 'detach_product', path: 'detach-product',     via: 'delete'
+    #   match 'attach_product/:id', to: 'deals#attach_product', as: 'attach_product', path: 'attach-product/:id', via: 'patch'
+    # end
 
     resources :users do
       resources :user_addresses, only: [:index, :update, :create], path: 'addresses', as: 'addresses'

@@ -27,10 +27,9 @@ class ProcessOrder
   def cart_item_attributes(cart_item)
     v_id = cart_item.variant_id
     {
-      deal_id:    cart_item.deal_id,
       quantity:   cart_item.quantity,
       variant_id: v_id,
-      price:      cart_item.deal.deal_prices.find_by_variant_id(v_id).price
+      price:      cart_item.variant.price
     }
   end
 
