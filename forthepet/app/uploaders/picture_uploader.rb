@@ -13,15 +13,15 @@ class PictureUploader < CarrierWave::Uploader::Base
     process resize_and_pad: [80, 80]
   end
 
-  version :deal do
+  version :product do
     process resize_and_pad: [483, 330]
   end
 
-  version :deal_show do
+  version :product_show do
     process resize_and_pad: [472, 433]
   end
 
-  version :deal_small do
+  version :product_small do
     process resize_and_pad: [55, 55]
   end
 

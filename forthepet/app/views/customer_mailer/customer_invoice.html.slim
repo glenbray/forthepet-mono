@@ -130,11 +130,6 @@ html xmlns="http://www.w3.org/1999/xhtml"
                   tr
                     td height="30" width="100%"
                       | &nbsp;
-                  / Heading
-                  tr
-                    td style=("font-size: 22px; color: #04aff7; text-align: center; font-weight: bold; font-family: Helvetica, Arial, sans-serif; line-height: 34px; text-transform: uppercase;") width="100%"
-                      center
-                        | WE'RE YOUR DAILY DEALS SITE FOR THE PET!
                   tr
                     td height="50" width="100%"
           / End Container
@@ -180,7 +175,7 @@ html xmlns="http://www.w3.org/1999/xhtml"
                     td.order-details-header width="50%" Purchase Date
                     td.order-details-value width="50%" = @order.purchased_at
                   tr
-                    td.order-details-header width="50%" Reference
+                    td.order-details-header width="50%" Payment Reference
                     td.order-details-value width="50%" = @order.transaction_no
                   tr
                     td.order-details-header width="50%" Payment Method
@@ -193,8 +188,8 @@ html xmlns="http://www.w3.org/1999/xhtml"
           / End Container
     / End Order Summary
 
-    h2.shipping-info Your order will be shipped after the final deal in your order has completed
-    h3.shipping-info-detail Please click the shipping link below for more information
+    h2.shipping-info You will receive another email once your order has been shipped
+    h3.shipping-info-detail For more information about shipping please link below
 
     / Order Details
     table align="center" border="0" cellpadding="0" cellspacing="0" summary="" width="100%"
@@ -251,7 +246,7 @@ html xmlns="http://www.w3.org/1999/xhtml"
                         - @order.order_items.each do |item|
                           tr
                             td width="65%"
-                              = item.deal.name
+                              = item.variant.product.name
                             td.center
                               = item.quantity
                             td.center

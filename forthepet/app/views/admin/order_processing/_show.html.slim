@@ -44,7 +44,7 @@ div class="admin-panel" style="margin-bottom: 30px;"
 
     table.table
       thead
-        th Deal
+        th Brand
         th Product
         th Variant
         th.center Qty
@@ -53,8 +53,8 @@ div class="admin-panel" style="margin-bottom: 30px;"
       tbody
         - order.order_items.each do |item|
           tr
-            td = item.deal.name
-            td = item.deal.product_name
+            td = item.variant.product.brand
+            td = item.variant.product.name
             td = item.variant
             td.center = item.quantity
             td = item.aasm_state

@@ -8,7 +8,7 @@
   background: #00abff;
   outline: none;
   text-transform: uppercase;
-  font-weight: bold;
+  font-weight: 100;
   &:hover {
     background: #0393da;
     color: #ffffff;
@@ -20,6 +20,8 @@
 
 .btn-cart {
   background: #36A817;
+  padding-left: 40px;
+  padding-right: 40px;
   &:hover {
     background: #298411;
   }
