@@ -7,6 +7,7 @@ FactoryGirl.define do
     is_master true
     sku 'test'
     price 50.0
+    original_price 148
     cost 10
   end
 
