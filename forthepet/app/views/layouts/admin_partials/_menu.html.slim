@@ -19,7 +19,6 @@ nav class="navbar navbar-default"
             ul class="dropdown-menu"
               li = link_to 'Orders ', admin_orders_path('q[aasm_state_cont]' => 'pending', commit: 'Filter')
               li = link_to 'Process Orders', admin_order_processing_index_path
-              / li = link_to 'Summaries Report', admin_order_summaries_path
 
         - if can? :manage, Product
           li class="dropdown"

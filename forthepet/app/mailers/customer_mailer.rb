@@ -12,5 +12,4 @@ class CustomerMailer < ActionMailer::Base
     @order = order.decorate
     mail(to: @order.email, subject: 'Your For the Pet Order has been Shipped!')
   end
-
 end
