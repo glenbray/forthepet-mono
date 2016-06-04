@@ -6,7 +6,7 @@ class PictureUploader < CarrierWave::Uploader::Base
   process convert: 'jpg'
 
   version :cart do
-    process resize_and_pad: [100, 100]
+    process resize_and_pad: [300, 250]
   end
 
   version :thumbnail do

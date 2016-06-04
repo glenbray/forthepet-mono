@@ -32,7 +32,7 @@ namespace :db do
     system('docker-compose up -d db')
 
     system('docker-compose run web bundle exec rake db:drop db:create')
-    system("psql -h localhost -U postgres -d forthepet_dev -f backups/#{backup}")
+    system("PGPASSWORD=password psql -h localhost -U postgres -d forthepet_dev -f backups/#{backup}")
   end
 
   desc "backup production db excluding all images"
@@ -42,7 +42,7 @@ namespace :db do
     system("pg_dump -v --no-owner -d forthepet -U ftp_user -h db.forthepet.com.au --exclude-table-data photos > backups/#{backup}")
     system('docker-compose up -d db')
     system('docker-compose run web bundle exec rake db:drop db:create')
-    system("psql -h localhost -U postgres -d forthepet_dev -f backups/#{backup}")
+    system("PGPASSWORD=password psql -h localhost -U postgres -d forthepet_dev -f backups/#{backup}")
   end
 
   desc "backup production db including images"
@@ -52,6 +52,6 @@ namespace :db do
     system("pg_dump -v --no-owner -d forthepet -U ftp_user -h db.forthepet.com.au > backups/#{backup}")
     system('docker-compose up -d db')
     system('docker-compose run web bundle exec rake db:drop db:create')
-    system("psql -h localhost -U postgres -d forthepet_dev -f backups/#{backup}")
+    system("PGPASSWORD=password psql -h localhost -U postgres -d forthepet_dev -f backups/#{backup}")
   end
 end
