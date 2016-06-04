@@ -41,6 +41,5 @@
               .row
                 div class="col-md-12"
                   = f.input :meta_description
-                  / = f.input :meta_keywords
                   = f.input :description, as: :text, input_html: { rows: 15, class: 'editor' }
             = f.submit 'Update', class: 'btn-action pull-down'

@@ -2,11 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-table.cart-table {
+table.row {
   background: #fff;
 
   border-radius: 0px;
-  border: 1px solid #EBEBEB;
   thead {
     background: #1bc6f9;
     background: -moz-linear-gradient(top, #1bc6f9 0%, #2dc3ed 47%, #05abe0 100%);
@@ -25,9 +24,7 @@ table.cart-table {
 
   // Cart item row
   tr.item {
-    border: 1px solid #E7E7E7;
     td {
-      border: 1px solid #E7E7E7;
       vertical-align: middle;
       text-align: center;
 
@@ -50,7 +47,6 @@ table.cart-table {
         color: #FF892D;
       }
       img {
-        border: 1px solid #EBEBEB;
         display: inline-block;
         margin: 5px 30px 5px 5px;
       }
@@ -104,6 +100,8 @@ table.cart-table {
     border: 0;
     padding: 5px 10px;
     color: #616161;
+    margin-bottom: 10px;
+    border-radius: 4px;
   }
 }
 
@@ -256,4 +254,3 @@ table.cart-table {
 .forgot-link {
   color: #3e3e3e;
 }
-

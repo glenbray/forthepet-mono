@@ -19,7 +19,6 @@ class CartItem < ActiveRecord::Base
   end
 
   def name
-    variant.product.name
+    "#{variant.product.brand} #{variant.product.name}"
   end
-
 end

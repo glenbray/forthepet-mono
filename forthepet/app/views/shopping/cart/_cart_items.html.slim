@@ -9,7 +9,7 @@ table.row
             - else
               = image_tag "deal-placeholder.png", class: 'img-responsive', style: "border: 1px solid #04aff7;"
           div
-            a.cart-desc href="#" = cart_item.name
+            h5 = cart_item.name
             p = cart_item.variant
           div
             = simple_form_for cart_item, remote: true do |c|
@@ -18,7 +18,7 @@ table.row
               span.at-cost
                 = "@ #{cart_item.price}"
               br
-              = c.submit "Update Quantity", class: 'btn btn-primary quantity-btn'
+              = c.submit "Update", class: 'btn btn-primary quantity-btn'
             = link_to 'Delete', cart_item_path(cart_item), method: :delete, remote: true, data: { confirm: 'Are you sure?' }
           div
             span  Item subtotal:
