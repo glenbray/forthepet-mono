@@ -32,8 +32,16 @@
   }
 
   .price-box {
-    margin-right: 20px;
+    margin-right: 10px;
     display: inline-block;
+
+    @media(min-width: $screen-sm-min){
+      margin-right: 0px;
+    }
+
+    @media(max-width: $screen-xs-max) {
+      margin-right: 5px;
+    }
   }
 
   .product-content {
@@ -87,15 +95,18 @@
         right: 7px;
         bottom: 5px;
 
-        @media (max-width: 769px) {
+        @media(max-width: $screen-xs-max){
           height: 37px;
-          bottom: 34px;
+          bottom: 4px;
         }
       }
 
       span {
-        @media (max-width: 769px) {
-          font-size: 12px;
+        @media(max-width: $screen-xs-max) {
+          font-size: 14px;
+        }
+        @media(min-width: $screen-sm-min) {
+          font-size: 14px;
         }
       }
     }

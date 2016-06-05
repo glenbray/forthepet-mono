@@ -69,7 +69,6 @@ p {
 .label-danger {
   background-color: #F5F5F5;
   color: #d9534f;
-  padding-left: 20px;
   padding-right: 20px;
 }
 
@@ -481,3 +480,5 @@ div .alert {
   width: 100%;
   height: 5px;
 }
+
+@import 'product';
