@@ -20,7 +20,7 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    aasm (4.1.1)
+    aasm (4.10.1)
     actionmailer (4.2.5)
       actionpack (= 4.2.5)
       actionview (= 4.2.5)
@@ -56,36 +56,35 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
-    acts_as_list (0.7.2)
+    acts_as_list (0.7.4)
       activerecord (>= 3.0)
     addressable (2.3.8)
     arel (6.0.3)
     ast (2.0.0)
     astrolabe (1.3.0)
       parser (>= 2.2.0.pre.3, < 3.0)
-    autoprefixer-rails (5.1.11)
+    autoprefixer-rails (6.3.6.2)
       execjs
-      json
     aws_cf_signer (0.1.3)
-    bcrypt (3.1.10)
+    bcrypt (3.1.11)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
       rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bootstrap-sass (3.3.4.1)
-      autoprefixer-rails (>= 5.0.0.1)
-      sass (>= 3.2.19)
+    bootstrap-sass (3.3.6)
+      autoprefixer-rails (>= 5.2.1)
+      sass (>= 3.3.4)
     bootstrap3-datetimepicker-rails (4.7.14)
       momentjs-rails (>= 2.8.1)
-    braintree (2.47.0)
+    braintree (2.62.0)
       builder (>= 2.0.0)
     builder (3.2.2)
     bullet (4.14.7)
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.9.0)
-    cancancan (1.10.1)
+    cancancan (1.14.0)
     capistrano (3.4.0)
       i18n
       rake (>= 10.0.0)
@@ -114,17 +113,22 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    carrierwave (0.10.0)
+    carrierwave (0.11.2)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
+      mimemagic (>= 0.3.0)
     celluloid (0.16.0)
       timers (~> 4.0.0)
-    cloudinary (1.1.6)
+    cloudinary (1.1.7)
       aws_cf_signer
       rest-client
     coderay (1.1.0)
+    coffee-script (2.4.1)
+      coffee-script-source
+      execjs
+    coffee-script-source (1.10.0)
     colorize (0.7.7)
     concurrent-ruby (1.0.0)
     crummy (1.8.0)
@@ -134,12 +138,12 @@ GEM
     daemons (1.2.2)
     database_cleaner (1.5.3)
     debug_inspector (0.0.2)
-    delayed_job (4.0.6)
-      activesupport (>= 3.0, < 5.0)
-    delayed_job_active_record (4.0.3)
-      activerecord (>= 3.0, < 5.0)
-      delayed_job (>= 3.0, < 4.1)
-    devise (3.4.1)
+    delayed_job (4.1.2)
+      activesupport (>= 3.0, < 5.1)
+    delayed_job_active_record (4.1.1)
+      activerecord (>= 3.0, < 5.1)
+      delayed_job (>= 3.0, < 5)
+    devise (3.5.10)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
@@ -160,7 +164,6 @@ GEM
       request_store (~> 1.0)
     erubis (2.7.0)
     exception_handler (0.3.45)
-    excon (0.45.3)
     execjs (2.5.2)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
@@ -224,13 +227,11 @@ GEM
     lumberjack (1.0.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
-    mandrill-api (1.0.53)
-      excon (>= 0.16.0, < 1.0)
-      json (>= 1.7.7, < 2.0)
     metamagic (3.1.7)
       rails (>= 3.0.0)
     method_source (0.8.2)
     mime-types (2.99)
+    mimemagic (0.3.1)
     mini_portile2 (2.0.0)
     minitest (5.8.3)
     momentjs-rails (2.8.4)
@@ -313,8 +314,8 @@ GEM
       nokogiri
       uber (~> 0.0.7)
     request_store (1.1.0)
-    responders (2.1.0)
-      railties (>= 4.2.0, < 5)
+    responders (2.2.0)
+      railties (>= 4.2.0, < 5.1)
     rest-client (1.8.0)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 3.0)
@@ -328,7 +329,7 @@ GEM
     roboto (0.2.0)
       actionpack (>= 3.0.0)
       rails (>= 3.1.0)
-    rollbar (2.11.3)
+    rollbar (2.11.5)
       multi_json
     rspec (3.2.0)
       rspec-core (~> 3.2.0)
@@ -377,7 +378,7 @@ GEM
       json (~> 1.8)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.0)
-    skylight (0.6.0)
+    skylight (0.10.4)
       activesupport (>= 3.0.0)
     slim (3.0.3)
       temple (~> 0.7.3)
@@ -415,10 +416,10 @@ GEM
       unf_ext
     unf_ext (0.0.7.2)
     uniform_notifier (1.9.0)
-    warden (1.2.3)
+    warden (1.2.6)
       rack (>= 1.0)
-    wicked (1.1.1)
-      rails (>= 3.0.7)
+    wicked (1.3.0)
+      railties (>= 3.0.7)
     xpath (2.0.0)
       nokogiri (~> 1.3)
     zeroclipboard-rails (0.1.0)
@@ -428,16 +429,16 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  aasm (~> 4.1.1)
-  acts_as_list (~> 0.7.2)
-  autoprefixer-rails (~> 5.1.11)
+  aasm (~> 4.10.1)
+  acts_as_list (~> 0.7.4)
+  autoprefixer-rails (~> 6.3.6.2)
   better_errors (~> 2.1.1)
   binding_of_caller (~> 0.7.2)
-  bootstrap-sass (~> 3.3.4.1)
+  bootstrap-sass (~> 3.3.6)
   bootstrap3-datetimepicker-rails (~> 4.7.14)
-  braintree (~> 2.47.0)
+  braintree (~> 2.62.0)
   bullet
-  cancancan (~> 1.10.1)
+  cancancan (~> 1.14.0)
   capistrano
   capistrano-bundler
   capistrano-nc
@@ -447,14 +448,15 @@ DEPENDENCIES
   capistrano-scm-gitcopy
   capistrano3-delayed-job (~> 1.0)
   capybara
-  carrierwave (~> 0.10.0)
-  cloudinary (~> 1.1.6)
+  carrierwave (~> 0.11.2)
+  cloudinary (~> 1.1.7)
+  coffee-script
   crummy (~> 1.8.0)
   daemon_controller (~> 1.2.0)
   daemons (~> 1.2.2)
   database_cleaner
-  delayed_job_active_record (~> 4.0.3)
-  devise (~> 3.4.1)
+  delayed_job_active_record (~> 4.1.1)
+  devise (~> 3.5.10)
   draper (~> 2.1.0)
   exception_handler (~> 0.3.45)
   factory_girl_rails
@@ -468,7 +470,6 @@ DEPENDENCIES
   jquery-rails (~> 4.0.3)
   jquery-ui-rails (~> 5.0.5)
   kaminari (~> 0.16.3)
-  mandrill-api (~> 1.0.53)
   metamagic (~> 3.1.7)
   momentjs-rails (~> 2.8.1)
   newrelic_rpm (~> 3.12.0.288)
@@ -481,7 +482,7 @@ DEPENDENCIES
   reform (~> 1.2.6)
   roadie-rails (~> 1.0.6)
   roboto (~> 0.2.0)
-  rollbar (~> 2.11.1)
+  rollbar (~> 2.11.5)
   rspec-collection_matchers
   rspec-rails
   rubocop
@@ -490,14 +491,14 @@ DEPENDENCIES
   shoulda-matchers
   simple_form!
   simplecov
-  skylight (~> 0.6.0)
+  skylight (~> 0.10.4)
   slim-rails!
   spring
   spring-commands-rspec
   tinymce-rails (~> 4.1.6)
   uglifier (~> 3.0.0)
-  wicked (~> 1.1.1)
+  wicked (~> 1.3.0)
   zeroclipboard-rails (~> 0.1.0)
 
 BUNDLED WITH
-   1.12.4
+   1.12.5

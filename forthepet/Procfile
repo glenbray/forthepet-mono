@@ -1,2 +1,2 @@
 web:     passenger start
-delayed: bundle exec rake jobs:work
+delayed: DOCKER_DEV=false bundle exec rake jobs:work
