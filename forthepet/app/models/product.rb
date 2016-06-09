@@ -13,11 +13,11 @@ class Product < ActiveRecord::Base
 
   accepts_nested_attributes_for :master_variant, allow_destroy: true
 
-  scope :products, -> { load_associations.active }
-  scope :single, -> { load_associations.active.includes(variants: [:option_values]) }
-  scope :load_associations, -> { includes(:category, :photos, :master_variant) }
-  scope :active, -> { load_associations.where(is_active: true) }
-  scope :filter_categories, -> (categories) { active.where(categories: { name: ['All', categories] }) }
+  scope :products, -> { active.load_associations }
+  scope :single, -> { load_associations.includes(variants: [:option_values]) }
+  scope :load_associations, -> { includes(:category, :photos, :master_variant, :variants) }
+  scope :active, -> { where(is_active: true) }
+  scope :filter_categories, -> (categories) { active.load_associations.where(categories: { name: ['All', categories] }) }
 
   extend FriendlyId
   friendly_id :title, use: [:slugged, :finders]
