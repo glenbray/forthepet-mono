@@ -7,14 +7,10 @@
         div class="admin-body"
           div class="search"
             = search_form_for @q, builder: SimpleForm::FormBuilder, url: admin_orders_path do |f|
-              h4 Filter Orders
-              p Note: This is only showing orders that are ready to pack
               .row
                 div class="col-md-3 form-group"
-                  = f.label :aasm_state_cont, 'Status'
                   = f.input_field :aasm_state_cont, collection: [['Pending', :pending], ['Shipped', :shipped], ['Session', :session]], class: 'form-control'
                 div class="col-md-3 form-group"
-                  = f.label ''
                   = f.submit 'Filter', class: 'btn btn-info'
           table class="table table-striped"
             thead

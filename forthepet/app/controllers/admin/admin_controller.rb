@@ -9,7 +9,7 @@ class Admin::AdminController < ActionController::Base
   add_crumb 'Admin Dashboard', '/admin'
 
   def index
-    @active_count = Deal.active_deals.count
+    @active_count = Product.active.count
     @order_count = Order.non_session_orders.count
     @orders_total = Order.sum(:total)
   end

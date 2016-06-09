@@ -1,24 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe Admin::ProductWizardController, :type => :controller do
-
   describe 'GET show' do
-
     before :each do
       admin = FactoryGirl.create(:admin)
       sign_in admin
     end
 
-    describe 'incomplete step' do
-      it 'renders incomplete template if there are multiple incomplete products'
-      it 'does not render incomplete template if there is no incomplete products'
-      it 'does not render incomplete template if there is only one incomplete products'
-      it 'updates product_id session to the selected product'
-    end
-
     describe 'category step' do
-      it 'should not create a product for show action'
-
       it 'renders category template' do
         get :show, id: 'category'
         expect(response).to render_template('category')
@@ -65,7 +54,5 @@ RSpec.describe Admin::ProductWizardController, :type => :controller do
         expect(response).to render_template('image')
       end
     end
-
   end
-
 end
