@@ -1,0 +1,13 @@
+.login {
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .login-form {
+    width: 400px;
+    margin-top: 20px
+  }
+}
