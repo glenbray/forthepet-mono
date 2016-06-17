@@ -1,10 +1,17 @@
-.container
+- unless flash.empty?
+  div class="container" style="margin-bottom: 30px"
+    - flash.each do |key, value|
+      div class="alert alert-#{key}"
+        = value
+        a class="close" data-dismiss="alert" href="#"&times;
+        
+.container.login
   .row
-    .col-md-5.col-md-offset-3
-      .default-panel
+    .col-md-12
+      = image_tag("forthepetlogo-final-tran.png", height: '70', style: 'left: -20px', format: 'png')
+      .login-form
         = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
           div class="form-group"
-            h2 Sign In
             = f.input :login, required: false, autofocus: true
             = f.input :password, required: false
             div class="checkbox"

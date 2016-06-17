@@ -14,20 +14,21 @@ html
     = render 'layouts/shim'
 
   body
-    = render 'layouts/admin_partials/menu'
-    div class="breadcrumbs"
-      .container-fluid
-        .row
-          .col-sm-8
-            div class="crumbs"
-              = render_crumbs separator: '<i class="fa fa-angle-right"></i>', last_crumb_linked: false
-          .col-sm-4
-            span.pull-right
-              = link_to "#{current_admin.username}", edit_admin_admin_path(current_admin), style: "font-weight: bold;"
+    - if current_admin
+      = render 'layouts/admin_partials/menu'
+      div class="breadcrumbs"
+        .container-fluid
+          .row
+            .col-sm-8
+              div class="crumbs"
+                = render_crumbs separator: '<i class="fa fa-angle-right"></i>', last_crumb_linked: false
+            .col-sm-4
+              span.pull-right
+                = link_to "#{current_admin.username}", edit_admin_admin_path(current_admin), style: "font-weight: bold;"
 
-    div class="container-fluid"
-      .forthepet-flash
-        - flash.each do |key, value|
-          = render partial: 'layouts/admin_partials/flash', locals: { key: key, value: value }
+      div class="container-fluid"
+        .forthepet-flash
+          - flash.each do |key, value|
+            = render partial: 'layouts/admin_partials/flash', locals: { key: key, value: value }
     = yield
     footer

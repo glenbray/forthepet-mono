@@ -44,7 +44,7 @@ Forthepet::Application.routes.draw do
     post 'cart_items/create_variant', to: 'cart_items#create_variant'
   end
 
-  devise_for :admins, path: 'admin', path_names: { sign_in: 'sign-in' }
+  devise_for :admins, controllers: {sessions: 'admin/sessions'}, path: 'admin', path_names: { sign_in: 'sign-in' }
 
   namespace :admin do
     root to: 'admin#index'
