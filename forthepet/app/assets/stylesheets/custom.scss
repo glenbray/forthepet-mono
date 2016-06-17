@@ -110,29 +110,39 @@ p {
 }
 
 .header-notify {
-  background-color: #D5E7F4;
-  padding-top: 7px;
+  background-color: #eeeeee;
+  padding-top: 20px;
   padding-bottom: 5px;
 
-  .icon {
-    display: table-cell;
-    vertical-align: middle;
+  .notify-container {
+    height: 50px;
+    background: #D5E7F4;
+    padding: 5px;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    i {
-      font-size: 1.5em;
+    .icon {
       display: table-cell;
       vertical-align: middle;
-      color: #04AFF7;
+
+      i {
+        font-size: 1.5em;
+        display: table-cell;
+        vertical-align: middle;
+        color: #04AFF7;
+      }
+      .notify-text {
+        display: table-cell;
+        vertical-align: middle;
+        padding-left: 10px;
+        font-size: 0.70em;
+      }
     }
-    .notify-text {
-      display: table-cell;
-      vertical-align: middle;
-      padding-left: 10px;
-      font-size: 0.74em;
+    p {
+      font-size: 0.8em
     }
-  }
-  p {
-    font-size: 0.8em
   }
 }
 
