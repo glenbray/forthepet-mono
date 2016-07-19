@@ -48,4 +48,8 @@ class ProductDecorator < BaseDecorator
     end
   end
 
+  def total_pages
+    object.total_pages
+  end
+
 end

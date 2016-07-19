@@ -66,4 +66,24 @@ $(document).ready(function(){
     });
   });
 
+  if ($('.pagination').length) {
+    $(window).scroll(function() {
+      var url = $(".pagination li a[rel='next']").first().attr('href');
+      if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 30) {
+
+
+
+        $('.pagination').html( '<div class="sk-wave"> \
+                                  <div class="sk-rect sk-rect1"></div> \
+                                  <div class="sk-rect sk-rect2"></div> \
+                                  <div class="sk-rect sk-rect3"></div> \
+                                  <div class="sk-rect sk-rect4"></div> \
+                                  <div class="sk-rect sk-rect5"></div> \
+                                </div>' );
+
+        return $.getScript(url);
+      }
+    });
+    return $(window).scroll();
+  }
 });

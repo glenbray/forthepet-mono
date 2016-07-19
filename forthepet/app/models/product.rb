@@ -22,7 +22,7 @@ class Product < ActiveRecord::Base
   extend FriendlyId
   friendly_id :title, use: [:slugged, :finders]
 
-  paginates_per 25
+  paginates_per 20
 
   def title
     "#{brand} #{name}"
