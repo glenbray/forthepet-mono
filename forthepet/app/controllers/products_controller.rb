@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   def index
-    @products = ProductDecorator.decorate_collection(Product.products)
+    products = Product.products.page(params[:page])
+    @products = ProductDecorator.decorate_collection(products)
   end
 
   def show
@@ -26,6 +27,7 @@ class ProductsController < ApplicationController
   private
 
   def search_products(category)
-    ProductDecorator.decorate_collection(Product.filter_categories(category))
+    products = Product.filter_categories(category).page(params[:page])
+    ProductDecorator.decorate_collection(products)
   end
 end

@@ -1,23 +1,9 @@
 .container
   - unless @products.blank?
     - @products.each_slice(2) do |products|
-      .row
+      .row#products
         - products.each do |product|
-          div class="col-sm-6 col-xs-12"
-            .product-box
-              = link_to product_path(product), class: 'product-link'
-                .product-img
-                  - if product.photos?
-                    = image_tag(product.first_image, class: 'img-responsive')
-                  - else
-                    = image_tag('deal-placeholder.png', class: 'img-responsive')
-
-                .product-content
-                  h4.title = "#{product.brand} #{product.name}"
-                  div.product-bottom
-                    .price-box
-                      = product.price
-                    span class="label label-danger" = product.percentage_saved
-                    = image_tag('free-delivery.png', class: 'img-responsive')
+          = render product
+    = paginate @products
   - else
     h1 No Products Currently Available
