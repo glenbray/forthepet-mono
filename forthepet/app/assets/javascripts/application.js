@@ -71,8 +71,6 @@ $(document).ready(function(){
       var url = $(".pagination li a[rel='next']").first().attr('href');
       if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 30) {
 
-
-
         $('.pagination').html( '<div class="sk-wave"> \
                                   <div class="sk-rect sk-rect1"></div> \
                                   <div class="sk-rect sk-rect2"></div> \

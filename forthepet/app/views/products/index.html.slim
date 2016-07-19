@@ -1,7 +1,7 @@
 .container
   - unless @products.blank?
-    - @products.each_slice(2) do |products|
-      .row#products
+    #products
+      - @products.each_slice(2) do |products|
         - products.each do |product|
           = render product
     = paginate @products
