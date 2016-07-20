@@ -50,7 +50,7 @@ class Admin::VariantController < Admin::AdminController
   end
 
   def variant_params
-    params.require(:variant).permit(:sku, :price, :cost, :quantity, :is_master, :height,
+    params.require(:variant).permit(:sku, :price, :original_price, :cost, :quantity, :is_master, :height,
                                     :width, :depth, :weight, :photo_id, option_value_ids: [])
   end
 
