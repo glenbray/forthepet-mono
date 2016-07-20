@@ -1,9 +1,9 @@
 .container
   - unless @products.blank?
-    #products
-      - @products.each_slice(2) do |products|
-        - products.each do |product|
-          = render product
-    = paginate @products
+    #products.row
+      - @products.each do |product|
+        = render product
+    .row.pagination-container
+      = paginate @products
   - else
     h1 No Products Currently Available
