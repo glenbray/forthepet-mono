@@ -69,7 +69,13 @@ class Admin::ProductWizardController < Admin::AdminController
         session[:product_id] = product.id
         product
       else
-        Product.find(session[:product_id])
+        begin
+          Product.find(session[:product_id])
+        rescue ActiveRecord::RecordNotFound
+          Product.create
+          session[:product_id] = product.id
+          product
+        end
       end
     end
   end
