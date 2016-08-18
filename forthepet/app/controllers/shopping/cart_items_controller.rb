@@ -13,7 +13,14 @@ class Shopping::CartItemsController < ApplicationController
 
   def update
     @cart_item = CartItem.find(params[:cart_item][:id])
-    @cart_item.update_attribute(:quantity, params[:cart_item][:quantity])
+    quantity = params[:cart_item][:quantity]
+
+    if quantity.to_i < 1
+      @cart_item.destroy
+    else
+      @cart_item.update_attribute(:quantity, quantity)
+    end
+
     @cart_items = cart_items
   end
 
