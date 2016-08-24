@@ -24,7 +24,7 @@ describe Variant, type: :model do
       it 'rounds when saving a decimal' do
         variant = Variant.new(price: 18.99, original_price: 27.74, product_id: 1, is_master: true)
         variant.save
-        expect(variant.percentage_saved).to eq(42)
+        expect(variant.percentage_saved).to eq(46)
       end
 
       it 'saves percentage as 0 if original_price was not provided' do
