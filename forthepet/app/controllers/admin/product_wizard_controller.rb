@@ -65,19 +65,23 @@ class Admin::ProductWizardController < Admin::AdminController
   def session_product
     @product ||= begin
       if session[:product_id].blank?
-        product = Product.create
+        product = create_product
         session[:product_id] = product.id
         product
       else
         begin
           Product.find(session[:product_id])
         rescue ActiveRecord::RecordNotFound
-          product = Product.create
+          product = create_product
           session[:product_id] = product.id
           product
         end
       end
     end
+  end
+
+  def create_product
+    Product.create(is_active: false)
   end
 
   def image_params
