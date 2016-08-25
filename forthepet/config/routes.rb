@@ -40,6 +40,7 @@ Forthepet::Application.routes.draw do
   scope module: 'shopping' do
     resources :checkout
     resources :cart, only: [:index, :update]
+    post 'cart/calculate-postage', to: 'cart#calculate_postage'
     resources :cart_items
     post 'cart_items/create_variant', to: 'cart_items#create_variant'
   end

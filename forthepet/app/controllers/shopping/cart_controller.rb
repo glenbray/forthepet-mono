@@ -4,6 +4,10 @@ class Shopping::CartController < ApplicationController
     @cart_items = cart_items
   end
 
+  def calculate_postage
+    redirect_to cart_path session_cart
+  end
+
   private
 
   def cart_items
