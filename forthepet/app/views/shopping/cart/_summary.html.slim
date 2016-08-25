@@ -1,18 +1,33 @@
 h4 Cart Summary
 hr
-.push-down
-h3 = number_to_currency(cart.total)
-.push-down
-b.shipping Shipping method
-p.shipping Items are shipped when all deals in your order have completed
-.push-down
+
+div style="padding-bottom: 10px;"
+  span style="font-weight: bold; font-size: 1.2em;" Subtotal
+  p style="" = number_to_currency(cart.total)
+
+div style=""
+  span style="font-weight: bold; font-size: 1.2em;" Postage
+  p style="" Free
+
+  
+div style="padding-bottom: 20px; padding-top: 10px"
+  = simple_form_for :postage, url: cart_calculate_postage_path do |f|
+    div class="input-group" 
+      = f.text_field :postcode, class: 'form-control', style: 'height: 33px', placeholder: 'Postcode'
+      span class="input-group-btn"
+        = f.submit class: 'btn btn-default', value: 'save'
+  
+div style="padding-top: 10px;"
+  span style="color: #ff6501; font-weight: bold; font-size: 1.2em; padding-bottom: 10px;" Total
+  p style="" = number_to_currency(cart.total)
+  
 p.shipping: b Australian Customers Only
 a class="shipping" href="/shipping-information" style="font-size: 12px;" target="_blank" Shipping and Delivery Information
 .push-down
 = link_to 'Checkout', checkout_path(:details), class: 'btn btn-cart'
-= link_to 'Continue Shopping', root_path, class: 'continue-link'
+= link_to 'Continue shopping', root_path, class: 'continue-link'
+
 p.payment-methods
   .push-down
   span style="display: block; margin-bottom: 8px": b style="font-size: 0.8em" Available Payment Methods
-  = image_tag "payment_methods.png", style: "display: inline-block;"
-  = image_tag "amex.png", style: "display: inline-block; margin-left: 4px;"
+  = image_tag "payment_methods.png", style: "display: inline-block; height: 30px;"

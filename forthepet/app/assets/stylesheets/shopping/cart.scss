@@ -2,88 +2,94 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-table.row {
+table.cart-table {
   background: #fff;
 
   border-radius: 0px;
   thead {
-    background: #1bc6f9;
-    background: -moz-linear-gradient(top, #1bc6f9 0%, #2dc3ed 47%, #05abe0 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#1bc6f9), color-stop(47%,#2dc3ed), color-stop(100%,#05abe0));
-    background: -webkit-linear-gradient(top, #1bc6f9 0%,#2dc3ed 47%,#05abe0 100%);
-    background: -o-linear-gradient(top, #1bc6f9 0%,#2dc3ed 47%,#05abe0 100%);
-    background: -ms-linear-gradient(top, #1bc6f9 0%,#2dc3ed 47%,#05abe0 100%);
-    background: linear-gradient(to bottom, #1bc6f9 0%,#2dc3ed 47%,#05abe0 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1bc6f9', endColorstr='#05abe0',GradientType=0 );
+    background: #A4A4A4;
+    // background: -moz-linear-gradient(top, #1bc6f9 0%, #2dc3ed 47%, #05abe0 100%);
+    // background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#1bc6f9), color-stop(47%,#2dc3ed), color-stop(100%,#05abe0));
+    // background: -webkit-linear-gradient(top, #1bc6f9 0%,#2dc3ed 47%,#05abe0 100%);
+    // background: -o-linear-gradient(top, #1bc6f9 0%,#2dc3ed 47%,#05abe0 100%);
+    // background: -ms-linear-gradient(top, #1bc6f9 0%,#2dc3ed 47%,#05abe0 100%);
+    // background: linear-gradient(to bottom, #1bc6f9 0%,#2dc3ed 47%,#05abe0 100%);
+    // filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1bc6f9', endColorstr='#05abe0',GradientType=0 );
     color: white;
 
     th {
+      background: #f1f1f1;
+      color: #545454;
       text-align: center;
     }
   }
 
   // Cart item row
-  tr.item {
-    td {
-      vertical-align: middle;
-      text-align: center;
-
-      .item-info {
-        display: inline-block;
-
-        .description {
-          font-weight: bold;
-          // font-size: 16px;
-          color: #5C5757;
-        }
-        .item-price {
-          display: block;
-          text-align: left;
-          color: #FF892D;
-        }
-
-      }
-      .cart-item-total {
-        color: #FF892D;
-      }
-      img {
-        display: inline-block;
-        margin: 5px 30px 5px 5px;
-      }
-    }
-    td.info {
-      text-align: left;
-      // white-space: nowrap;
-    }
-  }
+  // tr.item {
+  //   td {
+  //     vertical-align: middle;
+  //     text-align: center;
+  //
+  //     .item-info {
+  //       display: inline-block;
+  //
+  //       .description {
+  //         font-weight: bold;
+  //         // font-size: 16px;
+  //         color: #5C5757;
+  //       }
+  //       .item-price {
+  //         display: block;
+  //         text-align: left;
+  //         color: #FF892D;
+  //       }
+  //
+  //     }
+  //     .cart-item-total {
+  //       color: #FF892D;
+  //     }
+  //     img {
+  //       display: inline-block;
+  //       margin: 5px 30px 5px 5px;
+  //     }
+  //   }
+  //   td.info {
+  //     text-align: left;
+  //     // white-space: nowrap;
+  //   }
+  // }
 
   // Cart table footer
-  tr.total {
-    background: #F8F8F8;
-    td {
-    border-top: 0;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    }
-  }
+  // tr.total {
+  //   background: #F8F8F8;
+  //   td {
+  //   border-top: 0;
+  //   padding-top: 10px;
+  //   padding-bottom: 10px;
+  //   }
+  // }
+  //
+  // .order-total-box {
+  //   display: block;
+  //   margin-right: 2px;
+  //
+  //   b.total {
+  //     margin-right: 10px;
+  //     color: #665F5F;
+  //   }
+  //
+  //   span.total {
+  //     font-size: 17px;
+  //     width: 60px;
+  //     display: inline-block;
+  //     text-align: right;
+  //     color: #FF7000;
+  //     font-weight: bold;
+  //   }
+  // }
 
-  .order-total-box {
-    display: block;
-    margin-right: 2px;
-
-    b.total {
-      margin-right: 10px;
-      color: #665F5F;
-    }
-
-    span.total {
-      font-size: 17px;
-      width: 60px;
-      display: inline-block;
-      text-align: right;
-      color: #FF7000;
-      font-weight: bold;
-    }
+  .description {
+    text-align: left;
   }
 
   .quantity-label {
@@ -95,6 +101,12 @@ table.row {
     color: #5F5F5F;
   }
 
+  tbody {
+    tr td {
+      text-align: center;
+    }
+  }
+
   .quantity-btn {
     margin-top: 10px;
     border: 0;
@@ -103,6 +115,20 @@ table.row {
     border-radius: 4px !important;
   }
 }
+
+// .cart {
+//   display: flex;
+//
+//   .cart-img {
+//     max-width: 150px;
+//     display: inline;
+//   }
+//
+//   .cart-content {
+//     display: inline-block;
+//     padding-left: 20px;
+//   }
+// }
 
 // Cart summary box
 .cart-summary {
@@ -193,26 +219,30 @@ table.row {
     border-collapse: collapse;
     border-spacing: 0;
     text-align: right;
+
     tbody {
       margin: 0;
       padding: 0;
       border: 0;
       font-size: 100%;
       font: inherit;
-      vertical-align: baseline;
       display: table-row-group;
+
       div.cart-img {
         text-align: left;
         float: left;
+        max-width: 120px;
         img {
           width: 100%;
         }
       }
+
       .cart-desc {
         line-height: 1.3em;
         font-size: 1.1em;
         font-weight: 500;
       }
+
       .cart-delete {
         float: right;
         display: inline-block;
@@ -224,20 +254,24 @@ table.row {
         float: none;
         margin-right: 15px;
       }
+
       .edit_cart_item {
         input[type=number] {
           display: inline-block;
           width: 60px;
         }
       }
+
       .cart_item_quantity {
         display: inline-block;
+        margin-bottom: 0px;
       }
+
       span.at-cost {
-        height: 34px;
-        line-height: 34px;
-        display: inline-block;
-        margin-top: -25px;
+        // height: 34px;
+        // line-height: 34px;
+        // display: inline-block;
+        // margin-top: -25px;
       }
     }
     .row tfoot {
@@ -245,6 +279,18 @@ table.row {
     }
   }
 }
+
+// .cart {
+//   .cart-img {
+//     max-width: 150px;
+//     display: inline;
+//   }
+//
+//   .cart-content {
+//     display: inline-block;
+//   }
+// }
+
 
 .mobile-cart .row div, .mobile-cart .row span {
   padding: .5rem;

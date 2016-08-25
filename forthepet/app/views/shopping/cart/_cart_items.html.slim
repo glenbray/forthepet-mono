@@ -1,27 +1,43 @@
-table.row
-  tbody
-    - cart_items.each_with_index do |cart_item, index|
+.row
+  table.cart-table
+    thead
       tr
-        td
-          div.cart-img
-            - unless cart_item.variant.product.photos.empty?
-              = image_tag cart_item.first_photo, class: 'img-responsive'
-            - else
-              = image_tag "deal-placeholder.png", class: 'img-responsive', style: "border: 1px solid #04aff7;"
-          div
-            h5 = cart_item.name
+        th 
+        th.description Description
+        th.hidden-xs Unit Price
+        th Quantity
+        th Item Subtotal
+        th
+    tbody
+      - cart_items.each do |cart_item|
+        tr
+          td
+            div.cart-img
+              - unless cart_item.variant.product.photos.empty?
+                = image_tag cart_item.first_photo, class: 'img-responsive'
+              - else
+                = image_tag "deal-placeholder.png", class: 'img-responsive', style: "border: 1px solid #04aff7;"
+          td.description
+            h5 = cart_item.variant.product.brand
+            h5 = cart_item.variant.product.name
             p = cart_item.variant
-          div
-            = simple_form_for cart_item, remote: true do |c|
-              = c.input :id, as: :hidden
-              = c.input :quantity, label_html: { style: 'display: none;' }
-              span.at-cost
-                = "@ #{cart_item.price}"
-              br
-              = c.submit "Update", class: 'btn btn-primary quantity-btn'
-            = link_to 'Delete', cart_item_path(cart_item), method: :delete, remote: true, data: { confirm: 'Are you sure?' }
-          div
-            span  Item subtotal:
-            span = cart_item.total_price
-      - unless cart_item.equal?(cart_items.last)
-        tr: td: hr
+          td.hidden-xs
+            span.at-cost
+              = cart_item.price
+          td
+            div
+              = simple_form_for cart_item, remote: true do |c|
+                = c.input :id, as: :hidden
+                = c.input :quantity, label_html: { style: 'display: none;' }
+                br
+                = c.submit "Update", class: 'btn btn-primary quantity-btn'
+          td 
+            span.item-subtotal
+              = cart_item.total_price
+          td
+            = link_to cart_item_path(cart_item), method: :delete, remote: true, data: { confirm: 'Are you sure?' }, style: 'color: #e42121' do
+              i class="fa fa-trash" aria-hidden="true"
+            
+            
+        - unless cart_item.equal?(cart_items.last)
+          tr: td colspan="6": hr
