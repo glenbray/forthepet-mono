@@ -41,7 +41,7 @@ class CheckoutForm < Reform::Form
   validates :shipping_postcode, presence: true
 
   def initialize(order, user)
-    order.user_id = user_id(user)
+    order.user_id = user&.id
     order.email ||= user_email(user)
     user_address(order, user)
 
@@ -112,9 +112,4 @@ class CheckoutForm < Reform::Form
     order.shipping_mobile = user.shipping.mobile
     order.shipping_phone = user.shipping.phone
   end
-
-  def user_id(user)
-    user.nil? ? nil : user.id
-  end
-
 end

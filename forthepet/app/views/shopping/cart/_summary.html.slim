@@ -1,26 +1,25 @@
 h4 Cart Summary
 hr
 
-div style="padding-bottom: 10px;"
-  span style="font-weight: bold; font-size: 1.2em;" Subtotal
-  p style="" = number_to_currency(cart.total)
+div style="padding-bottom: 10px; padding-top: 20px"
+  span style="font-weight: bold; font-size: 1.2em" Subtotal
+  p style="margin-top: 10px" = number_to_currency(cart.total)
 
 div style=""
-  span style="font-weight: bold; font-size: 1.2em;" Postage
-  p style="" Free
+  span style="font-weight: bold; font-size: 1.2em;" Postage Estimate
+  p style="margin-top: 10px" = (@postage&.cost && @postage&.cost > 0) ? number_to_currency(@postage.cost) : 'Free'
 
-  
 div style="padding-bottom: 20px; padding-top: 10px"
-  = simple_form_for :postage, url: cart_calculate_postage_path do |f|
-    div class="input-group" 
-      = f.text_field :postcode, class: 'form-control', style: 'height: 33px', placeholder: 'Postcode'
+  = simple_form_for :postage, url: '/cart/calculate-postage', remote: true do |f|
+    div class="input-group"  style="max-width: 150px"
+      = f.text_field :postcode, class: 'form-control', placeholder: 'Postcode'
       span class="input-group-btn"
-        = f.submit class: 'btn btn-default', value: 'save'
+        = f.submit "Save", class: 'btn btn-default'
   
-div style="padding-top: 10px;"
+div style="padding-top: 10px; padding-bottom: 30px"
   span style="color: #ff6501; font-weight: bold; font-size: 1.2em; padding-bottom: 10px;" Total
-  p style="" = number_to_currency(cart.total)
-  
+  p style="" = number_to_currency(cart.total + @postage.cost)
+
 p.shipping: b Australian Customers Only
 a class="shipping" href="/shipping-information" style="font-size: 12px;" target="_blank" Shipping and Delivery Information
 .push-down

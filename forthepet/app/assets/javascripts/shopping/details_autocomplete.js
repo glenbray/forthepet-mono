@@ -1,4 +1,3 @@
-
 function detectIE() {
     var ua = window.navigator.userAgent;
 

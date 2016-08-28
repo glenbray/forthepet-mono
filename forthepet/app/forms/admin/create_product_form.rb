@@ -10,6 +10,7 @@ class Admin::CreateProductForm < Reform::Form
     property :price, validates: { presence: true, numericality: true }
     property :original_price
     property :quantity, validates: { presence: true, numericality: true }
+    property :weight, validates: { presence: true, numericality: true }
   end
 
 end

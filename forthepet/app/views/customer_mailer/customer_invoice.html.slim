@@ -246,14 +246,24 @@ html xmlns="http://www.w3.org/1999/xhtml"
                         - @order.order_items.each do |item|
                           tr
                             td width="65%"
-                              = item.variant.product.name
+                              = item.product_name
                             td.center
                               = item.quantity
                             td.center
-                              = item.print_total
+                              = item.total
                         tr
                           td width="65%"
-                          td
+                          td Subtotal
+                          td style=("border: 0; border-top: 1px; border-color: #333333; border-style: solid; text-align: center;")
+                            = @order.subtotal
+                        tr
+                          td width="65%"
+                          td Postage
+                          td style=("border: 0; border-top: 1px; border-color: #333333; border-style: solid; text-align: center;")
+                            = @order.postage
+                        tr
+                          td width="65%"
+                          td Total
                           td style=("border: 0; border-top: 1px; border-color: #333333; border-style: solid; text-align: center;")
                             = @order.total
                   tr

@@ -9,6 +9,7 @@ FactoryGirl.define do
     price 50.0
     original_price 148
     cost 10
+    weight 20
   end
 
 end

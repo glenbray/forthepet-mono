@@ -32,9 +32,12 @@
 //= require deal
 //= require footer
 //= require zeroclipboard
+//= require react
+//= require turbolinks
+//= require react_ujs
+//= require components
 
-$(document).ready(function(){
-
+$(document).ready(function() {
   var offset = 220;
   var duration = 1;
   $(window).scroll(function() {

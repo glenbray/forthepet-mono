@@ -12,16 +12,13 @@ class Shopping::CartItemsController < ApplicationController
   end
 
   def update
-    @cart_item = CartItem.find(params[:cart_item][:id])
+    @cart_item = CartItem.find(params[:id])
     quantity = params[:cart_item][:quantity]
 
-    if quantity.to_i < 1
-      @cart_item.destroy
-    else
-      @cart_item.update_attribute(:quantity, quantity)
-    end
-
+    @cart_item.update_attribute(:quantity, quantity)
     @cart_items = cart_items
+
+    @postage = CalculatePostage.calculate(session_cart, session[:postcode])
   end
 
   def destroy
@@ -38,7 +35,7 @@ class Shopping::CartItemsController < ApplicationController
 
   def cart_items
     return nil if session_cart.nil?
-    CartItemDecorator.decorate_collection(session_cart.cart_items)
+    CartItemDecorator.decorate_collection(session_cart.cart_items.reload)
   end
 
 end

@@ -51,6 +51,7 @@ feature 'product wizard', :type => :feature do
     fill_in 'Quantity', with: 100
     fill_in 'Sku', with: 'boxap3'
     fill_in 'Description', with: 'this is a description'
+    fill_in 'Weight', with: 20
     click_button 'Continue'
 
     # Images
