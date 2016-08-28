@@ -18,6 +18,7 @@
                   = v.input :original_price, input_html: { value: @product.master_variant.original_price }
                   = v.input :cost, input_html: { value: @product.master_variant.cost }
                   = v.input :quantity, input_html: { value: @product.master_variant.quantity }
+                  = v.input :weight
 
                 div class="col-md-3"
                   - @product.options.each do |o|

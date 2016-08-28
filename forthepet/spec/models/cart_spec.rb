@@ -5,9 +5,7 @@ describe Cart, type: :model do
   let(:cart) { Cart.create }
 
   def create_cart_item(params)
-    cart_item = CartItem.new(variant_id: params[:variant_id], quantity: params[:quantity])
-    cart_item.deal_id = params[:deal_id]
-    cart_item
+    CartItem.new(variant_id: params[:variant_id], quantity: params[:quantity])
   end
 
   before :each do

@@ -21,4 +21,5 @@
  *= require_directory ./elastislide
  *= require_directory ./other
  *= require controls
+ *= require quantity_input
  */

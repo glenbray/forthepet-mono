@@ -11,7 +11,7 @@
   display: -webkit-box;
   /*display: -moz-box;*/
   display: -ms-box;
-  display: box;
+  display: flex;
   -webkit-box-orient: horizontal;
   -moz-box-orient: horizontal;
   -ms-box-orient: horizontal;

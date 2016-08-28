@@ -35,6 +35,9 @@
                   tr
                     td Purchased Date
                     td = @order.purchased_at
+                  tr
+                    td Postage
+                    td = @order.postage
 
           = link_to 'Resend Order Email', admin_order_email_path(@order), method: :post, class: 'btn btn-default'
 

@@ -9,6 +9,8 @@ $('.cart-box').html("<%= j (render 'shared/cart_menu', cart: session_cart) %>");
   $('.cart-summary').hide();
 <% end %>
 
+ReactRailsUJS.mountComponents()
+
 $.notify({
   // options
   icon: 'fa fa-exclamation-triangle fa-lg',
