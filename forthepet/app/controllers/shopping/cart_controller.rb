@@ -3,7 +3,7 @@ class Shopping::CartController < ApplicationController
     @cart = session_cart
     @cart_items = cart_items
 
-    @postage = CalculatePostage.calculate(session_cart)
+    @postage = CalculatePostage.calculate(session_cart, session[:postcode])
   end
 
   def calculate_postage

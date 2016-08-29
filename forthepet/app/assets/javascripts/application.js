@@ -32,6 +32,7 @@
 //= require deal
 //= require footer
 //= require zeroclipboard
+//= require tablesaw.stackonly
 //= require react
 //= require turbolinks
 //= require react_ujs

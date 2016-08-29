@@ -18,7 +18,7 @@ div style="padding-bottom: 20px; padding-top: 10px"
   
 div style="padding-top: 10px; padding-bottom: 30px"
   span style="color: #ff6501; font-weight: bold; font-size: 1.2em; padding-bottom: 10px;" Total
-  p style="" = number_to_currency(cart.total + @postage.cost)
+  p style="" = number_to_currency(cart.total + @postage&.cost || 0)
 
 p.shipping: b Australian Customers Only
 a class="shipping" href="/shipping-information" style="font-size: 12px;" target="_blank" Shipping and Delivery Information

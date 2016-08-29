@@ -11,8 +11,7 @@
   - else
       div class="row" style="margin-bottom: 50px;"
         div class="col-xs-12 col-md-9"
-          div.cart-items.mobile-cart
-            = render partial: 'cart_items', locals: { cart_items: @cart_items }
+          = render partial: 'cart_items', locals: { cart_items: @cart_items }
 
         div class="col-xs-12 col-md-3"
           - unless session_cart.empty?

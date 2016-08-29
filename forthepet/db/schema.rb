@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160827155943) do
+ActiveRecord::Schema.define(version: 20160829014835) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -381,7 +381,7 @@ ActiveRecord::Schema.define(version: 20160827155943) do
   add_index "users", ["shipping_id"], name: "index_users_on_shipping_id", using: :btree
 
   create_table "variants", force: :cascade do |t|
-    t.integer  "product_id",       null: false
+    t.integer  "product_id",                       null: false
     t.string   "sku"
     t.decimal  "price"
     t.decimal  "cost"
@@ -397,6 +397,7 @@ ActiveRecord::Schema.define(version: 20160827155943) do
     t.integer  "position"
     t.decimal  "original_price"
     t.integer  "percentage_saved"
+    t.boolean  "free_postage",     default: false
   end
 
   add_index "variants", ["product_id"], name: "index_variants_on_product_id", using: :btree

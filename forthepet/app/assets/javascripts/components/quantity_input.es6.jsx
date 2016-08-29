@@ -51,7 +51,6 @@ class QuantityInput extends React.Component {
           <i className="fa fa-minus" aria-hidden="true"></i>
         </a>
         <span className="qty-text">{this.state.quantity}</span>
-        {/* <input className="qty-text" disabled="true" value={this.state.quantity} /> */}
         <a onClick={this.increment} className="qty-button">
           <i className="fa fa-plus" aria-hidden="true"></i>
         </a>

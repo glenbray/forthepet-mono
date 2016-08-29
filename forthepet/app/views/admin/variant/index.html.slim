@@ -19,6 +19,7 @@
                   = v.input :cost, input_html: { value: @product.master_variant.cost }
                   = v.input :quantity, input_html: { value: @product.master_variant.quantity }
                   = v.input :weight
+                  = v.input :free_postage, input_html: { checked: @product.master_variant.free_postage }
 
                 div class="col-md-3"
                   - @product.options.each do |o|
@@ -44,6 +45,7 @@
                       th Original Price
                       th Cost
                       th Quantity
+                      th Free Postage
                       th Options
                       th
                     tbody.sortable data-sortable-url="#{admin_variants_sort_url}"
@@ -56,10 +58,13 @@
                           td = v.original_price
                           td = v.cost
                           td = v.quantity
+                          td = v.free_postage? ? "Yes" : "No"
                           td: ul
                             - v.option_values.each do |o|
                               li = o.name
-                          td = link_to 'Delete', admin_product_variant_path(@product, v), method: :delete
+                          td 
+                            = link_to 'Edit', edit_admin_product_variant_path(@product, v), style: "padding-right: 10px"
+                            = link_to 'Delete', admin_product_variant_path(@product, v), method: :delete
 
           - else
             .row
