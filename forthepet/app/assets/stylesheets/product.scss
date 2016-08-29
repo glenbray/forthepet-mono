@@ -251,9 +251,15 @@
   }
 
   .show-title {
-    margin-bottom: 30px;
-    font-size: 22px;
+    margin-bottom: 50px;
+    margin-left: 20px;
     color: #282828;
+    font-size: 1.5em;
+
+    @media(max-width: $screen-xs-max) {
+      font-size: 1.2em;
+      margin-left: 10px
+    }
   }
 
   .show-price {
