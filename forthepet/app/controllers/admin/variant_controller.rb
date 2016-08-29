@@ -22,6 +22,24 @@ class Admin::VariantController < Admin::AdminController
     end
   end
 
+  def edit
+    @product = Product.find(params[:product_id])
+    @variant = Variant.find(params[:id])
+  end
+
+  def update
+    product = Product.find(params[:product_id])
+    variant = Variant.find(params[:id])
+
+    if variant.update(update_variant_params)
+      flash[:success] = "Variant successfully updated"
+      redirect_to admin_product_variants_path(product)
+    else
+      flash[:danger] = "Error updating variant"
+      render :edit
+    end
+  end
+
   def destroy
     variant = Variant.find(params[:id])
 
@@ -51,7 +69,11 @@ class Admin::VariantController < Admin::AdminController
 
   def variant_params
     params.require(:variant).permit(:sku, :price, :original_price, :cost, :quantity, :is_master, :height,
-                                    :width, :depth, :weight, :photo_id, option_value_ids: [])
+                                    :width, :depth, :weight, :free_postage, option_value_ids: [])
+  end
+
+  def update_variant_params
+    variant_params.tap{ |h| h.delete(:is_master) }
   end
 
 end

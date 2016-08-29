@@ -480,11 +480,6 @@ div .alert {
     }
 }
 
-#inline-cart .row th, .row th, #inline-cart .row div, .row div, #inline-cart .row td, .row td, #inline-cart .row span, .row span {
-   font-size: 16px;
-   font-size: 1.6rem;
-}
-
 [data-notify="progressbar"] {
   margin-bottom: 0px;
   position: absolute;
@@ -495,3 +490,5 @@ div .alert {
 }
 
 @import 'product';
+@import 'shopping/cart';
+@import 'shopping/checkout';

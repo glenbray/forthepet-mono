@@ -17,7 +17,6 @@ class Shopping::CartItemsController < ApplicationController
 
     @cart_item.update_attribute(:quantity, quantity)
     @cart_items = cart_items
-
     @postage = CalculatePostage.calculate(session_cart, session[:postcode])
   end
 
@@ -25,6 +24,7 @@ class Shopping::CartItemsController < ApplicationController
     @cart_item = CartItem.find(params[:id])
     @cart_item.destroy
     @cart_items = cart_items
+    @postage = CalculatePostage.calculate(session_cart, session[:postcode])
   end
 
   private
