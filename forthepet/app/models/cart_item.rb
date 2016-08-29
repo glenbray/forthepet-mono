@@ -1,6 +1,5 @@
 class CartItem < ActiveRecord::Base
   belongs_to :cart, counter_cache: true
-  belongs_to :deal
   belongs_to :variant
 
   validates :quantity, numericality: { only_integer: true, greater_than_or_equal_to: 1 }

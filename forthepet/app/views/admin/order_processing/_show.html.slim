@@ -41,6 +41,9 @@ div class="admin-panel" style="margin-bottom: 30px;"
               tr
                 td: b Tracking No
                 td = order.tracking_no
+              tr
+                td: b Postage
+                td = order.postage
 
     table.table
       thead
@@ -58,7 +61,7 @@ div class="admin-panel" style="margin-bottom: 30px;"
             td = item.variant
             td.center = item.quantity
             td = item.aasm_state
-            td = item.print_total
+            td = item.total
         tr
           td
           td

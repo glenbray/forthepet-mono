@@ -1,8 +1,7 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 
-$(document).ready(function(){
-
+$(document).on('turbolinks:load', function() {
   $('#signup form').submit(function(e) {
     $.cookie('forthepet-signup', true, { expires: 365, path: '/' });
   });
@@ -39,5 +38,4 @@ $(document).ready(function(){
     $carouselItems.removeClass('current-img');
     el.addClass('current-img');
   }
-
 });

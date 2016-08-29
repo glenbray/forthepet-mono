@@ -20,7 +20,12 @@ class Product < ActiveRecord::Base
   scope :filter_categories, -> (categories) { active.load_associations.where(categories: { name: ['All', categories] }) }
 
   extend FriendlyId
-  friendly_id :name, use: [:slugged, :finders]
+
+  friendly_id :slug_candidates, use: [:slugged, :finders]
+
+  def slug_candidates
+    [[:brand, :name]]
+  end
 
   paginates_per 15
 

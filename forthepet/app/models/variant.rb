@@ -9,7 +9,7 @@ class Variant < ActiveRecord::Base
   delegate :name, to: :product
 
   validates :price, presence: true
-  validates_inclusion_of :is_master, :in => [true, false]
+  validates :weight, presence: true
 
   accepts_nested_attributes_for :option_values
 

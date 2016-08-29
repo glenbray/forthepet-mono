@@ -39,8 +39,8 @@ namespace :db do
   task :backup do
     backup = `echo forthepet_$(date +%Y%m%d_%H%M%S).bak`
 
-    system("pg_dump -v --no-owner -d forthepet -U ftp_user -h db.forthepet.com.au --exclude-table-data photos > backups/#{backup}")
     system('docker-compose up -d db')
+    system("pg_dump -v --no-owner -d forthepet -U ftp_user -h db.forthepet.com.au --exclude-table-data photos > backups/#{backup}")
     system('docker-compose run web bundle exec rake db:drop db:create')
     system("PGPASSWORD=password psql -h localhost -U postgres -d forthepet_dev -f backups/#{backup}")
   end
@@ -49,8 +49,8 @@ namespace :db do
   task :backup_with_images do
     backup = `echo forthepet_$(date +%Y%m%d_%H%M%S).bak`
 
-    system("pg_dump -v --no-owner -d forthepet -U ftp_user -h db.forthepet.com.au > backups/#{backup}")
     system('docker-compose up -d db')
+    system("pg_dump -v --no-owner -d forthepet -U ftp_user -h db.forthepet.com.au > backups/#{backup}")
     system('docker-compose run web bundle exec rake db:drop db:create')
     system("PGPASSWORD=password psql -h localhost -U postgres -d forthepet_dev -f backups/#{backup}")
   end

@@ -9,9 +9,22 @@ class OrderDecorator < BaseDecorator
     format_date_time(object.purchased_at)
   end
 
+  def subtotal
+    subtotal = !!object.total ? two_decimals(object.total) : 0
+    "$#{subtotal}"
+  end
+
+  def postage
+    if object.postage.zero?
+      "Free"
+    else
+      "$#{two_decimals(object.postage)}"
+    end
+  end
+
   def total
-    total = !!object.total ? two_decimals(object.total) : 0
-    "$#{total}"
+    total = object.total + object.postage
+    "$#{two_decimals(total)}"
   end
 
   def shipping_full_name

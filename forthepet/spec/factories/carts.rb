@@ -2,8 +2,5 @@
 
 FactoryGirl.define do
   factory :cart do
-    after :create do |cart|
-      cart.variant = FactoryGirl.create(:variant)
-    end
   end
 end

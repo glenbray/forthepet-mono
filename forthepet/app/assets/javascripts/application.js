@@ -29,26 +29,30 @@
 //= require_directory ./shopping
 //= stub ./shopping/details_autocomplete
 //= require_directory ./account
-//= require deal
+//= require product
 //= require footer
 //= require zeroclipboard
+//= require tablesaw.stackonly
+//= require react
+//= require turbolinks
+//= require react_ujs
+//= require components
 
-$(document).ready(function(){
-
+$(document).on('turbolinks:load', function() {
   var offset = 220;
   var duration = 1;
   $(window).scroll(function() {
-      if ($(this).scrollTop() > offset) {
-          $('.back-to-top').fadeIn(duration);
-      } else {
-          $('.back-to-top').fadeOut(duration);
-      }
+    if ($(this).scrollTop() > offset) {
+      $('.back-to-top').fadeIn(duration);
+    } else {
+      $('.back-to-top').fadeOut(duration);
+    }
   });
 
   $('.back-to-top').click(function(event) {
-      event.preventDefault();
-      $('html, body').animate({scrollTop: 0}, duration);
-      return false;
+    event.preventDefault();
+    $('html, body').animate({scrollTop: 0}, duration);
+    return false;
   })
 
   var pikabu = new Pikabu({

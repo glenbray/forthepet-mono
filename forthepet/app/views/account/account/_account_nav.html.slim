@@ -1,8 +1,8 @@
 ul
   li
-    a href='#dashboard' id='#dashboard_a' Dashboard
+    a href='#dashboard' id='#dashboard_a' data-turbolinks="false" Dashboard
   li
-    a href='#accountinfo' id='#accountinfo_a' Account Info
+    a href='#accountinfo' id='#accountinfo_a' data-turbolinks="false" Account Info
   li
-    a href='#orders' id='#orders_a' Orders
+    a href='#orders' id='#orders_a' data-turbolinks="false" Orders
   li = link_to 'Logout', destroy_user_session_path, method: :delete, style: 'color: #B60000;'

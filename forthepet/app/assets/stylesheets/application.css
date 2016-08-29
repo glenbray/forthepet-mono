@@ -16,9 +16,10 @@
  *= require nav
  *= require font-awesome
  *= require_directory ./static_pages
- *= require_directory ./shopping
  *= require_directory ./account
  *= require_directory ./elastislide
  *= require_directory ./other
  *= require controls
+ *= require quantity_input
+ *= require tablesaw.stackonly
  */
