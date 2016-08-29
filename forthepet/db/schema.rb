@@ -17,37 +17,37 @@ ActiveRecord::Schema.define(version: 20160829014835) do
   enable_extension "plpgsql"
 
   create_table "addresses", force: :cascade do |t|
-    t.string   "suburb"
-    t.string   "state"
+    t.string   "suburb",     limit: 255
+    t.string   "state",      limit: 255
     t.integer  "postcode"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "address1"
-    t.string   "address2"
+    t.string   "address1",   limit: 255
+    t.string   "address2",   limit: 255
     t.integer  "user_id"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "company"
-    t.string   "mobile"
-    t.string   "phone"
+    t.string   "first_name", limit: 255
+    t.string   "last_name",  limit: 255
+    t.string   "company",    limit: 255
+    t.string   "mobile",     limit: 255
+    t.string   "phone",      limit: 255
   end
 
   add_index "addresses", ["user_id"], name: "index_addresses_on_user_id", using: :btree
 
   create_table "admins", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",                      default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "username"
+    t.string   "username",               limit: 255
     t.integer  "roles_mask"
   end
 
@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 20160829014835) do
   add_index "carts", ["user_id"], name: "index_carts_on_user_id", using: :btree
 
   create_table "categories", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -92,7 +92,7 @@ ActiveRecord::Schema.define(version: 20160829014835) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "reason"
+    t.string   "reason",     limit: 255
   end
 
   create_table "deal_fine_prints", force: :cascade do |t|
@@ -115,14 +115,14 @@ ActiveRecord::Schema.define(version: 20160829014835) do
   add_index "deal_prices", ["variant_id"], name: "index_deal_prices_on_variant_id", using: :btree
 
   create_table "deals", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",           limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "available_on"
     t.datetime "ends_on"
-    t.boolean  "is_active",      default: false
+    t.boolean  "is_active",                  default: false
     t.integer  "max_quantity"
-    t.string   "slug"
+    t.string   "slug",           limit: 255
     t.integer  "purchase_limit"
     t.integer  "product_id"
     t.string   "description"
@@ -139,15 +139,15 @@ ActiveRecord::Schema.define(version: 20160829014835) do
   end
 
   create_table "delayed_jobs", force: :cascade do |t|
-    t.integer  "priority",   default: 0, null: false
-    t.integer  "attempts",   default: 0, null: false
-    t.text     "handler",                null: false
+    t.integer  "priority",               default: 0, null: false
+    t.integer  "attempts",               default: 0, null: false
+    t.text     "handler",                            null: false
     t.text     "last_error"
     t.datetime "run_at"
     t.datetime "locked_at"
     t.datetime "failed_at"
-    t.string   "locked_by"
-    t.string   "queue"
+    t.string   "locked_by",  limit: 255
+    t.string   "queue",      limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -155,14 +155,14 @@ ActiveRecord::Schema.define(version: 20160829014835) do
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
   create_table "discounts", force: :cascade do |t|
-    t.string   "description"
+    t.string   "description", limit: 255
     t.decimal  "amount"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "features", force: :cascade do |t|
-    t.string   "description"
+    t.string   "description", limit: 255
     t.integer  "product_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -178,10 +178,10 @@ ActiveRecord::Schema.define(version: 20160829014835) do
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
-    t.string   "slug",                      null: false
-    t.integer  "sluggable_id",              null: false
+    t.string   "slug",           limit: 255, null: false
+    t.integer  "sluggable_id",               null: false
     t.string   "sluggable_type", limit: 50
-    t.string   "scope"
+    t.string   "scope",          limit: 255
     t.datetime "created_at"
   end
 
@@ -192,8 +192,8 @@ ActiveRecord::Schema.define(version: 20160829014835) do
 
   create_table "option_values", force: :cascade do |t|
     t.integer  "option_id"
-    t.string   "name"
-    t.string   "display"
+    t.string   "name",       limit: 255
+    t.string   "display",    limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "position"
@@ -211,7 +211,7 @@ ActiveRecord::Schema.define(version: 20160829014835) do
   add_index "option_values_variants", ["variant_id"], name: "index_option_values_variants_on_variant_id", using: :btree
 
   create_table "options", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -231,7 +231,7 @@ ActiveRecord::Schema.define(version: 20160829014835) do
     t.integer  "quantity"
     t.integer  "supplier_id"
     t.integer  "variant_id"
-    t.string   "aasm_state"
+    t.string   "aasm_state",  limit: 255
     t.decimal  "price"
   end
 
@@ -242,46 +242,46 @@ ActiveRecord::Schema.define(version: 20160829014835) do
 
   create_table "orders", force: :cascade do |t|
     t.integer  "quantity"
-    t.string   "special_instructions"
-    t.string   "coupon_code"
+    t.string   "special_instructions", limit: 255
+    t.string   "coupon_code",          limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "aasm_state"
+    t.string   "aasm_state",           limit: 255
     t.decimal  "total"
     t.integer  "user_id"
-    t.string   "step_status"
-    t.string   "transaction_no"
-    t.string   "email"
-    t.string   "billing_first_name"
-    t.string   "billing_last_name"
-    t.string   "billing_address1"
-    t.string   "billing_suburb"
-    t.string   "billing_state"
+    t.string   "step_status",          limit: 255
+    t.string   "transaction_no",       limit: 255
+    t.string   "email",                limit: 255
+    t.string   "billing_first_name",   limit: 255
+    t.string   "billing_last_name",    limit: 255
+    t.string   "billing_address1",     limit: 255
+    t.string   "billing_suburb",       limit: 255
+    t.string   "billing_state",        limit: 255
     t.integer  "billing_postcode"
-    t.string   "shipping_first_name"
-    t.string   "shipping_last_name"
-    t.string   "shipping_address1"
-    t.string   "shipping_suburb"
-    t.string   "shipping_state"
+    t.string   "shipping_first_name",  limit: 255
+    t.string   "shipping_last_name",   limit: 255
+    t.string   "shipping_address1",    limit: 255
+    t.string   "shipping_suburb",      limit: 255
+    t.string   "shipping_state",       limit: 255
     t.integer  "shipping_postcode"
-    t.string   "billing_company"
-    t.string   "shipping_company"
-    t.string   "billing_address2"
-    t.string   "billing_mobile"
-    t.string   "billing_phone"
-    t.string   "shipping_address2"
-    t.string   "shipping_mobile"
-    t.string   "shipping_phone"
-    t.string   "tracking_no"
+    t.string   "billing_company",      limit: 255
+    t.string   "shipping_company",     limit: 255
+    t.string   "billing_address2",     limit: 255
+    t.string   "billing_mobile",       limit: 255
+    t.string   "billing_phone",        limit: 255
+    t.string   "shipping_address2",    limit: 255
+    t.string   "shipping_mobile",      limit: 255
+    t.string   "shipping_phone",       limit: 255
+    t.string   "tracking_no",          limit: 255
     t.datetime "purchased_at"
-    t.decimal  "postage",              default: 0.0
+    t.decimal  "postage",                          default: 0.0
   end
 
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "photos", force: :cascade do |t|
-    t.string   "alt_text"
-    t.string   "picture"
+    t.string   "alt_text",    limit: 255
+    t.string   "picture",     limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "product_id"
@@ -292,18 +292,18 @@ ActiveRecord::Schema.define(version: 20160829014835) do
   add_index "photos", ["product_id"], name: "index_photos_on_product_id", using: :btree
 
   create_table "products", force: :cascade do |t|
-    t.string   "brand"
+    t.string   "brand",            limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "supplier_id"
-    t.string   "name"
+    t.string   "name",             limit: 255
     t.text     "description"
     t.boolean  "status"
-    t.string   "meta_description"
-    t.string   "permalink"
-    t.string   "slug"
+    t.string   "meta_description", limit: 255
+    t.string   "permalink",        limit: 255
+    t.string   "slug",             limit: 255
     t.integer  "category_id"
-    t.boolean  "is_active",        default: true
+    t.boolean  "is_active",                    default: true
   end
 
   add_index "products", ["category_id"], name: "index_products_on_category_id", using: :btree
@@ -311,27 +311,27 @@ ActiveRecord::Schema.define(version: 20160829014835) do
 
   create_table "referrals", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "email"
+    t.string   "email",      limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "services", force: :cascade do |t|
-    t.string   "location"
+    t.string   "location",   limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.decimal  "price"
   end
 
   create_table "suppliers", force: :cascade do |t|
-    t.string   "name"
-    t.string   "phone"
-    t.string   "fax"
-    t.string   "mobile"
-    t.string   "email"
+    t.string   "name",       limit: 255
+    t.string   "phone",      limit: 255
+    t.string   "fax",        limit: 255
+    t.string   "mobile",     limit: 255
+    t.string   "email",      limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "abn"
+    t.string   "abn",        limit: 255
   end
 
   create_table "user_discounts", force: :cascade do |t|
@@ -345,33 +345,33 @@ ActiveRecord::Schema.define(version: 20160829014835) do
   add_index "user_discounts", ["user_id"], name: "index_user_discounts_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+    t.string   "email",                  limit: 255, default: "", null: false
+    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0
+    t.integer  "sign_in_count",                      default: 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.string   "confirmation_token"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
+    t.string   "confirmation_token",     limit: 255
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email"
+    t.string   "unconfirmed_email",      limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "first_name"
-    t.string   "last_name"
+    t.string   "first_name",             limit: 255
+    t.string   "last_name",              limit: 255
     t.integer  "shipping_id"
     t.integer  "billing_id"
-    t.string   "mobile"
-    t.string   "phone"
-    t.string   "provider"
-    t.string   "uid"
-    t.string   "name"
-    t.string   "referral_id"
-    t.string   "referred_by"
+    t.string   "mobile",                 limit: 255
+    t.string   "phone",                  limit: 255
+    t.string   "provider",               limit: 255
+    t.string   "uid",                    limit: 255
+    t.string   "name",                   limit: 255
+    t.string   "referral_id",            limit: 255
+    t.string   "referred_by",            limit: 255
   end
 
   add_index "users", ["billing_id"], name: "index_users_on_billing_id", using: :btree
@@ -381,8 +381,8 @@ ActiveRecord::Schema.define(version: 20160829014835) do
   add_index "users", ["shipping_id"], name: "index_users_on_shipping_id", using: :btree
 
   create_table "variants", force: :cascade do |t|
-    t.integer  "product_id",                       null: false
-    t.string   "sku"
+    t.integer  "product_id",                                   null: false
+    t.string   "sku",              limit: 255
     t.decimal  "price"
     t.decimal  "cost"
     t.datetime "deleted_at"
@@ -397,7 +397,7 @@ ActiveRecord::Schema.define(version: 20160829014835) do
     t.integer  "position"
     t.decimal  "original_price"
     t.integer  "percentage_saved"
-    t.boolean  "free_postage",     default: false
+    t.boolean  "free_postage",                 default: false
   end
 
   add_index "variants", ["product_id"], name: "index_variants_on_product_id", using: :btree
