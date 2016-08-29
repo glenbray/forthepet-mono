@@ -73,11 +73,11 @@ class Admin::ProductController < Admin::AdminController
 
   def create_product
     params.require(:product).permit(:brand, :name,
-                                    master_variant_attributes: [:price, :cost, :sku, :is_master])
+                                    master_variant_attributes: [:price, :cost, :sku, :is_master, :free_postage])
   end
 
   def update_product
     params.require(:product).permit(:brand, :name, :description, :meta_description, :permalink, :meta_keywords,
-                                    master_variant_attributes: [:id, :product_id, :sku, :price, :cost, :quantity, :weight, :height, :width, :depth])
+                                    master_variant_attributes: [:id, :product_id, :sku, :price, :cost, :quantity, :weight, :height, :width, :depth, :free_postage])
   end
 end

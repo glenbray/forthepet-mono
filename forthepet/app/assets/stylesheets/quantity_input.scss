@@ -1,0 +1,19 @@
+.qty-input {
+  display: inline-block;
+
+  a.qty-button {
+    padding: 5px;
+    border: 1px #d2d2d2 solid;
+    background: #eeeeee;
+    padding-left: 8px;
+    padding-right: 8px;
+    color: #454545;
+  }
+
+  .qty-text {
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 40px;
+    height: 30px
+  }
+}

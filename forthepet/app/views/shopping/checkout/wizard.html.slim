@@ -35,10 +35,17 @@ html
                   td = c.name
                   td style="padding-left: 30px !important;" = c.quantity
                   td = number_to_currency(c.total)
-              tr
-                td
-                td style="text-align: right; font-weight: bold;" Total:
-                td = number_to_currency(session_cart.total)
+              tr style="border-top: 20px solid white"
+                td colspan="2" style="text-align: right; font-weight: bold;" 
+                  p style="font-weight: 100" Subtotal:
+                  p style="font-weight: 100" Postage:
+                  p style="font-size: 1.1em" Total
+                td 
+                  p = number_to_currency(session_cart.total)
+                  p = (@postage&.cost && @postage&.cost > 0) ? number_to_currency(@postage.cost) : 'Free'
+                  p style="font-size: 1.1em" = number_to_currency(session_cart.total + @postage.cost)
+                  
+  
       = yield
-    = javascript_include_tag "application", "data-turbolinks-track" => true, async: 'true'
+    = javascript_include_tag "application", "data-turbolinks-track" => true, async: Rails.env.production?
     = yield :javascript_bottom

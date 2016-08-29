@@ -3,6 +3,8 @@ $('.cart-box').html("<%= j (render 'shared/cart_menu', cart: session_cart) %>")
 $('.cart-items').html("<%= j (render 'shopping/cart/cart_items', cart_items: @cart_items) %>")
 $('.cart-summary').html("<%= j (render 'shopping/cart/summary', cart: session_cart) %>")
 
+ReactRailsUJS.mountComponents()
+
 notifySuccessOptions = {
   // settings
   element: 'body',
@@ -17,7 +19,7 @@ notifySuccessOptions = {
   offset: 40,
   spacing: 5,
   z_index: 1031,
-  delay: 3000,
+  delay: 2000,
   // timer: 1000,
   url_target: '_blank',
   mouse_over: null,

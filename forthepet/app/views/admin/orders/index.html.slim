@@ -19,6 +19,7 @@
               th Transaction No
               th = sort_link(@q, :email)
               th = sort_link(@q, :total)
+              th Postage
               th.center Qty
               th = sort_link(@q, :created_at, 'Order Date')
               th Tracking No
@@ -32,6 +33,7 @@
                   td = order.transaction_no
                   td = order.email
                   td = order.total
+                  td = order.postage
                   td.center = order.order_item_quantity
                   td = order.created_at
                   td = order.tracking_no

@@ -8,6 +8,7 @@ class Shopping::CheckoutController < ApplicationController
 
   def show
     @cart = session_cart
+    @postage = CalculatePostage.calculate(session_cart, session[:postcode])
 
     case step
     when :summary
@@ -29,7 +30,10 @@ class Shopping::CheckoutController < ApplicationController
     case step
     when :details
       if checkout_form.validate(params[:order])
-        render_wizard(@checkout_form)
+        @postage = CalculatePostage.calculate(session_cart, checkout_form.shipping_postcode)
+        session[:postcode] = @postage.postcode
+
+        render_wizard(checkout_form)
       else
         render_wizard
       end
@@ -37,10 +41,12 @@ class Shopping::CheckoutController < ApplicationController
   end
 
   def create
+    postage = CalculatePostage.calculate(session_cart, session[:postcode])
+
     nonce = params[:payment_method_nonce]
 
     @result = Braintree::Transaction.sale(
-      amount: session_cart.total,
+      amount: session_cart.total + postage.cost,
       payment_method_nonce: nonce,
       options: {
         submit_for_settlement: true
@@ -49,6 +55,7 @@ class Shopping::CheckoutController < ApplicationController
 
     if @result.success?
       session_order.transaction_no = @result.transaction.id
+      session_order.postage = postage.cost
       order = ProcessOrder.new(session_order, session_cart)
       order.process
       clear_order_session
@@ -81,8 +88,7 @@ class Shopping::CheckoutController < ApplicationController
 
   def find_or_create_order
     if session[:order_id].nil?
-      user_id = current_user.nil? ? nil : current_user.id
-      @session_order = Order.create(user_id: user_id)
+      @session_order = Order.create(user_id: current_user&.id)
       session[:order_id] = @session_order.id
     else
       @session_order = Order.find(session[:order_id])

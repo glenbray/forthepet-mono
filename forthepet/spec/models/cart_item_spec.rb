@@ -4,7 +4,6 @@ describe CartItem, type: :model do
   let(:product) { FactoryGirl.create(:product) }
 
   it { is_expected.to belong_to :cart }
-  it { is_expected.to belong_to :deal }
   it { is_expected.to belong_to :variant }
 
   describe '.total' do
