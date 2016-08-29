@@ -34,11 +34,12 @@
 //= require zeroclipboard
 //= require tablesaw.stackonly
 //= require react
-//= require turbolinks
 //= require react_ujs
 //= require components
 
-$(document).on('turbolinks:load', function() {
+// $(document).on('turbolinks:load', function() {
+$(document).ready(function(){
+
   var offset = 220;
   var duration = 1;
   $(window).scroll(function() {
