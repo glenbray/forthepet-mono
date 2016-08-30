@@ -43,6 +43,7 @@
 
           table class="table table-striped" style="margin-top: 20px;"
             thead
+              th ID
               th Brand
               th Product
               th Variant
@@ -52,6 +53,7 @@
             tbody
               - @order_items.each do |order_item|
                 tr
+                  td = order_item.id
                   td = order_item.variant.product.brand
                   td = order_item.variant.product.name
                   td = order_item.variant
@@ -59,6 +61,7 @@
                   td = order_item.aasm_state
                   td = order_item.total
               tr
+                td
                 td
                 td
                 td

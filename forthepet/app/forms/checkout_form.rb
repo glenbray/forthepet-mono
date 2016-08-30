@@ -42,7 +42,7 @@ class CheckoutForm < Reform::Form
 
   def initialize(order, user)
     order.user_id = user&.id
-    order.email ||= user_email(user)
+    order.email ||= user&.email
     user_address(order, user)
 
     super(order)
@@ -71,10 +71,6 @@ class CheckoutForm < Reform::Form
   end
 
   private
-
-  def user_email(user)
-    user.nil? ? nil : user.email
-  end
 
   def user_address(order, user)
     return if user.nil?

@@ -4,7 +4,7 @@
       div class="panel-heading"
         h3.panel-title Errors
       div class="panel-body"
-        = @result.message if @result
+        = @result.message
 
 - if Rails.env.development?
   div class="row" style="margin-bottom: 60px"
@@ -28,12 +28,12 @@
   form id="checkout" method="post" action="/checkout"
     = hidden_field_tag :authenticity_token, form_authenticity_token
     div id="dropin"
-    input type="submit" value="Purchase" class="btn btn-action"
+    = button_tag 'Purchase', class: 'btn btn-primary', style: 'margin-top: 50px', data: { disable_with: "Please wait..." }
 
 = content_for :javascript_bottom do
   script src="https://js.braintreegateway.com/v2/braintree.js"
 
   javascript:
     braintree.setup("#{@client_token}", 'dropin', {
-      container: 'dropin'
+      container: 'dropin',
     });
