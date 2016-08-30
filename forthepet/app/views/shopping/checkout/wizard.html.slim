@@ -43,7 +43,7 @@ html
                 td 
                   p = number_to_currency(session_cart.total)
                   p = (@postage&.cost && @postage&.cost > 0) ? number_to_currency(@postage.cost) : 'Free'
-                  p style="font-size: 1.1em" = number_to_currency(session_cart.total + @postage.cost)
+                  p style="font-size: 1.1em" = number_to_currency(session_cart.total + (@postage&.cost || 0))
                   
   
       = yield

@@ -230,14 +230,14 @@
   color: #ffffff !important;
   padding: 5px 15px;
   border-radius: 0;
-  font-weight: bold;
   transition: background 0.15s linear, top 0.08s linear, border 0.15s linear;
   text-decoration: none;
   display: inline-block;
   border: 2px solid lighten(#04aff7, 10%);//#CECECE;
   border-radius: 0 !important;
-  text-transform: uppercase;
   padding-left: 20px;
+  font-size: 20px;
+  font-weight: 100;
   i {
     margin-right: 8px;
   }
