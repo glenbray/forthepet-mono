@@ -5,7 +5,7 @@
     .row
       h2.show-title.default-h = "#{@product.brand} #{@product.name}"
     .row
-      div class="col-sm-6 col-xs-12"
+      div class="col-sm-7 col-xs-12"
         div class="gallery"
           div class="image-preview"
             img id="preview" class="img-responsive"
@@ -18,7 +18,7 @@
           - else
             = image_tag "deal-placeholder.png", class: 'img-responsive'
 
-      div class="col-sm-6 col-xs-12"
+      div class="col-sm-5 col-xs-12"
         div
           span class="label label-default" Free shipping
           span class="label label-default" style="margin-left: 5px;" = @product.percentage_saved
