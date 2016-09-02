@@ -20,6 +20,8 @@ FactoryGirl.define do
     cost 0
     weight 100
     free_postage true
-    product FactoryGirl.create(:product)
+    before(:create) do |v|
+      v.product = FactoryGirl.create(:product)
+    end
   end
 end
