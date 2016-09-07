@@ -22,7 +22,8 @@ ADD Gemfile /home/app/forthepet/Gemfile
 ADD Gemfile.lock /home/app/forthepet/Gemfile.lock
 
 # Install project dependencies
-ENV BUNDLE_JOBS=4 BUNDLE_PATH=/bundle
+ENV BUNDLE_JOBS=4
+ENV BUNDLE_PATH=/bundle
 
 RUN gem install bundler -v '1.12.4'
 RUN bundle install --without development test

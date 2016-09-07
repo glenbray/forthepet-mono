@@ -12,4 +12,6 @@
  *= require font-awesome
  *= require_directory ./admin
  *= require controls
+ *= require selectize
+ *= require selectize.default
  */

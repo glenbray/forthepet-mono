@@ -19,6 +19,7 @@
 //= require cloudinary
 //= require moment
 //= require bootstrap-datetimepicker
+//= require selectize
 //= require_directory ./admin
 
 $(document).ready(function() {

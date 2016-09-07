@@ -9,12 +9,11 @@
       div class="wizard-container"
         h3 Select Supplier
 
-        = search_form_for @q, url: wizard_path, method: :get do |f|
-          = f.label :name_cont
-          = f.search_field :name_cont
-          = f.submit 'Search'
-
-        hr
+        / = search_form_for @q, url: wizard_path, method: :get do |f|
+        /   .col-lg-4
+        /     .form-group
+        /       = f.search_field :name_cont, class: 'form-control'
+        /       = f.submit 'Search', class: 'btn btn-default'
 
         table.table
           thead
