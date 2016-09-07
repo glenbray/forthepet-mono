@@ -8,6 +8,7 @@ class Admin::ProductWizardController < Admin::AdminController
     when :supplier
       search_supplier
     when :product
+      @brands = Brand.all.order(:name)
       session_product_variant
       product_form
     when :image

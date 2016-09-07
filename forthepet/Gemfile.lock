@@ -367,6 +367,7 @@ GEM
       tilt (>= 1.1, < 3)
     seed_dumper (0.1.3)
       rails
+    selectize-rails (0.12.3)
     shellany (0.0.1)
     shoulda-matchers (2.8.0)
       activesupport (>= 3.0.0)
@@ -411,9 +412,6 @@ GEM
       hitimes
     tinymce-rails (4.1.6)
       railties (>= 3.1.1)
-    turbolinks (5.0.1)
-      turbolinks-source (~> 5)
-    turbolinks-source (5.0.0)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uber (0.0.13)
@@ -496,6 +494,7 @@ DEPENDENCIES
   rubocop
   sass-rails
   seed_dumper (~> 0.1.3)
+  selectize-rails
   shoulda-matchers
   simple_form (~> 3.1.0)
   simplecov
@@ -504,7 +503,6 @@ DEPENDENCIES
   spring
   spring-commands-rspec
   tinymce-rails (~> 4.1.6)
-  turbolinks
   uglifier
   wicked
   zeroclipboard-rails

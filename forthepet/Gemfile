@@ -88,4 +88,4 @@ gem 'skylight'
 gem 'reform', '~> 1.2.6'
 gem 'daemon_controller', '~> 1.2.0'
 gem 'react-rails'
-gem 'turbolinks'
+gem "selectize-rails"

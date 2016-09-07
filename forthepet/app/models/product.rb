@@ -2,8 +2,10 @@ class Product < ActiveRecord::Base
   belongs_to :supplier, autosave: true
   belongs_to :category, autosave: true
   has_many :photos, -> { order("position ASC") }
-  has_many :deals
+  # has_many :deals
   has_many :features
+
+  # has_one :brand
 
   has_one :master_variant, -> { where is_master: true },
           class_name: 'Variant', dependent: :destroy
