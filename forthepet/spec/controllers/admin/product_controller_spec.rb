@@ -8,8 +8,9 @@ RSpec.describe Admin::ProductController, type: :controller do
 
   describe 'GET #index' do
     it 'products collection should not contain products that are not yet active' do
-      p1 = Product.create(is_active: true)
-      p2 = Product.create(is_active: false)
+      p1 = FactoryGirl.create(:product)
+      FactoryGirl.create(:cat_product, is_active: false)
+      FactoryGirl.create(:dog_product, is_active: false)
 
       get :index
       expect(assigns(:products)).to match_array([p1])

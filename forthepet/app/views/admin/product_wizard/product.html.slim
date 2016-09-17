@@ -12,36 +12,34 @@
         = simple_form_for @product_form, url: wizard_path, method: :put do |f|
           .row
             .col-lg-4
-              div.form-group
+              = f.input :brand_id, collection: @brands, selected: lambda { |brand| brand.id == @product.brand_id }, include_blank: true
+              .form-group
                 = f.label :name
                 = f.input_field :name, class: 'form-control'
-              div.form-group
-                = f.label :brand
-                = f.input_field :brand, class: 'form-control'
 
               = f.simple_fields_for :master_variant do |v|
-                div.form-group
+                .form-group
                   = v.label :price
                   = v.input_field :price, class: 'form-control'
                   
-                div.form-group
+                .form-group
                   = v.label :original_price
                   = v.input_field :original_price, class: 'form-control'
 
-                div.form-group
+                .form-group
                   = v.label :quantity
                   = v.input_field :quantity, class: 'form-control', value: 100
                   
-                div.form-group
+                .form-group
                   = v.label :weight
                   = v.input_field :weight, class: 'form-control'
                   
-                div.form-group
+                .form-group
                   = v.label :sku
                   = v.input_field :sku, class: 'form-control'
           .row
             .col-lg-12
-              div.form-group
+              .form-group
                 = f.input :description, as: :text, input_html: { rows: 15, class: 'editor' }, required: false
 
               = f.submit 'Continue', class: 'btn btn-md'

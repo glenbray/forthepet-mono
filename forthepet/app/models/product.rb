@@ -1,8 +1,8 @@
 class Product < ActiveRecord::Base
+  belongs_to :brand
   belongs_to :supplier, autosave: true
   belongs_to :category, autosave: true
   has_many :photos, -> { order("position ASC") }
-  has_many :deals
   has_many :features
 
   has_one :master_variant, -> { where is_master: true },
@@ -15,7 +15,7 @@ class Product < ActiveRecord::Base
 
   scope :products, -> { active.load_associations }
   scope :single, -> { load_associations.includes(variants: [:option_values]) }
-  scope :load_associations, -> { includes(:category, :photos, :master_variant, :variants) }
+  scope :load_associations, -> { includes(:brand, :category, :photos, :master_variant, :variants) }
   scope :active, -> { where(is_active: true) }
   scope :filter_categories, -> (categories) { active.load_associations.where(categories: { name: ['All', categories] }) }
 
@@ -24,7 +24,7 @@ class Product < ActiveRecord::Base
   friendly_id :slug_candidates, use: [:slugged, :finders]
 
   def slug_candidates
-    [[:brand, :name]]
+    [[:title]]
   end
 
   paginates_per 15

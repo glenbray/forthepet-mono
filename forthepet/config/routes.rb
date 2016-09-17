@@ -65,6 +65,7 @@ Forthepet::Application.routes.draw do
     patch 'order-processing/:order_item_id/shipping', to: 'order_processing#shipping', as: 'order_processing_shipping'
     put 'order-processing/:order_id/ship-it', to: 'order_processing#ship_it', as: 'order_processing_ship_it'
 
+    resources :brands, only: [:index, :new, :create, :edit, :update]
     resources :suppliers
 
     resources :product, path: 'products' do

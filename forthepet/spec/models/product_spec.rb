@@ -3,7 +3,7 @@ require 'rails_helper'
 describe Product, type: :model do
 
   it { is_expected.to have_many(:photos) }
-  it { is_expected.to have_many(:deals) }
+  it { is_expected.to belong_to(:brand) }
   it { is_expected.to belong_to(:category) }
   it { is_expected.to belong_to(:supplier) }
   it { is_expected.to have_one(:master_variant) }
