@@ -2,6 +2,7 @@ class CreateTableBrands < ActiveRecord::Migration
   def change
     create_table :brands do |t|
       t.string :name
+      t.timestamps
     end
 
     add_index :brands, :name, unique: true
@@ -10,9 +11,9 @@ class CreateTableBrands < ActiveRecord::Migration
     add_index :products, :brand_id
 
     Product.all.each do |p|
-      next if p.brand.blank?
+      next if p[:brand].blank?
 
-      brand = Brand.find_or_create_by(name: p.brand.strip)
+      brand = Brand.find_or_create_by(name: p[:brand].strip)
       p.brand_id = brand.id
       p.save
     end

@@ -20,10 +20,17 @@ feature 'product wizard', :type => :feature do
   end
 
   scenario 'admin should be able to create a product through wizard' do
+    # Brand
+    FactoryGirl.create(:brand)
 
     # Categories
     FactoryGirl.create(:dog)
     FactoryGirl.create(:cat)
+
+    #Suppliers
+    FactoryGirl.create(:apple_supplier)
+    FactoryGirl.create(:orange_supplier)
+    FactoryGirl.create(:mango_supplier)
 
     visit '/admin/product-wizard'
     expect(page).to have_content('Select Category')
@@ -32,10 +39,6 @@ feature 'product wizard', :type => :feature do
 
     # Suppliers
     expect(page).to have_content('Select Supplier')
-
-    FactoryGirl.create(:apple)
-    FactoryGirl.create(:orange)
-    FactoryGirl.create(:mango)
 
     fill_in 'q_name_cont', with: 'mango'
     click_button 'Search'
@@ -46,7 +49,8 @@ feature 'product wizard', :type => :feature do
     expect(page).to have_content('Product Details')
 
     fill_in 'Name', with: 'Box of apples'
-    fill_in 'Brand', with: 'appletiser'
+    select 'brand', :from => "product_brand_id"
+
     fill_in 'Price', with: 30
     fill_in 'Quantity', with: 100
     fill_in 'Sku', with: 'boxap3'

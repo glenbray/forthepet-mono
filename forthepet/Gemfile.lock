@@ -98,6 +98,9 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    capybara-screenshot (1.0.14)
+      capybara (>= 1.0, < 3)
+      launchy
     carrierwave (0.11.2)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -204,6 +207,8 @@ GEM
     kaminari (0.17.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
+    launchy (2.4.3)
+      addressable (~> 2.3)
     listen (2.10.0)
       celluloid (~> 0.16.0)
       rb-fsevent (>= 0.9.3)
@@ -453,6 +458,7 @@ DEPENDENCIES
   capistrano-scm-gitcopy
   capistrano3-delayed-job (~> 1.0)
   capybara
+  capybara-screenshot
   carrierwave (~> 0.11.2)
   cloudinary
   coffee-script (~> 2.4.1)

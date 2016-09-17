@@ -10,8 +10,8 @@
  *
  *= require_self
  *= require font-awesome
+ *= require selectize
+ *= require selectize.bootstrap3
  *= require_directory ./admin
  *= require controls
- *= require selectize
- *= require selectize.default
  */

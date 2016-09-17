@@ -9,15 +9,15 @@ FactoryGirl.define do
     email 'MyString'
   end
 
-  factory :apple, class: Supplier do
+  factory :apple_supplier, class: Supplier do
   	name 'Apple Factory'
   end
 
-  factory :orange, class: Supplier do
+  factory :orange_supplier, class: Supplier do
   	name 'Orange Facilities'
   end
 
-  factory :mango, class: Supplier do
+  factory :mango_supplier, class: Supplier do
   	name 'Mango Limited'
   end
 
