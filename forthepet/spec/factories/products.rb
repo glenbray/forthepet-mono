@@ -3,9 +3,13 @@
 FactoryGirl.define do
 
   factory :product do
-    brand 'some brand'
+    # brand 'some brand'
     name 'some name'
     permalink 'some-brand'
+
+    before(:create) do |product|
+      product.brand = FactoryGirl.create(:brand)
+    end
 
     after(:create) do |product|
       product.category = FactoryGirl.create(:all)
@@ -17,6 +21,10 @@ FactoryGirl.define do
   factory :dog_product, class: Product do
     name 'doggy product'
 
+    before(:create) do |product|
+      product.brand = FactoryGirl.create(:dog_brand)
+    end
+
     after(:create) do |product|
       product.category = FactoryGirl.create(:dog)
       product.master_variant = FactoryGirl.create(:variant, product_id: product.id)
@@ -27,6 +35,10 @@ FactoryGirl.define do
   factory :cat_product, class: Product do
     name 'cat product'
 
+    before(:create) do |product|
+      product.brand = FactoryGirl.create(:cat_brand)
+    end
+
     after(:create) do |product|
       product.category = FactoryGirl.create(:cat)
       product.master_variant = FactoryGirl.create(:variant, product_id: product.id)
@@ -36,6 +48,10 @@ FactoryGirl.define do
 
   factory :product_with_variants, class: Product do
     name 'prod with vars'
+
+    before(:create) do |product|
+      product.brand = FactoryGirl.create(:product_with_variants_brand)
+    end
 
     after(:create) do |product|
       product.master_variant = FactoryGirl.create(:variant, product_id: product.id)

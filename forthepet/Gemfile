@@ -30,6 +30,7 @@ end
 
 group :test do
   gem 'capybara'
+  gem 'capybara-screenshot'
   gem 'faker'
   gem 'shoulda-matchers'
   gem 'simplecov', :require => false

@@ -11,12 +11,20 @@
 
         = simple_form_for @product_form, url: wizard_path, method: :put do |f|
           .row
+          
+            / .col-md-4
+            / 
             .col-lg-4
+              = f.input :brand_id, collection: @brands, selected: lambda { |brand| brand.id == @product.brand_id }, include_blank: true
+              
+              / = f.simple_fields_for :brand do |b|
+              /   .form-group
+              /     = b.label :name, 'Brand'
+              /     = b.input_field :name, collection: @brands, class: ''
+
               .form-group
                 = f.label :name
                 = f.input_field :name, class: 'form-control'
-              .form-group
-                = f.input :brand, collection: @brands, class: ''
 
               = f.simple_fields_for :master_variant do |v|
                 .form-group

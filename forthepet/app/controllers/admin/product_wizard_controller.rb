@@ -9,7 +9,7 @@ class Admin::ProductWizardController < Admin::AdminController
       search_supplier
     when :product
       @brands = Brand.all.order(:name)
-      session_product_variant
+      session_product_associations
       product_form
     when :image
       @photo = session_product.photos.build
@@ -29,11 +29,13 @@ class Admin::ProductWizardController < Admin::AdminController
       @product.update_attributes(supplier_id: params[:supplier_id])
       render_wizard @product
     when :product
-      session_product_variant
+      session_product_associations
 
       if product_form.validate(params[:product])
+        product_form.model.slug = nil
         render_wizard @product_form
       else
+        @brands = Brand.all.order(:name)
         render_wizard
       end
     when :image
@@ -58,7 +60,7 @@ class Admin::ProductWizardController < Admin::AdminController
     @product_form ||= Admin::CreateProductForm.new(session_product)
   end
 
-  def session_product_variant
+  def session_product_associations
     session_product.build_master_variant if session_product.master_variant.nil?
     session_product
   end

@@ -1,0 +1,23 @@
+.container
+  .row
+    div class="col-lg-10 col-lg-offset-1"
+      = link_to new_admin_brand_path, class: 'generic-outlined-btn push-down' do
+        i class="fa fa-plus"
+        | New Brand
+      .admin-panel
+        div class="admin-title"
+          h3 Brands
+        
+        div class="admin-body"
+          .row
+            .col-md-6
+              table class="table table-striped"
+                thead
+                  tr
+                    th Name
+                    th
+                tbody
+                  - @brands.each do |brand|
+                    tr
+                      td = brand.name
+                      td = link_to 'edit', edit_admin_brand_path(brand.id)

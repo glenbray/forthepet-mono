@@ -1,6 +1,6 @@
 .container
   .row
-    div class="col-lg-12"
+    .col-lg-12
       = link_to admin_product_index_path, class: 'generic-outlined-btn push-down' do
         i class="fa fa-arrow-circle-o-left fa-2"
         | Return
@@ -10,45 +10,45 @@
         | Clone
 
       .admin-panel
-        div class="admin-title"
+        .admin-title
           h3 Product Details
-        div class="admin-body"
+        .admin-body
           = render 'products_tabs'
           = simple_form_for [:admin, @product] do |f|
             = render 'shared/error_messages', object: @product
             .row
-              div class="col-md-4"
-                = f.input :brand
+              .form-group.col-md-4
+                = f.input :brand_id, collection: @brands, selected: lambda { |brand| brand.id == @product.brand_id }, required: true
             .row
-              div class="col-md-6"
+              .col-md-5
                 = f.input :name
             = f.simple_fields_for :master_variant, @product.master_variant do |v|
               .row
-                div class="col-md-3"
+                .col-md-3
                   = v.input :sku
               .row
-                div class="col-md-2"
+                .col-md-2
                   = v.input :price
               .row
-                div class="col-md-2"
+                .col-md-2
                   = v.input :original_price
               .row
-                div class="col-md-2"
+                .col-md-2
                   = v.input :cost
               .row
-                div class="col-md-2"
+                .col-md-2
                   = v.input :weight
               .row
-                div class="col-md-2"
+                .col-md-2
                   = v.input :free_postage
               .row
-                div class="col-md-2"
+                .col-md-2
                   = v.input :quantity
-              .row
-                div class="col-md-5"
-                  = f.input :permalink
-              .row
-                div class="col-md-12"
-                  = f.input :meta_description
-                  = f.input :description, as: :text, input_html: { rows: 15, class: 'editor' }
+              / .row
+              /   .col-md-5
+              /     = f.input :permalink
+              / .row
+              /   .col-md-12
+              /     = f.input :meta_description
+              /     = f.input :description, as: :text, input_html: { rows: 15, class: 'editor' }
             = f.submit 'Update', class: 'btn-action pull-down'
