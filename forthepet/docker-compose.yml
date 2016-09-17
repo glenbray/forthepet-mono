@@ -9,7 +9,8 @@ services:
   bundle:
     image: busybox
     volumes:
-      - /bundle
+      - /usr/local/rvm/gems/ruby-2.3.1
+      - /usr/local/rvm/gems/ruby-2.3.1/gems
 
   db:
     image: postgres

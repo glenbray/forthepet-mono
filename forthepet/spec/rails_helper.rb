@@ -5,6 +5,7 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require 'capybara/rails'
 require 'capybara/rspec'
+require 'capybara-screenshot/rspec'
 require 'support/factory_girl'
 require 'database_cleaner'
 
@@ -22,6 +23,8 @@ Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 ActiveRecord::Migration.maintain_test_schema!
 include Warden::Test::Helpers
 Warden.test_mode!
+
+Capybara::Screenshot.prune_strategy = :keep_last_run
 
 require 'simplecov'
 SimpleCov.start 'rails' do

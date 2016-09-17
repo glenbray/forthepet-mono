@@ -32,7 +32,7 @@ RSpec.describe Admin::ProductWizardController, :type => :controller do
       end
 
       it 'updates supplier id' do
-        supplier = FactoryGirl.create(:mango)
+        supplier = FactoryGirl.create(:mango_supplier)
         product = Product.create
         session[:product_id] = product.id
 

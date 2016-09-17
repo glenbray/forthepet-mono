@@ -3,7 +3,7 @@ class Admin::ProductController < Admin::AdminController
 
   def index
     @q = Product.search(params[:q])
-    @products = @q.result.includes(:master_variant, :variants, :photos, :supplier).where(is_active: true).order('created_at desc').page(params[:page])
+    @products = @q.result.includes(:master_variant, :brand, :variants, :photos, :supplier).where(is_active: true).order('created_at desc').page(params[:page])
   end
 
   def new
@@ -26,6 +26,7 @@ class Admin::ProductController < Admin::AdminController
 
   def edit
     @product = Product.find(params[:id])
+    @brands = Brand.all.order(:name)
     add_crumb 'Edit Product', "/admin/products/#{@product.id}/edit"
     add_crumb 'Details'
   end
@@ -72,12 +73,12 @@ class Admin::ProductController < Admin::AdminController
   private
 
   def create_product
-    params.require(:product).permit(:brand, :name,
+    params.require(:product).permit(:brand_id, :name,
                                     master_variant_attributes: [:price, :cost, :sku, :is_master, :free_postage])
   end
 
   def update_product
-    params.require(:product).permit(:brand, :name, :description, :meta_description, :permalink, :meta_keywords,
+    params.require(:product).permit(:brand_id, :name, :description, :meta_description, :permalink, :meta_keywords,
                                     master_variant_attributes: [:id, :product_id, :sku, :price, :cost, :quantity, :weight, :height, :width, :depth, :free_postage])
   end
 end

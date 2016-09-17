@@ -3,7 +3,7 @@ class Admin::CreateProductForm < Reform::Form
 
   property :name, validates: { presence: true }
   property :description, validates: { presence: true }
-  property :brand
+  property :brand_id, validates: { presence: true }
 
   property :master_variant do
     property :sku
@@ -12,5 +12,4 @@ class Admin::CreateProductForm < Reform::Form
     property :quantity, validates: { presence: true, numericality: true }
     property :weight, validates: { presence: true, numericality: true }
   end
-
 end

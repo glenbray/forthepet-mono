@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160902090415) do
+ActiveRecord::Schema.define(version: 20160902134948) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,14 @@ ActiveRecord::Schema.define(version: 20160902090415) do
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
   add_index "admins", ["username"], name: "index_admins_on_username", unique: true, using: :btree
+
+  create_table "brands", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "brands", ["name"], name: "index_brands_on_name", unique: true, using: :btree
 
   create_table "cart_items", force: :cascade do |t|
     t.integer  "cart_id"
@@ -292,7 +300,6 @@ ActiveRecord::Schema.define(version: 20160902090415) do
   add_index "photos", ["product_id"], name: "index_photos_on_product_id", using: :btree
 
   create_table "products", force: :cascade do |t|
-    t.string   "brand"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "supplier_id"
@@ -304,8 +311,10 @@ ActiveRecord::Schema.define(version: 20160902090415) do
     t.string   "slug"
     t.integer  "category_id"
     t.boolean  "is_active",        default: true
+    t.integer  "brand_id"
   end
 
+  add_index "products", ["brand_id"], name: "index_products_on_brand_id", using: :btree
   add_index "products", ["category_id"], name: "index_products_on_category_id", using: :btree
   add_index "products", ["supplier_id"], name: "index_products_on_supplier_id", using: :btree
 
