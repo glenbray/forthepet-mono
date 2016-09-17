@@ -61,8 +61,6 @@ GEM
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
-    bootstrap3-datetimepicker-rails (4.7.14)
-      momentjs-rails (>= 2.8.1)
     braintree (2.65.0)
       builder (>= 2.0.0)
     builder (3.2.2)
@@ -445,7 +443,6 @@ DEPENDENCIES
   better_errors
   binding_of_caller (~> 0.7.2)
   bootstrap-sass
-  bootstrap3-datetimepicker-rails (~> 4.7.14)
   braintree (~> 2.65.0)
   bullet
   cancancan (~> 1.14.0)
