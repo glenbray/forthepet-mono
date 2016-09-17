@@ -3,7 +3,6 @@
 FactoryGirl.define do
 
   factory :product do
-    # brand 'some brand'
     name 'some name'
     permalink 'some-brand'
 
