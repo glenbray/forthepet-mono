@@ -37,7 +37,8 @@ class ProductsController < ApplicationController
 
   def load_brands(category = nil)
     products = category ? Product.filter_categories(category) : Product
-    brand_ids = products.pluck(:brand_id).uniq.compact
+    brand_ids = products.products.pluck(:brand_id).uniq.compact
+
     @brands = Brand.where(id: brand_ids).order(:name)
   end
 end
