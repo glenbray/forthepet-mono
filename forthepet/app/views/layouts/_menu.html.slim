@@ -1,13 +1,18 @@
 nav class="navbar navbar-default menu-navbar"
   .container
     .navbar-header
+      - if content_for(:filter_menu)
+        button class="m-pikabu-nav-toggle navbar-toggle pull-right nav-bars" type="button" data-role="right"
+          i class="fa fa-filter"
+          span Filter
+
       div class="navbar-toggle cart-box pull-right"
         = render partial: 'shared/cart_menu', locals: { cart: session_cart }
 
       div class="navbar-toggle account-box pull-right"
-          = link_to account_root_path, class: 'account-btn' do
-            i class="fa fa-user"
-            span Account
+        = link_to account_root_path, class: 'account-btn' do
+          i class="fa fa-user"
+          span Account
 
       button class="m-pikabu-nav-toggle navbar-toggle pull-left nav-bars" type="button" data-role="left"
         i class="fa fa-bars"

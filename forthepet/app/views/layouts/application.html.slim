@@ -28,6 +28,10 @@ html
             = nav_link 'How it works', how_it_works_path
             = nav_link 'About', about_path
 
+      div class="m-pikabu-sidebar m-pikabu-right"  
+        nav class="off-canvas-right"
+          = yield :filter_menu
+      
       div class="m-pikabu-container"
         div class="top-header" id="top"
           div class="container top-wrapper"
