@@ -37,7 +37,6 @@
 //= require react_ujs
 //= require components
 
-// $(document).on('turbolinks:load', function() {
 $(document).ready(function(){
 
   var offset = 220;
