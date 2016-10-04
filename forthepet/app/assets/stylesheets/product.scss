@@ -13,6 +13,29 @@
 }
 
 // INDEX.HTML.SLIM
+.filter-panel {
+  background-color: #FFFFFF;
+  padding: 5px;
+  border: 1px solid #E5E5E5;
+
+  h3 {
+    color: #141414;
+    margin-top: 0px;
+    text-align: center;
+    padding-top: 5px;
+  }
+
+  ul {
+    padding: 0;
+    list-style: none;
+    text-align: center;
+
+    li {
+      padding: 3px;
+    }
+  }
+}
+
 .product-box {
   width: 100%;
   margin-bottom: 25px;
@@ -321,8 +344,6 @@
       }
     }
   }
-
-
 }
 
 .item-show-info {
