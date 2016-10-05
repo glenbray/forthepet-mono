@@ -10,7 +10,7 @@ class ProcessOrder
     save_cart_to_order
     @order.paid!
     @order.touch(:purchased_at)
-    customer_invoice
+    send_emails
     update_user_referrals
   end
 
@@ -37,10 +37,6 @@ class ProcessOrder
     order_item = @order.order_items.build(params)
     order_item.save
     order_item
-  end
-
-  def customer_invoice
-    CustomerMailer.delay.customer_invoice(@order)
   end
 
   def update_user_referrals
@@ -70,8 +66,18 @@ class ProcessOrder
     @referrer ||= User.find_by_email(@user.referred_by)
   end
 
-  # def email_supplier(order_item)
-  #   SupplierMailer.delay.new_order(order_item)
-  # end
+  def send_emails
+    customer_invoice
+    new_order_email
+  end
 
+  private
+
+  def customer_invoice
+    CustomerMailer.delay.customer_invoice(@order)
+  end
+
+  def new_order_email
+    NewOrderMailer.delay.new_order
+  end
 end
