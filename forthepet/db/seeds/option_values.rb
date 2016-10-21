@@ -1,8 +1,0 @@
-OptionValue.create(option_id: 1, name: 'Small', display: 'S')
-OptionValue.create(option_id: 1, name: 'Medium', display: 'M')
-OptionValue.create(option_id: 1, name: 'Large', display: 'L')
-OptionValue.create(option_id: 1, name: 'Extra Large', display: 'XL')
-OptionValue.create(option_id: 2, name: 'Green', display: 'Green')
-OptionValue.create(option_id: 2, name: 'Purple', display: 'Purple')
-OptionValue.create(option_id: 2, name: 'Pink', display: 'Pink')
-OptionValue.create(option_id: 2, name: 'Yellow', display: 'Yellow')

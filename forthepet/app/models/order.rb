@@ -2,6 +2,7 @@ class Order < ActiveRecord::Base
   include AASM
 
   belongs_to :user
+  belongs_to :coupon_code
   has_many :order_items
 
   scope :non_session_orders, -> { where.not(aasm_state: 'session') }

@@ -16,6 +16,11 @@ class ProcessOrder
 
   private
 
+  def update_discount
+    return unless @order.coupon_code
+    @order.coupon_code.update(order_id: @order.id)
+  end
+
   def save_cart_to_order
     @cart.cart_items.each do |cart_item|
       attributes = cart_item_attributes(cart_item)

@@ -16,12 +16,12 @@ For this app to connect to the database the environment variables FORTHEPET_DB_D
 eg `export FORTHEPET_DB_DEV=postgresql://devuser:abcd1234@localhost/forthepet_dev?pool=5 >> ~/.bash_profile` this command will export the environment variable postgres dev db url to your bash_profile (assuming your running mac)  you may want to change this to bashrc if running ubuntu.
 
 # Set up with Docker
-- rake docker:setup
+- rake docker:init
 - docker-compose up
 
 If you would like to use data from production run `rake db:backup`
 
-# Set up with vagrant (DEPRECATED - user docker)
+# Set up with vagrant (DEPRECATED - use docker)
 
 This setup is the exact same as production setup.
 

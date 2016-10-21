@@ -5,20 +5,37 @@ div style="padding-bottom: 10px; padding-top: 20px"
   span style="font-weight: bold; font-size: 1.2em" Subtotal
   p style="margin-top: 10px" = number_to_currency(cart.total)
 
-div style=""
-  span style="font-weight: bold; font-size: 1.2em;" Postage Estimate
-  p style="margin-top: 10px" = (@postage&.cost && @postage&.cost > 0) ? number_to_currency(@postage.cost) : 'Free'
+div
+  span style="font-weight: bold; font-size: 1.2em;" Postage
 
 div style="padding-bottom: 20px; padding-top: 10px"
-  = simple_form_for :postage, url: '/cart/calculate-postage', remote: true do |f|
+  = simple_form_for :postage, url: cart_calculate_postage_url, remote: true do |f|
     div class="input-group"  style="max-width: 150px"
       = f.text_field :postcode, class: 'form-control', placeholder: 'Postcode'
       span class="input-group-btn"
-        = f.submit "Save", class: 'btn btn-default'
+        = f.submit "save", class: 'btn btn-default'
+  
+div
+  span style="font-weight: bold; font-size: 1.2em;" Coupon
+
+div style="padding-bottom: 20px; padding-top: 10px"
+  = simple_form_for :coupon, url: cart_calculate_coupon_url, remote: true do |f|
+    div class="input-group"  style="max-width: 170px"
+      = f.text_field :code, class: 'form-control', placeholder: 'Coupon'
+      span class="input-group-btn"
+        = f.submit "save", class: 'btn btn-default'
+    - if flash[:invalid_coupon]
+      span.error = flash[:invalid_coupon]
+      
+div
+  span style="font-weight: bold" postage cost
+  p style="margin-top: 10px" = (@postage&.cost && @postage&.cost > 0) ? number_to_currency(@postage.cost) : 'Free'
+  span style="font-weight: bold" coupon discount
+  p style="margin-top: 10px" = session[:coupon_discount].to_i > 0 ? "- #{number_to_currency(session[:coupon_discount])}" : number_to_currency(0)
   
 div style="padding-top: 10px; padding-bottom: 30px"
   span style="color: #ff6501; font-weight: bold; font-size: 1.4em; padding-bottom: 10px; margin-right: 20px" Total
-  span style="font-size: 1.2em" = number_to_currency(cart.total + @postage&.cost || 0)
+  span style="font-size: 1.2em" = number_to_currency(cart.total + (@postage&.cost || 0) - session[:coupon_discount].to_d)
 
 p.shipping: b Australian Customers Only
 a class="shipping" href="/shipping-information" style="font-size: 12px;" target="_blank" Shipping and Delivery Information

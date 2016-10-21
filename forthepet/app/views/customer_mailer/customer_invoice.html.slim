@@ -263,6 +263,11 @@ html xmlns="http://www.w3.org/1999/xhtml"
                             = @order.postage
                         tr
                           td width="65%"
+                          td Postage
+                          td style=("border: 0; border-top: 1px; border-color: #333333; border-style: solid; text-align: center;")
+                            = @order.discount
+                        tr
+                          td width="65%"
                           td Total
                           td style=("border: 0; border-top: 1px; border-color: #333333; border-style: solid; text-align: center;")
                             = @order.total
