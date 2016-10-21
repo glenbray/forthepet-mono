@@ -3,6 +3,7 @@ require 'rails_helper'
 describe Order, type: :model do
   it { is_expected.to have_many :order_items }
   it { is_expected.to belong_to :user }
+  it { is_expected.to belong_to :coupon_code }
 
   let(:order) { Order.create }
   let(:order_item) { order.order_items.build }
