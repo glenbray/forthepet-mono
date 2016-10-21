@@ -8,6 +8,7 @@ class ProcessOrder
   def process
     @order.total = @cart.total
     save_cart_to_order
+    apply_discount
     @order.paid!
     @order.touch(:purchased_at)
     send_emails
@@ -16,7 +17,7 @@ class ProcessOrder
 
   private
 
-  def update_discount
+  def apply_discount
     return unless @order.coupon_code
     @order.coupon_code.update(order_id: @order.id)
   end

@@ -27,6 +27,8 @@ class Shopping::CartController < ApplicationController
       flash[:invalid_coupon] = 'Invalid Coupon code'
     elsif coupon_code.order_id.present?
       flash[:invalid_coupon] = 'Coupon already used'
+    elsif session_cart.total <= coupon_code.coupon.amount
+      flash[:invalid_coupon] = 'Total amount for order must be more than the coupon discount'
     else
       session[:coupon_code_id] = coupon_code.id
       session[:coupon_discount] = coupon_code.coupon.amount
