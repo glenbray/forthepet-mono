@@ -1,9 +1,7 @@
-require 'securerandom'
-
 CouponCode.all.each { |c| c.destroy }
 Coupon.all.each { |c| c.destroy }
 
-coupon = Coupon.create(title: '20 off', description: '$20 off', percent: nil, amount: 20, starts_at: Time.now, expires_at: nil)
+coupon = Coupon.create(title: '$20 off', description: '$20 off total price', percent: nil, amount: 20, starts_at: Time.now, expires_at: nil)
 
 coupon.coupon_codes.create(code: 'f79f2bd6a5')
 coupon.coupon_codes.create(code: '915bd76884')
