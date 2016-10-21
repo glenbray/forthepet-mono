@@ -1,5 +1,4 @@
 Forthepet::Application.routes.draw do
-
   root to: 'products#index'
   mount_roboto
 
@@ -41,6 +40,7 @@ Forthepet::Application.routes.draw do
     resources :checkout
     resources :cart, only: [:index, :update]
     post 'cart/calculate-postage', to: 'cart#calculate_postage'
+    post 'cart/calculate-coupon', to: 'cart#calculate_coupon'
     resources :cart_items
     post 'cart_items/create_variant', to: 'cart_items#create_variant'
   end
@@ -87,6 +87,8 @@ Forthepet::Application.routes.draw do
     resources :option do
       resources :option_value, path: 'values'
     end
+
+    resources :coupons, only: [:index]
 
     resources :category
     resources :fine_prints, as: 'fine_prints', path: 'fine-prints'

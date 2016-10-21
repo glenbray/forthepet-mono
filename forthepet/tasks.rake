@@ -29,6 +29,7 @@ namespace :db do
   desc "backup from latest existing backup file (expects an existing backup file)"
   task :backup_existing do
     backup = `ls -t1 backups | head -n 1`
+    system("docker-compose stop")
     system('docker-compose up -d db')
 
     system('docker-compose run web bundle exec rake db:drop db:create')
@@ -39,9 +40,10 @@ namespace :db do
   task :backup do
     backup = `echo forthepet_$(date +%Y%m%d_%H%M%S).bak`
 
+    system("docker-compose stop")
     system('docker-compose up -d db')
-    system("pg_dump -v --no-owner -d forthepet -U ftp_user -h db.forthepet.com.au --exclude-table-data photos > backups/#{backup}")
     system('docker-compose run web bundle exec rake db:drop db:create')
+    system("pg_dump -v --no-owner -d forthepet -U ftp_user -h db.forthepet.com.au --exclude-table-data photos > backups/#{backup}")
     system("PGPASSWORD=password psql -h localhost -U postgres -d forthepet_dev -f backups/#{backup}")
   end
 
@@ -49,9 +51,10 @@ namespace :db do
   task :backup_with_images do
     backup = `echo forthepet_$(date +%Y%m%d_%H%M%S).bak`
 
+    system("docker-compose stop")
     system('docker-compose up -d db')
-    system("pg_dump -v --no-owner -d forthepet -U ftp_user -h db.forthepet.com.au > backups/#{backup}")
     system('docker-compose run web bundle exec rake db:drop db:create')
+    system("pg_dump -v --no-owner -d forthepet -U ftp_user -h db.forthepet.com.au > backups/#{backup}")
     system("PGPASSWORD=password psql -h localhost -U postgres -d forthepet_dev -f backups/#{backup}")
   end
 end

@@ -44,9 +44,10 @@ class Shopping::CheckoutController < ApplicationController
     postage = CalculatePostage.calculate(session_cart, session[:postcode])
 
     nonce = params[:payment_method_nonce]
+    discount = session[:coupon_discount]
 
     @result = Braintree::Transaction.sale(
-      amount: session_cart.total + postage.cost,
+      amount: session_cart.total + postage.cost - discount.to_d,
       payment_method_nonce: nonce,
       options: {
         submit_for_settlement: true
@@ -56,6 +57,7 @@ class Shopping::CheckoutController < ApplicationController
     if @result.success?
       session_order.transaction_no = @result.transaction.id
       session_order.postage = postage.cost
+      session_order.coupon_code_id = session[:coupon_code_id]
       order = ProcessOrder.new(session_order, session_cart)
       order.process
       clear_order_session
@@ -74,6 +76,8 @@ class Shopping::CheckoutController < ApplicationController
 
   def clear_order_session
     session[:order_id] = nil
+    session[:coupon_code_id] = nil
+    session[:coupon_discount] = nil
   end
 
   def clear_cart_session

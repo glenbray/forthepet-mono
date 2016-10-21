@@ -20,30 +20,32 @@ html
     .container.checkout-form
       = image_tag("forthepetlogo-final-tran.png", width: '240', format: 'jpg', class: 'logo logo-checkout', style: 'display: block; margin: 0 auto;')
 
-      .row
-        h1 Cart Summary
-
-        .col-xs-12.col-md-8
-          table.table.summary
-            thead
-              th Item
-              th Quantity
-              th Price
-            tbody
-              - session_cart.cart_items.each do |c|
-                tr
-                  td = c.name
-                  td style="padding-left: 30px !important;" = c.quantity
-                  td = number_to_currency(c.total)
-              tr style="border-top: 20px solid white"
-                td colspan="2" style="text-align: right; font-weight: bold;" 
-                  p style="font-weight: 100" Subtotal:
-                  p style="font-weight: 100" Postage:
-                  p style="font-size: 1.1em" Total
-                td 
-                  p = number_to_currency(session_cart.total)
-                  p = (@postage&.cost && @postage&.cost > 0) ? number_to_currency(@postage.cost) : 'Free'
-                  p style="font-size: 1.1em" = number_to_currency(session_cart.total + (@postage&.cost || 0))
+      - if step != :summary
+        .row
+          h1 Cart Summary
+          .col-xs-12.col-md-8
+            table.table.summary
+              thead
+                th Item
+                th Quantity
+                th Price
+              tbody
+                - session_cart.cart_items.each do |c|
+                  tr
+                    td = c.name
+                    td style="padding-left: 30px !important;" = c.quantity
+                    td = number_to_currency(c.total)
+                tr style="border-top: 20px solid white"
+                  td colspan="2" style="text-align: right; font-weight: bold;" 
+                    p style="font-weight: 100" Subtotal:
+                    p style="font-weight: 100" Postage:
+                    p style="font-weight: 100" Coupon Discount:
+                    p style="font-size: 1.1em" Total
+                  td 
+                    p = number_to_currency(session_cart.total)
+                    p = (@postage&.cost && @postage&.cost > 0) ? number_to_currency(@postage.cost) : 'Free'
+                    p = session[:coupon_discount].to_i > 0 ? "- #{number_to_currency(session[:coupon_discount])}" : number_to_currency(0)
+                    p style="font-size: 1.1em" = number_to_currency(session_cart.total + (@postage&.cost || 0) - session[:coupon_discount].to_d)
                   
   
       = yield

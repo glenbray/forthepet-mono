@@ -22,8 +22,14 @@ class OrderDecorator < BaseDecorator
     end
   end
 
+  def discount
+    return '$0.00' unless order.coupon_code
+    "$#{two_decimals(order.coupon_code.coupon.amount)}"
+  end
+
   def total
-    total = object.total + object.postage
+    discount = order.coupon_code&.coupon&.amount || 0
+    total = object.total + object.postage - discount
     "$#{two_decimals(total)}"
   end
 

@@ -1,7 +1,12 @@
 # Add your own tasks in files placed in lib/tasks ending in .rake,
 # for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
 
-if ENV['DOCKER_DEV'] == 'true'
+tasks = Rake.application.top_level_tasks
+
+tasks = tasks.flat_map { |task| task.split(':') }
+task_names = ['docker', 'backup', 'backup_existing']
+
+if !(task_names & tasks).empty?
   import './tasks.rake'
 else
   require File.expand_path('../config/application', __FILE__)
