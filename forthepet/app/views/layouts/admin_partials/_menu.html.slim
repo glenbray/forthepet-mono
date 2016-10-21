@@ -32,7 +32,7 @@ nav class="navbar navbar-default"
               li = link_to 'Options', admin_option_index_path
 
         / - if can? :manage, Coupon
-        li = link_to 'Coupons', admin_coupons_path
+        / li = link_to 'Coupons', admin_coupons_path
           
         - if can? :manage, Category
           li = link_to 'Category', admin_category_index_path
