@@ -47,8 +47,8 @@
               / .row
               /   .col-md-5
               /     = f.input :permalink
-              / .row
-              /   .col-md-12
-              /     = f.input :meta_description
-              /     = f.input :description, as: :text, input_html: { rows: 15, class: 'editor' }
+              .row
+                .col-md-12
+                  / = f.input :meta_description
+                  = f.input :description, as: :text, input_html: { rows: 15, class: 'editor' }
             = f.submit 'Update', class: 'btn-action pull-down'
