@@ -22,4 +22,5 @@ Run `cap production deploy`
 ## Users without ssh access
 
 - Get a copy of production backups from someone that has access.
-- `rake db:backup_existing`
+- Place backup file in backups directory
+- run `rake db:backup_existing`
