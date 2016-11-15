@@ -6,13 +6,25 @@ forthepet
 #A bit about the Architecture
 At the moment the code is poorly designed and lacks a significant amount of specs. This will have to be addressed after the first release.
 
-# Deployment
-
-Run `cap production deploy`
-
-# Set up with Docker
+# Development Setup
 - `rake docker:init`
 - docker-compose up
+
+## Temporary
+
+This is temporary until the app is updated to work with the lastest passenger docker image.
+
+Add the following env vars to your profile
+
+`export FORTHEPET_DB_DEV="postgresql://postgres:password@localhost/forthepet_dev?pool=5"`
+
+`export FORTHEPET_DB_TEST="postgresql://postgres:password@localhost/forthepet_test?pool=5"`
+
+- Install ruby 2.3.1
+- `bundle install`
+- run backend services `docker-compose up db worker mailcatcher`
+- run app `bundle exec rails s` or `passenger start` if you have passenger installed
+
 
 # Backups
 
@@ -24,3 +36,7 @@ Run `cap production deploy`
 - Get a copy of production backups from someone that has access.
 - Place backup file in backups directory
 - run `rake db:backup_existing`
+
+# Deployment
+
+Run `cap production deploy`
