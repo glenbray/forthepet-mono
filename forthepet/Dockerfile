@@ -27,6 +27,8 @@ ENV BUNDLE_PATH=/bundle
 
 RUN gem install bundler -v '1.12.4'
 RUN bundle install --without development test
+# RUN /usr/local/rvm/bin/rvm wrapper ruby-2.3.1 --no-prefix --all
+RUN cd /usr/local/rvm/bin/ && ./rvm get stable && ./rvm reload && ./rvm repair all
 
 # Add forthepet project to docker image
 ADD . /home/app/forthepet/

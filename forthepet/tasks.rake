@@ -11,8 +11,7 @@ namespace :docker do
 
   desc "remove containers and setup - does not build images"
   task :reload do
-    system("docker-compose stop")
-    system("docker-compose rm -f")
+    system("docker-compose down")
     system("docker-compose run web bundle install")
     # system("docker-compose run web npm install")
     # system("docker-compose run web bundle exec rake assets:webpack")
