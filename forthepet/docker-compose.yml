@@ -50,7 +50,7 @@ services:
     extends:
       file: common.yml
       service: common_web
-    command: passenger start
+    command: bundle exec rails s -b '0.0.0.0'
     volumes_from:
       - bundle
     ports:
