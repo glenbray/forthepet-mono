@@ -12,7 +12,25 @@
           .row
             div class="col-md-5"
               = simple_form_for @product, url: admin_product_categories_path, method: :post do |f|
-                = f.association :categories, as: :check_boxes,
-                  collection: options_for_categories_dropdown,
-                  disabled: Category.roots.pluck(:id)
+                table.table.table-hover#js-categories-table
+                  thead
+                    tr
+                      th Category Name
+                      th
+                      / th
+                  tbody
+                    - flat_array_from_hash_tree.each do |c|
+                      tr class="treegrid-#{c.id} treegrid-parent-#{c.parent_id}"
+                        td = c.name
+                        td
+                          - if c.parent_id
+                            = check_box_tag 'product[category_ids][]', c.id,
+                              @product.category_ids.include?(c.id)
                 = f.submit 'Update', class: 'btn-action'
+
+
+javascript:
+  $('#js-categories-table').treegrid({
+    initialState: 'collapsed',
+    saveState: true
+  });

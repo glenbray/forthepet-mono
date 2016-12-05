@@ -11,6 +11,23 @@
     div class="wizard-container"
       h3 Select Category
       = simple_form_for :product, url: wizard_path, method: :put do |f|
-        = f.input :categories, collection: options_for_categories_dropdown,
-          as: :check_boxes, disabled: Category.roots.pluck(:id)
+        table.table.table-hover#js-categories-table
+          thead
+            tr
+              th Category Name
+              th
+              / th
+          tbody
+            - flat_array_from_hash_tree.each do |c|
+              tr class="treegrid-#{c.id} treegrid-parent-#{c.parent_id}"
+                td = c.name
+                td
+                  - if c.parent_id
+                    = check_box_tag 'product[category_ids][]', c.id
         = f.submit 'Continue', class: 'btn btn-md'
+
+javascript:
+  $('#js-categories-table').treegrid({
+    initialState: 'collapsed',
+    saveState: true
+  });
