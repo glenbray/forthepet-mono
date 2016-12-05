@@ -92,3 +92,4 @@ gem 'daemon_controller'
 gem 'react-rails'
 gem 'selectize-rails'
 gem 'whenever', require: false
+gem 'closure_tree'

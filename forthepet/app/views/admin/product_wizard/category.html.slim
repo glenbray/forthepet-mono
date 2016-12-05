@@ -11,5 +11,6 @@
     div class="wizard-container"
       h3 Select Category
       = simple_form_for :product, url: wizard_path, method: :put do |f|
-        = f.input :category, collection: categories, as: :radio_buttons
+        = f.input :categories, collection: options_for_categories_dropdown,
+          as: :check_boxes, disabled: Category.roots.pluck(:id)
         = f.submit 'Continue', class: 'btn btn-md'

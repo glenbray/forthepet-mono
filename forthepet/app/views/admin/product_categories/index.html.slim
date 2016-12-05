@@ -12,5 +12,7 @@
           .row
             div class="col-md-5"
               = simple_form_for @product, url: admin_product_categories_path, method: :post do |f|
-                = f.association :category
+                = f.association :categories, as: :check_boxes,
+                  collection: options_for_categories_dropdown,
+                  disabled: Category.roots.pluck(:id)
                 = f.submit 'Update', class: 'btn-action'

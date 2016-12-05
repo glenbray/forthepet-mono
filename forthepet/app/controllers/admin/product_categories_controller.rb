@@ -10,7 +10,7 @@ class Admin::ProductCategoriesController < Admin::AdminController
 
   def create
     @product = Product.find(params[:product_id])
-    @product.update(category_id: params[:product][:category_id])
+    @product.update(category_ids: params[:product][:category_ids])
     flash[:success] = 'Categories succesfully updated'
     redirect_to admin_product_categories_path(@product)
   end

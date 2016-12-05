@@ -10,4 +10,6 @@
         div class="admin-body"
           = simple_form_for @category, url: admin_category_path do |f|
             = f.input :name
+            = f.input :parent_id,
+              collection: options_for_categories_dropdown(Category.not_category_and_descendant(@category).hash_tree)
             = f.submit 'Update Category', class: 'btn-action pull-down'

@@ -8,15 +8,21 @@
         div class="admin-title"
           h3 Categories
         div class="admin-body"
-          table class="table table-striped"
+          table.table.table-hover#js-categories-table
             thead
               tr
                 th Category Title
-                th 
-                / th 
+                th
+                / th
             tbody
-              - @categories.each do |c|
-                tr
+              - flat_array_from_hash_tree.each do |c|
+                tr class="treegrid-#{c.id} treegrid-parent-#{c.parent_id}"
                   td = c.name
                   td = link_to 'Edit', edit_admin_category_path(c.id)
                   / td = link_to 'Delete', admin_category_path(category), method: :delete
+
+javascript:
+  $('#js-categories-table').treegrid({
+    initialState: 'collapsed',
+    saveState: true
+  });
