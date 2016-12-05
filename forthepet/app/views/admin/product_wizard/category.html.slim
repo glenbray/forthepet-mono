@@ -22,7 +22,7 @@
               tr class="treegrid-#{c.id} treegrid-parent-#{c.parent_id}"
                 td = c.name
                 td
-                  - if c.parent_id
+                  - if c.selectable?
                     = check_box_tag 'product[category_ids][]', c.id
         = f.submit 'Continue', class: 'btn btn-md'
 
