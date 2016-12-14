@@ -37,6 +37,8 @@
 //= require react_ujs
 //= require components
 
+//= require bootstrap-hover-dropdown.min
+
 $(document).ready(function(){
 
   var offset = 220;

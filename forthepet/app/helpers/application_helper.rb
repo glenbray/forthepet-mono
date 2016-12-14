@@ -13,6 +13,10 @@ module ApplicationHelper
   def nav_link(link_text, link_path, &block)
     class_name = current_page?(link_path) ? 'menu-active' : ''
 
+    if params[:controller] == 'categories' && link_path.starts_with?("/#{params[:primary_id]}")
+      class_name = 'menu-active'
+    end
+
     content_tag(:li, :class => class_name, 'data-turbolinks' => "false") do
       link_to link_text, link_path, block
     end

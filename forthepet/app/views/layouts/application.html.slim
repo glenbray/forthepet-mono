@@ -28,10 +28,10 @@ html
             = nav_link 'How it works', how_it_works_path
             = nav_link 'About', about_path
 
-      div class="m-pikabu-sidebar m-pikabu-right"  
+      div class="m-pikabu-sidebar m-pikabu-right"
         nav class="off-canvas-right"
           = yield :filter_menu
-      
+
       div class="m-pikabu-container"
         div class="top-header" id="top"
           div class="container top-wrapper"
@@ -42,42 +42,6 @@ html
 
         header
           = render 'layouts/menu'
-          
-          .header-notify
-            .container
-              .row
-                .col-md-3
-                  .notify-container
-                    .icon
-                      i class="fa fa-usd fa-2" aria-hidden="true"
-                      .notify-text
-                        strong Free shipping 
-                        | on orders to selected areas
-
-                .col-md-3.hidden-sm.hidden-xs
-                  .notify-container
-                    .icon
-                      i class="fa fa-truck fa-3" aria-hidden="true"
-                      .notify-text
-                        strong Fast shipping 
-                        | direct to your door
-
-                .col-md-3.hidden-sm.hidden-xs
-                  .notify-container
-                    .icon
-                      i class="fa fa-tag fa-3" aria-hidden="true"
-                      .notify-text
-                        strong Lowest Prices 
-                        | online in Australia Guaranteed
-
-                .col-md-3.hidden-sm.hidden-xs
-                  .notify-container
-                    .icon
-                      i class="fa fa-map-marker fa-3" aria-hidden="true"
-                      .notify-text
-                        strong Buy Local 
-                        | and your money stays local
-                        |  Newcastle & Hunter Valley based
 
         section style="background: #fff; min-height: 400px;"
           .body

@@ -10,5 +10,6 @@
         div class="admin-body"
           = simple_form_for @category, url: admin_category_index_path do |f|
             = f.input :name
+            = f.input :slug
             = f.input :parent_id, collection: options_for_categories_dropdown
             = f.submit 'Create Category', class: 'btn-action pull-down'

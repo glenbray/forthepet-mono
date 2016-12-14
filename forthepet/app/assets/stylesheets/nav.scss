@@ -156,3 +156,32 @@
     }
   }
 }
+
+$primary-menu:   #0B486B;
+$secondary-menu: #57ac80;
+
+.menu-primary {
+  background: $primary-menu;
+
+  .menu-active {
+    background: lighten($primary-menu, 10%)
+  }
+}
+
+.menu-secondary {
+  background: $secondary-menu;
+
+  .menu-active {
+    background: lighten($secondary-menu, 10%)
+  }
+}
+
+.navbar-nav {
+  ul.dropdown-menu {
+    li {
+      a {
+        color: #333;
+      }
+    }
+  }
+}

@@ -116,4 +116,9 @@ Forthepet::Application.routes.draw do
       resources :admin_password, only: [:index, :create], as: 'password', path: 'password'
     end
   end
+
+  get '/:primary_id', to: 'categories#show', as: :primary_category
+  get '/:primary_id/:secondary_id', to: 'categories#show', as: :secondary_category
+  get '/:primary_id/:secondary_id/:tertiary_id', to: 'categories#show',
+    as: :tertiary_category
 end

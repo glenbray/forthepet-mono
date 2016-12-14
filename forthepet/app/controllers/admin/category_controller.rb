@@ -28,15 +28,15 @@ class Admin::CategoryController < Admin::AdminController
   end
 
   def update
-    category = Category.find(params[:id])
-    old_name = category.name
+    @category = Category.find(params[:id])
+    old_name = @category.name
 
-    if category.update(category_params)
-      flash[:success] = "Category '#{old_name}' successfully updated to '#{category.name}'"
+    if @category.update(category_params)
+      flash[:success] = "Category '#{old_name}' successfully updated to '#{@category.name}'"
       redirect_to admin_category_index_path
     else
       flash[:danger] = 'Error updating category'
-      redirect_to new_admin_category_path
+      render :edit
     end
   end
 
@@ -49,6 +49,6 @@ class Admin::CategoryController < Admin::AdminController
   private
 
   def category_params
-    params.require(:category).permit(:name, :parent_id)
+    params.require(:category).permit(:name, :parent_id, :slug)
   end
 end

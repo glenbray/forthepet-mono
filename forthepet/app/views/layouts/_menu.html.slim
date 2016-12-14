@@ -1,4 +1,4 @@
-nav class="navbar navbar-default menu-navbar"
+nav class="navbar navbar-default menu-navbar menu-primary"
   .container
     .navbar-header
       - if content_for(:filter_menu)
@@ -21,9 +21,8 @@ nav class="navbar navbar-default menu-navbar"
     div class="collapse navbar-collapse navbar-responsive-collapse"
       ul class="nav navbar-nav"
         = nav_link 'Home', root_path
-        = nav_link 'Dog', dog_products_path
-        = nav_link 'Cat', cat_products_path
-        = nav_link 'Misc', misc_products_path
+        - Category.roots.each do |category|
+          = nav_link category.name, primary_category_path(category.slug)
         = nav_link 'Refer a Friend', referrals_path
         = nav_link 'How it works', how_it_works_path
         = nav_link 'About', about_path
@@ -33,3 +32,58 @@ nav class="navbar navbar-default menu-navbar"
           = link_to account_root_path, class: 'account-btn' do
             i class="fa fa-user"
             span Account
+
+- if @primary_category
+
+  nav.navbar.navbar-default.menu-navbar.menu-secondary.hidden-xs
+    .container
+      .collapse.navbar-collapse.navbar-responsive-collapse
+        ul class="nav navbar-nav"
+          - @primary_category.children.each do |category|
+            - path = secondary_category_path(@primary_category.slug, category.slug)
+            li.dropdown class="#{'menu-active' if path.split('/').third == params[:secondary_id]}"
+              = link_to category.name, path, "data-hover" => "dropdown", "data-delay" => "1000",
+                "data-toggle" => "dropdown", class: "dropdown-toggle",
+                "data-close-others" => "true"
+              ul.dropdown-menu
+                - category.children.each do |sub_category|
+                  li
+                    = link_to sub_category.name, tertiary_category_path(@primary_category.slug,
+                      category.slug, sub_category.slug)
+
+- else
+  .header-notify
+    .container
+      .row
+        .col-md-3.hidden-sm.hidden-xs
+          .notify-container
+            .icon
+              i class="fa fa-usd fa-2" aria-hidden="true"
+              .notify-text
+                strong> Free shipping
+                | on orders to selected areas
+
+        .col-md-3.hidden-sm.hidden-xs
+          .notify-container
+            .icon
+              i class="fa fa-truck fa-3" aria-hidden="true"
+              .notify-text
+                strong> Fast shipping
+                | direct to your door
+
+        .col-md-3.hidden-sm.hidden-xs
+          .notify-container
+            .icon
+              i class="fa fa-tag fa-3" aria-hidden="true"
+              .notify-text
+                strong> Lowest Prices
+                | online in Australia Guaranteed
+
+        .col-md-3.hidden-sm.hidden-xs
+          .notify-container
+            .icon
+              i class="fa fa-map-marker fa-3" aria-hidden="true"
+              .notify-text
+                strong> Buy Local
+                | and your money stays local
+                |  Newcastle & Hunter Valley based
