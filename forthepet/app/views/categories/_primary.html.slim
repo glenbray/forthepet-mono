@@ -6,6 +6,7 @@ hr
   .col-md-3
     .panel.panel-default
       .panel-body.text-center
+        = image_tag secondary_category.picture.url(:small), class: 'img-responsive'
         h3
           = link_to secondary_category.name,
             secondary_category_path(@primary_category.slug, secondary_category.slug)
@@ -15,5 +16,6 @@ hr
             = link_to tertiary_category.name,
               tertiary_category_path(@primary_category.slug, secondary_category.slug, tertiary_category.slug)
         hr
-          = link_to "See all #{secondary_category.name}",
-            secondary_category_path(@primary_category.slug, secondary_category.slug)
+
+        = link_to "See all #{secondary_category.name}",
+          secondary_category_path(@primary_category.slug, secondary_category.slug)

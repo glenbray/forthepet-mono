@@ -1,0 +1,11 @@
+h1.text-center = @secondary_category.name
+
+hr
+
+- @secondary_category.children.each do |tertiary_category|
+  .col-md-3
+    .panel.panel-default
+      .panel-body.text-center
+        = link_to tertiary_category_path(@primary_category.slug, @secondary_category.slug, tertiary_category.slug) do
+          = image_tag tertiary_category.picture.url(:small), class: 'img-responsive'
+          h3 = tertiary_category.name

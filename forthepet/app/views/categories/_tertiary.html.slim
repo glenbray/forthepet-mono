@@ -1,0 +1,31 @@
+- content_for(:filter_menu) do
+  h3 Brands
+
+  ul
+    - @brands.each do |brand|
+      li = link_to brand.name, url_for(params.merge(brand_id: brand.id))
+
+h1.text-center
+  = link_to @tertiary_category.name, tertiary_category_path(@primary_category.slug, @secondary_category.slug, @tertiary_category.slug)
+
+hr
+
+.container
+  - unless @products.blank?
+    .row
+      .col-md-2.hidden-sm.hidden-xs
+        .filter-panel
+          h3 Brands
+
+          ul
+            - @brands.each do |brand|
+              li = link_to brand.name, url_for(params.merge(brand_id: brand.id))
+
+      .col-md-10.col-xs-12
+        #products
+          - @products.each do |product|
+            = render product
+    .row.pagination-container
+      = paginate @products
+  - else
+    h1 No Products Currently Available

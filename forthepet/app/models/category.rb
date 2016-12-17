@@ -1,4 +1,6 @@
 class Category < ActiveRecord::Base
+  mount_uploader :picture, CategoryUploader
+
   has_closure_tree
 
   has_and_belongs_to_many :products

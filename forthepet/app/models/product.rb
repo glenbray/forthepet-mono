@@ -20,6 +20,9 @@ class Product < ActiveRecord::Base
   scope :active, -> { where(is_active: true) }
   scope :filter_categories, -> (categories) { active.load_associations.where(categories: { name: ['All', categories] }) }
   scope :filter_by_brand, -> (brand_id) { where(brand_id: brand_id) if brand_id }
+  scope :by_category, ->category do
+    joins(:categories).where 'categories.id' => category.self_and_descendant_ids
+  end
 
   extend FriendlyId
 

@@ -12,6 +12,7 @@
             thead
               tr
                 th Category Title
+                th Picture
                 th Slug
                 th
                 / th
@@ -19,6 +20,7 @@
               - flat_array_from_hash_tree.each do |c|
                 tr class="treegrid-#{c.id} treegrid-parent-#{c.parent_id}"
                   td = c.name
+                  td = image_tag c.picture.url(:thumbnail)
                   td = c.slug
                   td = link_to 'Edit', edit_admin_category_path(c.id)
                   / td = link_to 'Delete', admin_category_path(category), method: :delete

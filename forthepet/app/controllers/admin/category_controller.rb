@@ -49,6 +49,7 @@ class Admin::CategoryController < Admin::AdminController
   private
 
   def category_params
-    params.require(:category).permit(:name, :parent_id, :slug)
+    params.require(:category).permit(:name, :parent_id, :slug, :picture,
+      :picture_cache, :remove_picture)
   end
 end

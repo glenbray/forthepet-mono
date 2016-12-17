@@ -8,9 +8,17 @@
         div class="admin-title"
           h3 Edit Category
         div class="admin-body"
-          = simple_form_for @category, url: admin_category_path do |f|
+          = simple_form_for @category, url: admin_category_path, html: {multipart: true} do |f|
             = f.input :name
             = f.input :slug
             = f.input :parent_id,
               collection: options_for_categories_dropdown(Category.not_category_and_descendant(@category).hash_tree)
+
+            .form-group
+              = image_tag(@category.picture.url(:small)) if @category.picture?
+              = f.input :picture, as: :file
+              label
+                => f.check_box :remove_picture
+                | Remove picture
+
             = f.submit 'Update Category', class: 'btn-action pull-down'

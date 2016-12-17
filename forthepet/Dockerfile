@@ -25,7 +25,7 @@ ADD Gemfile.lock /home/app/forthepet/Gemfile.lock
 ENV BUNDLE_JOBS=4
 ENV BUNDLE_PATH=/bundle
 
-RUN gem install bundler -v '1.12.4'
+RUN gem install bundler -v '1.12.5'
 RUN bundle install --without development test
 # RUN /usr/local/rvm/bin/rvm wrapper ruby-2.3.1 --no-prefix --all
 RUN cd /usr/local/rvm/bin/ && ./rvm get stable && ./rvm reload && ./rvm repair all
