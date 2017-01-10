@@ -1,7 +1,7 @@
 class Shopping::CartItemsController < ApplicationController
   def create_variant
     @cart_item = CartItem.new(cart_item_params)
-    @cart_item.user_id = current_user.nil? ? nil : current_user.id
+    @cart_item.user_id = current_user&.id
 
     if cookies[:cart_id].blank?
       cart = Cart.create
@@ -13,9 +13,15 @@ class Shopping::CartItemsController < ApplicationController
 
   def update
     @cart_item = CartItem.find(params[:id])
-    quantity = params[:cart_item][:quantity]
+    if params[:frequency]
+      @cart_item.update_attribute :frequency, params[:frequency]
+      @message = "#{@cart_item.name} delivery frequency has been updated"
+    else
+      quantity = params[:cart_item][:quantity]
+      @cart_item.update_attribute(:quantity, quantity)
+      @message = "#{@cart_item.name} quantity has been updated"
+    end
 
-    @cart_item.update_attribute(:quantity, quantity)
     @cart_items = cart_items
     @postage = CalculatePostage.calculate(session_cart, session[:postcode])
   end
@@ -30,7 +36,9 @@ class Shopping::CartItemsController < ApplicationController
   private
 
   def cart_item_params
-    params.require(:cart_item).permit(:variant_id, :quantity)
+    keys = [:variant_id, :quantity]
+    keys << :frequency if params[:repeat_delivery] == "true"
+    params.require(:cart_item).permit *keys
   end
 
   def cart_items

@@ -1,6 +1,8 @@
 class Shopping::CheckoutController < ApplicationController
   include Wicked::Wizard
 
+  before_action :authenticate_user!, only: [:show], if: :has_repeat_delivery?
+
   layout '../shopping/checkout/wizard'
   add_crumb 'Shopping Cart', '/cart'
 
@@ -41,14 +43,32 @@ class Shopping::CheckoutController < ApplicationController
   end
 
   def create
+    unless current_user.braintree_customer_id.present?
+      result = Braintree::Customer.create current_user.slice(:first_name,
+        :last_name, :email, :phone)
+      if result.success?
+        current_user.update_attribute :braintree_customer_id, result.customer.id
+      end
+    end
+
+    result = Braintree::PaymentMethod.create(
+      customer_id: current_user.braintree_customer_id,
+      payment_method_nonce: params[:payment_method_nonce]
+    )
+
+    if result.success?
+      payment_method = current_user.payment_methods.create(
+        braintree_token: result.payment_method.token
+      )
+    end
+
     postage = CalculatePostage.calculate(session_cart, session[:postcode])
 
-    nonce = params[:payment_method_nonce]
     discount = session[:coupon_discount]
 
     @result = Braintree::Transaction.sale(
       amount: session_cart.total + postage.cost - discount.to_d,
-      payment_method_nonce: nonce,
+      payment_method_token: payment_method.braintree_token,
       options: {
         submit_for_settlement: true
       }
@@ -58,7 +78,7 @@ class Shopping::CheckoutController < ApplicationController
       session_order.transaction_no = @result.transaction.id
       session_order.postage = postage.cost
       session_order.coupon_code_id = session[:coupon_code_id]
-      order = ProcessOrder.new(session_order, session_cart)
+      order = ProcessOrder.new(session_order, session_cart, payment_method)
       order.process
       clear_order_session
       redirect_to wizard_path(:summary)
@@ -98,6 +118,10 @@ class Shopping::CheckoutController < ApplicationController
       @session_order = Order.find(session[:order_id])
     end
     @session_order
+  end
+
+  def has_repeat_delivery?
+    session_cart.cart_items.any? &:has_repeat_delivery?
   end
 
 end
