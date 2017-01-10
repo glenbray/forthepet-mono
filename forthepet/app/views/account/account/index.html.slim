@@ -138,6 +138,39 @@
 
     hr
 
+    h1#subscriptions Subscriptions
+    - if @subscriptions.empty?
+      div You have no subscriptions.
+    - else
+      table.table
+        thead
+          th ID
+          th Status
+          th Start date
+          th End date
+          th Last Order Date
+          th Next Order Date
+          th Product
+          th Quantity
+          th Action
+          / th
+        - @subscriptions.each do |s|
+          tr
+            td = s.id
+            td = s.aasm_state
+            td = s.start_at&.to_date
+            td = s.end_at&.to_date
+            td = s&.last_order_on
+            td = s&.next_order_on
+            td = link_to s.variant.name, product_path(s.variant.product)
+            td = s.quantity
+            td
+              - if s.active?
+                = link_to 'cancel', cancel_account_subscription_path(s), method: :patch,
+                  data: { confirm: 'Are you sure?'}
+
+    hr
+
     h1#orders Order History
     - if @orders.count == 0
       div No orders have been made.
