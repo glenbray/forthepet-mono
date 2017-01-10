@@ -37,11 +37,31 @@
               = @product.price
             div class="quantity-wrapper"
               = c.input :quantity, collection: 1..10, input_html: { class: 'form-control show-quantity' }, include_blank: false, label: false
+
+            - if @product.repeat_deliverable?
+              hr
+              p: strong SELECT YOUR HOME DELIVERY FREQUENCY
+
+              .form-inline
+                label.control-label
+                  = radio_button_tag :repeat_delivery, true
+                  span<> Repeat delivery every
+                  = c.input :frequency, collection: CartItem.frequencies.keys, label: false,
+                    include_blank: false, input_html: { class: 'form-control show-quantity' }
+
+                br
+
+                label.control-label
+                  = radio_button_tag :repeat_delivery, false
+                  span< No thanks, I only want to receive this once.
+
+              .push-down
+
             = c.submit "Add to Cart", class: 'btn-cart'
 
         hr
         .push-down
-        
+
         h1.joy Spread the Joy!
         h2.share Sharing earns you rewards and discounts!
         div class="show-referal"
@@ -54,14 +74,14 @@
         .push-down
 
         div class="alert alert-default"
-          | Refer friends to recieve $5 off your next purchase when your referral makes a purchase. 
+          | Refer friends to recieve $5 off your next purchase when your referral makes a purchase.
           =link_to 'Read more about how it works here!', referrals_url
-      
+
         - if @product.features.present?
           hr
           .product-features
             h1.features Features
-            
+
             ul
               - @product.features.each do |feature|
                 li = feature.description.capitalize
@@ -80,3 +100,15 @@
   /         ul
   /           - @product.fine_prints_with_defaults.each do |fine_print|
   /             li = fine_print.description
+
+coffee:
+  $ ->
+    frequency_select = () ->
+      if $('#repeat_delivery_true').is(':checked')
+        $('#cart_item_frequency').prop('disabled', false)
+      else
+        $('#cart_item_frequency').prop('disabled', 'disabled')
+
+    frequency_select()
+    $("input[name='repeat_delivery']").change ->
+      frequency_select()

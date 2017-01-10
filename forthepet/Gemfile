@@ -89,3 +89,4 @@ gem 'reform', '~> 1.2.6'
 gem 'daemon_controller', '~> 1.2.0'
 gem 'react-rails'
 gem "selectize-rails"
+gem 'whenever', require: false
