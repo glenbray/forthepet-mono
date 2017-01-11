@@ -1,0 +1,48 @@
+.container
+  .row
+    div class="col-lg-12"
+      .admin-panel
+        div class="admin-title"
+          h3 Subscriptions
+        div class="admin-body"
+          div class="search"
+            = search_form_for @q, builder: SimpleForm::FormBuilder, url: admin_subscriptions_path do |f|
+              .row
+                div class="col-md-3 form-group"
+                  = f.input_field :aasm_state_cont, collection: [['Active', :active], ['Cancelled', :cancelled]], class: 'form-control'
+                div class="col-md-3 form-group"
+                  = f.submit 'Filter', class: 'btn btn-info'
+          table class="table table-striped"
+            thead
+              th = sort_link(@q, :id, 'ID', default_order: :des)
+              th User Id
+              th Product
+              th.center Qty
+              th = sort_link(@q, :start_at, 'Start date')
+              th = sort_link(@q, :end_at, 'End date')
+              th Last Order Date
+              th Next Order Date
+              th Frequency
+              th State
+              th
+            tbody
+              - @subscriptions.each do |subscription|
+                tr
+                  td = subscription.id
+                  td = subscription.user_id
+                  td = link_to subscription.variant.name, product_path(subscription.variant.product)
+                  td.center = subscription.quantity
+                  td = subscription.start_at.to_date
+                  td = subscription.end_at.to_date
+                  td = subscription.last_order_on
+                  td = subscription.next_order_on
+                  td = subscription.frequency
+                  td = subscription.aasm_state
+                  td
+                    = link_to 'View', admin_subscription_path(subscription)
+                    - if subscription.active?
+                      span<>
+                      = link_to 'Cancel', cancel_admin_subscription_path(subscription), method: :patch,
+                        data: { confirm: 'Are you sure?'}
+
+          = paginate @subscriptions

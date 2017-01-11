@@ -92,6 +92,9 @@ Forthepet::Application.routes.draw do
     end
 
     resources :coupons, only: [:index]
+    resources :subscriptions do
+      patch :cancel, on: :member
+    end
 
     resources :category
     resources :fine_prints, as: 'fine_prints', path: 'fine-prints'
