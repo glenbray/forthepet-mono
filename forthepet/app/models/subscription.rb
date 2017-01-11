@@ -38,7 +38,7 @@ class Subscription < ActiveRecord::Base
     state :cancelled
 
     event :cancel do
-      after { update! end_at: Time.current }
+      after { update! end_at: Time.current, next_order_on: nil }
       transitions from: :active, to: :cancelled
     end
   end
@@ -77,6 +77,22 @@ class Subscription < ActiveRecord::Base
 
     CustomerMailer.delay.customer_invoice(order)
     NewOrderMailer.delay.new_order
+  end
+
+  def shipping_full_name
+    "#{shipping_first_name} #{shipping_last_name}"
+  end
+
+  def billing_full_name
+    "#{billing_first_name} #{billing_last_name}"
+  end
+
+  def billing_address
+    "#{billing_address1} #{billing_suburb} #{billing_state} #{billing_postcode}"
+  end
+
+  def shipping_address
+    "#{shipping_address1} #{shipping_suburb} #{shipping_state} #{shipping_postcode}"
   end
 
   class << self
