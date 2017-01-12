@@ -27,7 +27,7 @@ class CalculatePostage
         cost = 40 if @postcode.between?(4225, 4449) # QLD
         cost = 60 if @postcode.between?(4450, 4999) # QLD
         cost = 60 if @postcode.between?(5201, 5999) # SA
-        cost = 90 if @postcode.between?(6207, 6999) # WA
+        cost = 90 if @postcode.between?(6000, 6999) # WA
         cost = 80 if @postcode.between?(7000, 7999) # TAS
         cost = 90 if @postcode.between?(800, 999)   # NT
       else
