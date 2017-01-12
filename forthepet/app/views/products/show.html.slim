@@ -46,7 +46,7 @@
                 label.control-label
                   = radio_button_tag :repeat_delivery, true
                   span<> Repeat delivery every
-                  = c.input :frequency, collection: CartItem.frequencies.keys, label: false,
+                  = c.input :frequency, collection: short_delivery_frequency_options, label: false,
                     include_blank: false, input_html: { class: 'form-control show-quantity' }
 
                 br
