@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   has_many :credits
   has_many :orders, -> { where "aasm_state != ?", :session }
   has_many :referrals
+  has_many :payment_methods
+  has_many :subscriptions
 
   has_many :user_discounts
   has_many :discounts, through: :user_discounts
@@ -41,6 +43,17 @@ class User < ActiveRecord::Base
 
   def orders_count
     orders.count
+  end
+
+  def braintree_customer
+    return if braintree_customer_id.blank?
+    Braintree::Customer.find braintree_customer_id
+  rescue Braintree::NotFoundError
+    nil
+  end
+
+  def default_payment_methods
+    payment_methods.find_by(default: true) || payment_methods.last
   end
 
   private

@@ -28,6 +28,9 @@ Forthepet::Application.routes.draw do
 
     resources :profile, only: [:index, :update]
     resources :orders
+    resources :subscriptions do
+      patch :cancel, on: :member
+    end
     resources :billing_addresses, only: [:create, :update]
     resources :shipping_addresses, only: [:create, :update]
     resources :update_password, only: [:update]
@@ -89,6 +92,9 @@ Forthepet::Application.routes.draw do
     end
 
     resources :coupons, only: [:index]
+    resources :subscriptions do
+      patch :cancel, on: :member
+    end
 
     resources :category
     resources :fine_prints, as: 'fine_prints', path: 'fine-prints'

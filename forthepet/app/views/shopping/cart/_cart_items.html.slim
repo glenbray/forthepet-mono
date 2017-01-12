@@ -22,15 +22,19 @@
               h5 = cart_item.variant.product.brand
               h5 = cart_item.variant.product.name
               p = cart_item.variant
+              = select_tag :frequency,
+                options_for_select(full_delivery_frequency_options.collect, cart_item.frequency),
+                include_blank: false,
+                data: {remote: true, url: cart_item_path(cart_item), method: :patch}
             td.hidden-xs
               span.at-cost
                 = cart_item.price
             td
               b class="tablesaw-cell-label" qty
-              = react_component('QuantityInput', { quantity: cart_item.quantity, 
+              = react_component('QuantityInput', { quantity: cart_item.quantity,
                                                    cart_item_id: cart_item.id,
                                                    authenticity_token: form_authenticity_token }, {style: 'display: inline-block;'})
-            td 
+            td
               b class="tablesaw-cell-label" subtotal
               span.item-subtotal
                 = cart_item.total_price

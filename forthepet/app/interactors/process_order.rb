@@ -1,8 +1,9 @@
 class ProcessOrder
-  def initialize(order, cart)
+  def initialize(order, cart, payment_method)
     @order = order
     @cart = cart
     @user = order.user
+    @payment_method = payment_method
   end
 
   def process
@@ -24,6 +25,7 @@ class ProcessOrder
 
   def save_cart_to_order
     @cart.cart_items.each do |cart_item|
+      create_subscription(cart_item) if cart_item.has_repeat_delivery?
       attributes = cart_item_attributes(cart_item)
       order_item = create_order_item(attributes)
       order_item.pay!
@@ -75,6 +77,14 @@ class ProcessOrder
   def send_emails
     customer_invoice
     new_order_email
+  end
+
+  def create_subscription cart_item
+    Subscription.create({start_at: Time.current, variant_id: cart_item.variant_id,
+      quantity: cart_item.quantity, frequency: cart_item.frequency,
+      next_order_on: Date.current + cart_item.frequency_to_time,
+      user: @user, payment_method: @payment_method}
+      .merge(@order.slice *Subscription::SHARED_ATTRIBUTES_WITH_ORDERS))
   end
 
   private
