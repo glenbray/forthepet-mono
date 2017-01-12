@@ -21,6 +21,8 @@ set :linked_dirs, %w(log tmp/pids tmp/cache tmp/sockets)
 set :bundle_roles, %w(all)
 set :bundle_jobs, 4
 set :bundle_bins, fetch(:bundle_bins, []).push('bin/delayed_job')
+set :whenever_roles, -> { [:all] }
+set :whenever_environment, fetch(:stage)
 set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
 
 namespace :deploy do
