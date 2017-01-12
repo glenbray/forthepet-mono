@@ -33,7 +33,7 @@
                   td = link_to subscription.variant.name, product_path(subscription.variant.product)
                   td.center = subscription.quantity
                   td = subscription.start_at.to_date
-                  td = subscription.end_at.to_date
+                  td = subscription.end_at&.to_date
                   td = subscription.last_order_on
                   td = subscription.next_order_on
                   td = subscription.frequency
