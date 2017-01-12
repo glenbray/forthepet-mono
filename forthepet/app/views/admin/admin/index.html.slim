@@ -5,6 +5,10 @@
   .row
     .col-sm-3
       div class="admin-overview"
+        h4 Active Subscriptions
+        span = @active_subscriptions_count
+    .col-sm-3
+      div class="admin-overview"
         h4 Total Orders
         span = @order_count
     .col-sm-3

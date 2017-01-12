@@ -12,6 +12,7 @@ class Admin::AdminController < ActionController::Base
     @active_count = Product.active.count
     @order_count = Order.non_session_orders.count
     @orders_total = Order.sum(:total)
+    @active_subscriptions_count = Subscription.active.count
   end
 
   def current_ability

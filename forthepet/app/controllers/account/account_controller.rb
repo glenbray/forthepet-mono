@@ -7,6 +7,7 @@ class Account::AccountController < ApplicationController
 
     @user = UserDecorator.decorate(current_user)
     @orders = OrderDecorator.decorate_collection(@user.orders.non_session_orders)
+    @subscriptions = @user.subscriptions
 
     @credits = 0
     @user.credits.each do |c|

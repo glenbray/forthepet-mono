@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
         resource.save
       end
 
-      root_url
+      request.env['omniauth.origin'] || stored_location_for(resource) || root_path
     else
       admin_root_url
     end

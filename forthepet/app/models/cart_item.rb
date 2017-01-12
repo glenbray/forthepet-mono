@@ -1,4 +1,6 @@
 class CartItem < ActiveRecord::Base
+  include RepeatDeliverable
+
   belongs_to :cart, counter_cache: true
   belongs_to :variant
 
@@ -19,5 +21,9 @@ class CartItem < ActiveRecord::Base
 
   def name
     "#{variant.product.brand} #{variant.product.name}"
+  end
+
+  def has_repeat_delivery?
+    attributes['frequency'].in? 1..10
   end
 end

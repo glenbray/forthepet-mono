@@ -1,0 +1,81 @@
+.container
+  .row
+    div class="col-lg-12"
+      = link_to admin_subscriptions_path, class: 'generic-outlined-btn push-down' do
+        i class="fa fa-arrow-circle-o-left fa-2"
+        | Return to Subscriptions
+  .row
+    div class="col-lg-12"
+      .admin-panel
+        div class="admin-title"
+          h3 Subscription
+        div class="admin-body"
+          .row
+            .col-lg-7
+              table.table
+                thead
+                  th Subscription Information
+                  th
+                tbody
+                  tr
+                    td ID
+                    td = @subscription.id
+                  tr
+                    td User ID
+                    td = @subscription.user_id
+                  tr
+                    td Start Date
+                    td = @subscription.start_at.to_date
+                  tr
+                    td End Date
+                    td = @subscription.end_at&.to_date
+                  tr
+                    td Last Order Date
+                    td = @subscription.last_order_on
+                  tr
+                    td Next Order Date
+                    td = @subscription.next_order_on
+                  tr
+                    td State
+                    td = @subscription.aasm_state
+                  tr
+                    td Frequency
+                    td = @subscription.frequency
+                  tr
+                    td Product
+                    td = link_to @subscription.variant.product.name, @subscription.variant.product
+                  tr
+                    td Variant
+                    td = @subscription.variant
+                  tr
+                    td Shipping Full Name
+                    td = @subscription.shipping_full_name
+                  tr
+                    td Shipping Address
+                    td = @subscription.shipping_address
+                  tr
+                    td Billing Full Name
+                    td = @subscription.billing_full_name
+                  tr
+                    td Billing Address
+                    td = @subscription.billing_address
+
+          hr
+
+          h3 Orders
+
+          table class="table table-striped" style="margin-top: 20px;"
+            thead
+              th ID
+              th Status
+              th Purchased Date
+              th Total
+              th
+            tbody
+              - @subscription.orders.each do |order|
+                tr
+                  td = order.id
+                  td = order.aasm_state
+                  td = order.purchased_at.to_date
+                  td $#{order.total}
+                  td = link_to 'View', admin_order_path(order)

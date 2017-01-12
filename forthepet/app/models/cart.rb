@@ -9,6 +9,7 @@ class Cart < ActiveRecord::Base
 
     cart_items.each do |c|
       if c.variant_id == cart_item.variant_id
+        c.frequency = cart_item.frequency
         c.quantity += cart_item.quantity
         c.save && return
       end
