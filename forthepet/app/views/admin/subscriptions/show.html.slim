@@ -28,7 +28,7 @@
                     td = @subscription.start_at.to_date
                   tr
                     td End Date
-                    td = @subscription.end_at.to_date
+                    td = @subscription.end_at&.to_date
                   tr
                     td Last Order Date
                     td = @subscription.last_order_on
