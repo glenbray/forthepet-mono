@@ -43,23 +43,27 @@ class Shopping::CheckoutController < ApplicationController
   end
 
   def create
-    unless current_user.braintree_customer_id.present?
-      result = Braintree::Customer.create current_user.slice(:first_name,
-        :last_name, :email, :phone)
-      if result.success?
-        current_user.update_attribute :braintree_customer_id, result.customer.id
+    nonce = params[:payment_method_nonce]
+
+    if current_user
+      unless current_user.braintree_customer_id.present?
+        result = Braintree::Customer.create current_user.slice(:first_name,
+          :last_name, :email, :phone)
+        if result.success?
+          current_user.update_attribute :braintree_customer_id, result.customer.id
+        end
+
+        result = Braintree::PaymentMethod.create(
+          customer_id: current_user.braintree_customer_id,
+          payment_method_nonce: nonce
+        )
+
+        if result.success?
+          payment_method = current_user.payment_methods.create(
+            braintree_token: result.payment_method.token
+          )
+        end
       end
-    end
-
-    result = Braintree::PaymentMethod.create(
-      customer_id: current_user.braintree_customer_id,
-      payment_method_nonce: params[:payment_method_nonce]
-    )
-
-    if result.success?
-      payment_method = current_user.payment_methods.create(
-        braintree_token: result.payment_method.token
-      )
     end
 
     postage = CalculatePostage.calculate(session_cart, session[:postcode])
@@ -68,7 +72,8 @@ class Shopping::CheckoutController < ApplicationController
 
     @result = Braintree::Transaction.sale(
       amount: session_cart.total + postage.cost - discount.to_d,
-      payment_method_token: payment_method.braintree_token,
+      payment_method_nonce: nonce,
+      payment_method_token: payment_method&.braintree_token,
       options: {
         submit_for_settlement: true
       }
