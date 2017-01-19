@@ -1,5 +1,5 @@
 # config valid only for Capistrano 3.1
-lock '3.4.0'
+lock '3.7.1'
 
 set :application, 'forthepet'
 set :deploy_to, '/var/www/forthepet'
