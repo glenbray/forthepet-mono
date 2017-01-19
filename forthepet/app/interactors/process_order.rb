@@ -79,12 +79,18 @@ class ProcessOrder
     new_order_email
   end
 
-  def create_subscription cart_item
-    Subscription.create({start_at: Time.current, variant_id: cart_item.variant_id,
-      quantity: cart_item.quantity, frequency: cart_item.frequency,
+  def create_subscription(cart_item)
+    order_attributes = @order.slice(*Subscription::SHARED_ATTRIBUTES_WITH_ORDERS)
+
+    Subscription.create({
+      start_at: Time.current,
+      variant_id: cart_item.variant_id,
+      quantity: cart_item.quantity,
+      frequency: cart_item.frequency,
       next_order_on: Date.current + cart_item.frequency_to_time,
-      user: @user, payment_method: @payment_method}
-      .merge(@order.slice *Subscription::SHARED_ATTRIBUTES_WITH_ORDERS))
+      user: @user,
+      payment_method: @payment_method
+    }.merge(order_attributes))
   end
 
   private
