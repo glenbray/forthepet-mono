@@ -22,19 +22,19 @@ describe ProcessOrder do
 
     it 'saves cart total to order total' do
       allow(cart).to receive(:total) { 100.42 }
-      ProcessOrder.new(order, cart).process
+      ProcessOrder.new(order, cart, nil).process
       expect(order.total).to eq(100.42)
     end
 
     it 'saves cart items to order' do
-      process_order = ProcessOrder.new(order, cart)
+      process_order = ProcessOrder.new(order, cart, nil)
       expect {
         process_order.process
       }.to change(OrderItem, :count).by(1)
     end
 
     it 'creates an order item with correct attributes' do
-      process_order = ProcessOrder.new(order, cart)
+      process_order = ProcessOrder.new(order, cart, nil)
       process_order.process
       order_item = order.order_items.first
       cart_item = cart.cart_items.first
@@ -44,7 +44,7 @@ describe ProcessOrder do
     end
 
     it 'updates each item state from pending to paid' do
-      process_order = ProcessOrder.new(order, cart)
+      process_order = ProcessOrder.new(order, cart, nil)
       process_order.process
 
       order.order_items.each do |order_item|
@@ -53,13 +53,13 @@ describe ProcessOrder do
     end
 
     it 'updates order state from session to pending' do
-      process_order = ProcessOrder.new(order, cart)
+      process_order = ProcessOrder.new(order, cart, nil)
       process_order.process
       expect(order.aasm_state).to eq('pending')
     end
 
     it 'updates orders purchased_at with current time' do
-      process_order = ProcessOrder.new(order, cart)
+      process_order = ProcessOrder.new(order, cart, nil)
 
       expect {
         process_order.process
@@ -67,7 +67,7 @@ describe ProcessOrder do
     end
 
     it 'sends customer an invoice email' do
-      ProcessOrder.new(order, cart).process
+      ProcessOrder.new(order, cart, nil).process
       expect(ActionMailer::Base.deliveries).not_to be_empty
     end
 
@@ -79,7 +79,7 @@ describe ProcessOrder do
         user.referred_by = referrer.email
         order.user = user
 
-        process_order = ProcessOrder.new(order, cart)
+        process_order = ProcessOrder.new(order, cart, nil)
         process_order.process
 
         expect(referrer.referrals.count).to eq(1)
@@ -90,7 +90,7 @@ describe ProcessOrder do
         allow(user.orders).to receive(:count) { 2 }
         order.user = user
 
-        process_order = ProcessOrder.new(order, cart)
+        process_order = ProcessOrder.new(order, cart, nil)
         process_order.process
         expect(referrer.referrals.count).to eq(0)
       end
@@ -100,7 +100,7 @@ describe ProcessOrder do
         user.referred_by = referrer.email
         order.user = user
 
-        process_order = ProcessOrder.new(order, cart)
+        process_order = ProcessOrder.new(order, cart, nil)
         process_order.process
 
         expect(referrer.user_discounts.count).to eq(1)
