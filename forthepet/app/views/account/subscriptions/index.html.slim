@@ -32,9 +32,9 @@
               br
               | Next Dispatch: #{s.next_order_on}
             td
-              = link_to 'change payment', edit_account_subscription_path(s)
+              = link_to 'change payment', edit_account_subscription_path(s, mode: :payment)
               br
-              = link_to 'change frequency', edit_account_subscription_path(s)
+              = link_to 'change frequency', edit_account_subscription_path(s, mode: :frequency)
               br
               = link_to 'place on hold', pause_account_subscription_path(s), method: :patch,
                 data: { confirm: 'Are you sure?'}
