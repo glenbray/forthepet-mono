@@ -18,6 +18,22 @@
     hr
 
     h3 Change Payment Method
+    
+    - if Rails.env.development?
+      .jumbotron
+        h2 Fake Credit Cards
+        = link_to 'More testing data', 'https://developers.braintreepayments.com/javascript+ruby/reference/general/testing'
+        table.table
+          thead
+            th Credit Card No
+            th cvv
+          tbody
+            tr
+              td 4111111111111111
+              td 222
+            tr
+              td 5555555555554444
+              td 222
 
     p
       span> Current Payment Method:
