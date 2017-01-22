@@ -88,6 +88,8 @@ class Subscription < ActiveRecord::Base
 
     CustomerMailer.delay.customer_invoice(order)
     NewOrderMailer.delay.new_order
+  rescue StandardError => e
+    Rollbar.error(e)
   end
 
   def shipping_full_name
@@ -109,7 +111,7 @@ class Subscription < ActiveRecord::Base
   class << self
     def create_orders
       find_each do |subscription|
-        subscription.create_order rescue nil
+        subscription.create_order
       end
     end
   end
