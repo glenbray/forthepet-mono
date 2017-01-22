@@ -52,17 +52,17 @@ class Shopping::CheckoutController < ApplicationController
         if result.success?
           current_user.update_attribute :braintree_customer_id, result.customer.id
         end
+      end
 
-        result = Braintree::PaymentMethod.create(
-          customer_id: current_user.braintree_customer_id,
-          payment_method_nonce: nonce
+      result = Braintree::PaymentMethod.create(
+        customer_id: current_user.braintree_customer_id,
+        payment_method_nonce: nonce
+      )
+
+      if result.success?
+        payment_method = current_user.payment_methods.create(
+          braintree_token: result.payment_method.token
         )
-
-        if result.success?
-          payment_method = current_user.payment_methods.create(
-            braintree_token: result.payment_method.token
-          )
-        end
       end
     end
 
@@ -70,14 +70,20 @@ class Shopping::CheckoutController < ApplicationController
 
     discount = session[:coupon_discount]
 
-    @result = Braintree::Transaction.sale(
+    options = {
       amount: session_cart.total + postage.cost - discount.to_d,
-      payment_method_nonce: nonce,
-      payment_method_token: payment_method&.braintree_token,
       options: {
         submit_for_settlement: true
       }
-    )
+    }
+
+    if payment_method
+      options[:payment_method_token] = payment_method.braintree_token
+    else
+      options[:payment_method_nonce] = nonce
+    end
+
+    @result = Braintree::Transaction.sale options
 
     if @result.success?
       session_order.transaction_no = @result.transaction.id

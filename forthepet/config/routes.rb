@@ -29,7 +29,12 @@ Forthepet::Application.routes.draw do
     resources :profile, only: [:index, :update]
     resources :orders
     resources :subscriptions do
-      patch :cancel, on: :member
+      member do
+        patch :change_frequency
+        patch :cancel
+        patch :pause
+        patch :resume
+      end
     end
     resources :billing_addresses, only: [:create, :update]
     resources :shipping_addresses, only: [:create, :update]

@@ -1,2 +1,100 @@
-h1 Account::Subscriptions#index
-p Find me in app/views/account/subscriptions/index.html.slim
+.container
+  div class="col-md-3"
+    nav class="account-nav"
+      = render 'account/account/account_nav'
+
+  div class="col-md-9 default-panel"
+    h1 Subscriptions
+
+    h3 Active Subscriptions
+
+    - if @subscriptions.active.empty?
+      div You have no active subscriptions.
+    - else
+      table.table
+        - @subscriptions.active.each do |s|
+          tr
+            td style="width: 20%"
+              = link_to product_path(s.variant.product) do
+                div.cart-img
+                  - unless s.variant.product.photos.empty?
+                    = image_tag s.variant.product.first_photo, class: 'img-responsive'
+                  - else
+                    = image_tag "deal-placeholder.png", class: 'img-responsive', style: "border: 1px solid #04aff7;"
+            td
+              = link_to product_path(s.variant.product) do
+                strong #{s.quantity} X #{s.variant.product.brand} #{s.variant.product.name} - #{s.variant}
+              br
+              | $#{s.quantity * s.variant.price}
+              br
+              | Delivery:
+              strong< = frequency_to_text(s.frequency)
+              br
+              | Next Dispatch: #{s.next_order_on}
+            td
+              = link_to 'change payment', edit_account_subscription_path(s)
+              br
+              = link_to 'change frequency', edit_account_subscription_path(s)
+              br
+              = link_to 'place on hold', pause_account_subscription_path(s), method: :patch,
+                data: { confirm: 'Are you sure?'}
+              br
+              = link_to 'cancel', cancel_account_subscription_path(s), method: :patch,
+                data: { confirm: 'Are you sure?'}
+    hr
+
+    h3 On Hold Subscriptions
+
+    - if @subscriptions.paused.empty?
+      div You have no on hold subscriptions.
+    - else
+      table.table
+        - @subscriptions.paused.each do |s|
+          tr
+            td style="width: 20%"
+              = link_to product_path(s.variant.product) do
+                div.cart-img
+                  - unless s.variant.product.photos.empty?
+                    = image_tag s.variant.product.first_photo, class: 'img-responsive'
+                  - else
+                    = image_tag "deal-placeholder.png", class: 'img-responsive', style: "border: 1px solid #04aff7;"
+            td
+              = link_to product_path(s.variant.product) do
+                strong #{s.quantity} X #{s.variant.product.brand} #{s.variant.product.name} - #{s.variant}
+              br
+              | $#{s.quantity * s.variant.price}
+              br
+              | Delivery:
+              strong< = frequency_to_text(s.frequency)
+            td
+              = link_to 'resume', resume_account_subscription_path(s), method: :patch,
+                data: { confirm: 'Are you sure?'}
+              br
+              = link_to 'cancel', cancel_account_subscription_path(s), method: :patch,
+                data: { confirm: 'Are you sure?'}
+    hr
+
+    h3 Cancelled Subscriptions
+
+    - if @subscriptions.cancelled.empty?
+      div You have no canceled subscriptions.
+    - else
+      table.table
+        - @subscriptions.cancelled.each do |s|
+          tr
+            td style="width: 20%"
+              = link_to product_path(s.variant.product) do
+                div.cart-img
+                  - unless s.variant.product.photos.empty?
+                    = image_tag s.variant.product.first_photo, class: 'img-responsive'
+                  - else
+                    = image_tag "deal-placeholder.png", class: 'img-responsive', style: "border: 1px solid #04aff7;"
+            td
+              = link_to product_path(s.variant.product) do
+                strong #{s.quantity} X #{s.variant.product.brand} #{s.variant.product.name} - #{s.variant}
+              br
+              | $#{s.quantity * s.variant.price}
+              br
+              | Delivery:
+              strong< = frequency_to_text(s.frequency)
+            td
