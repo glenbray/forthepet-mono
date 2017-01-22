@@ -1,10 +1,11 @@
 ul
   li
-    a href='#dashboard' id='#dashboard_a' data-turbolinks="false" Dashboard
+    = link_to 'Dashboard', account_root_path(anchor: 'dashboard_a'), data: {turbolinks: false}
   li
-    a href='#accountinfo' id='#accountinfo_a' data-turbolinks="false" Account Info
+    = link_to 'Account Info', account_root_path(anchor: 'accountinfo'), data: {turbolinks: false}
   li
-    a href='#subscriptions' id='#subscriptions_a' data-turbolinks="false" Subscriptions
+    = link_to 'Subscriptions', account_subscriptions_path, data: {turbolinks: false}
   li
-    a href='#orders' id='#orders_a' data-turbolinks="false" Orders
-  li = link_to 'Logout', destroy_user_session_path, method: :delete, style: 'color: #B60000;'
+    = link_to 'Orders', account_root_path(anchor: 'orders'), data: {turbolinks: false}
+  li
+    = link_to 'Logout', destroy_user_session_path, method: :delete, style: 'color: #B60000;'

@@ -1,8 +1,9 @@
 module CartItemsHelper
 
-  def full_delivery_frequency_options
-    [
-      ['Deliver Once', nil],
+  def full_delivery_frequency_options include_once = true
+    options = []
+    options << ['Deliver Once', nil] if include_once
+    options + [
       ['Delivery Every 1 Week', 'one_week'],
       ['Delivery Every 2 Weeks', 'two_weeks'],
       ['Delivery Every 3 Weeks', 'three_weeks'],
@@ -29,6 +30,33 @@ module CartItemsHelper
       ['3 Months', 'three_months'],
       ['6 Months', 'six_months']
     ]
+  end
+
+  def frequency_to_text frequency
+    case frequency.to_sym
+    when :one_week
+      'Every 1 Week'
+    when :two_weeks
+      'Every 2 Weeks'
+    when :three_weeks
+      'Every 3 Weeks'
+    when :four_weeks
+      'Every 4 Weeks'
+    when :five_weeks
+      'Every 5 Weeks'
+    when :six_weeks
+      'Every 6 Weeks'
+    when :seven_weeks
+      'Every 7 Weeks'
+    when :eight_weeks
+      'Every 8 Weeks'
+    when :three_months
+      'Every 3 Months'
+    when :six_months
+      'Every 6 Months'
+    else
+      nil
+    end
   end
 end
 

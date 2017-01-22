@@ -26,20 +26,31 @@ class Subscription < ActiveRecord::Base
     :postage
   ]
 
-  belongs_to :payment_method
-  belongs_to :user
-  belongs_to :variant
+  belongs_to :payment_method, required: true
+  belongs_to :user, required: true
+  belongs_to :variant, required: true
   has_many :orders
 
   include AASM
 
   aasm do
     state :active, initial: true
+    state :paused
     state :cancelled
+
+    event :pause do
+      after { update! next_order_on: nil }
+      transitions from: :active, to: :paused
+    end
+
+    event :resume do
+      after { update! next_order_on: Date.current + 1.day }
+      transitions from: :paused, to: :active
+    end
 
     event :cancel do
       after { update! end_at: Time.current, next_order_on: nil }
-      transitions from: :active, to: :cancelled
+      transitions from: [:active, :paused], to: :cancelled
     end
   end
 
