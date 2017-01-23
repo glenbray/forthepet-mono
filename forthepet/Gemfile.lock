@@ -48,6 +48,10 @@ GEM
     autoprefixer-rails (6.6.1)
       execjs
     aws_cf_signer (0.1.3)
+    axiom-types (0.1.1)
+      descendants_tracker (~> 0.0.4)
+      ice_nine (~> 0.11.0)
+      thread_safe (~> 0.3, >= 0.3.1)
     babel-source (5.8.35)
     babel-transpiler (0.7.0)
       babel-source (>= 4.0, < 6)
@@ -112,7 +116,11 @@ GEM
     cloudinary (1.3.0)
       aws_cf_signer
       rest-client
+    codeclimate-engine-rb (0.4.0)
+      virtus (~> 1.0)
     coderay (1.1.1)
+    coercible (1.0.0)
+      descendants_tracker (~> 0.0.1)
     coffee-script (2.4.1)
       coffee-script-source
       execjs
@@ -131,6 +139,8 @@ GEM
     delayed_job_active_record (4.1.1)
       activerecord (>= 3.0, < 5.1)
       delayed_job (>= 3.0, < 5)
+    descendants_tracker (0.0.4)
+      thread_safe (~> 0.3, >= 0.3.1)
     devise (3.5.10)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -150,6 +160,7 @@ GEM
       activemodel (>= 3.0)
       activesupport (>= 3.0)
       request_store (~> 1.0)
+    equalizer (0.0.11)
     erubis (2.7.0)
     exception_handler (0.3.45)
     execjs (2.7.0)
@@ -161,6 +172,15 @@ GEM
     faker (1.4.3)
       i18n (~> 0.5)
     ffi (1.9.17)
+    flay (2.8.1)
+      erubis (~> 2.7.0)
+      path_expander (~> 1.0)
+      ruby_parser (~> 3.0)
+      sexp_processor (~> 4.0)
+    flog (4.5.0)
+      path_expander (~> 1.0)
+      ruby_parser (~> 3.1, > 3.1.0)
+      sexp_processor (~> 4.4)
     font-awesome-rails (4.7.0.1)
       railties (>= 3.2, < 5.1)
     foreman (0.83.0)
@@ -193,6 +213,7 @@ GEM
       json (~> 1.8)
       multi_xml (>= 0.5.2)
     i18n (0.7.0)
+    ice_nine (0.11.2)
     jquery-cookie-rails (1.3.1.1)
       railties (>= 3.2.0, < 5.0)
     jquery-rails (4.2.2)
@@ -251,6 +272,7 @@ GEM
     orm_adapter (0.5.0)
     parser (2.3.3.1)
       ast (~> 2.2)
+    path_expander (1.0.1)
     pg (0.19.0)
     polyamorous (1.3.1)
       activerecord (>= 3.0)
@@ -311,6 +333,10 @@ GEM
       execjs
       railties (>= 3.2)
       tilt
+    reek (4.5.4)
+      codeclimate-engine-rb (~> 0.4.0)
+      parser (~> 2.3.1, >= 2.3.1.2)
+      rainbow (~> 2.0)
     reform (1.2.6)
       activemodel
       disposable (~> 0.0.5)
@@ -369,6 +395,17 @@ GEM
       unicode-display_width (~> 1.0, >= 1.0.1)
     ruby-progressbar (1.8.1)
     ruby_dep (1.5.0)
+    ruby_parser (3.8.4)
+      sexp_processor (~> 4.1)
+    rubycritic (3.1.3)
+      flay (~> 2.8)
+      flog (~> 4.4)
+      launchy (= 2.4.3)
+      parser (= 2.3.3.1)
+      rainbow (~> 2.1)
+      reek (~> 4.4)
+      ruby_parser (~> 3.8)
+      virtus (~> 1.0)
     sass (3.4.23)
     sass-rails (5.0.6)
       railties (>= 4.0.0, < 6)
@@ -379,6 +416,7 @@ GEM
     seed_dumper (0.1.3)
       rails
     selectize-rails (0.12.3)
+    sexp_processor (4.7.0)
     shellany (0.0.1)
     shoulda-matchers (2.8.0)
       activesupport (>= 3.0.0)
@@ -430,6 +468,11 @@ GEM
     unf_ext (0.0.7.2)
     unicode-display_width (1.1.3)
     uniform_notifier (1.10.0)
+    virtus (1.0.5)
+      axiom-types (~> 0.1)
+      coercible (~> 1.0)
+      descendants_tracker (~> 0.0, >= 0.0.3)
+      equalizer (~> 0.0, >= 0.0.9)
     warden (1.2.6)
       rack (>= 1.0)
     whenever (0.9.7)
@@ -503,6 +546,7 @@ DEPENDENCIES
   rspec-collection_matchers
   rspec-rails (~> 3.5)
   rubocop
+  rubycritic
   sass-rails
   seed_dumper (~> 0.1.3)
   selectize-rails
