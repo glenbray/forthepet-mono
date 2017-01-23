@@ -39,7 +39,7 @@ end
 
 group :development, :test do
   gem 'foreman', require: false
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 3.5'
   gem 'rspec-collection_matchers'
   gem 'spring-commands-rspec'
   gem 'factory_girl_rails'
