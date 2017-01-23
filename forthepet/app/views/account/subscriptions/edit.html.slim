@@ -1,0 +1,80 @@
+.container
+  div class="col-md-3"
+    nav class="account-nav"
+      = render 'account/account/account_nav'
+
+  div class="col-md-9 default-panel"
+    h1 Edit Subscription
+
+    table.table
+      tr
+        td style="width: 20%"
+          = link_to product_path(@subscription.variant.product) do
+            div.cart-img
+              - unless @subscription.variant.product.photos.empty?
+                = image_tag @subscription.variant.product.first_photo, class: 'img-responsive'
+              - else
+                = image_tag "deal-placeholder.png", class: 'img-responsive', style: "border: 1px solid #04aff7;"
+        td
+          = link_to product_path(@subscription.variant.product) do
+            strong #{@subscription.quantity} X #{@subscription.variant.product.brand} #{@subscription.variant.product.name} - #{@subscription.variant}
+          br
+          | $#{@subscription.quantity * @subscription.variant.price}
+          br
+          | Delivery:
+          strong< = frequency_to_text(@subscription.frequency)
+          br
+          | Next Dispatch: #{@subscription.next_order_on}
+
+    - if params[:mode] == "frequency"
+      h3 Change Frequency
+
+      = select_tag :frequency,
+        options_for_select(full_delivery_frequency_options(false).collect, @subscription.frequency),
+        include_blank: false,
+        data: {remote: true, url: change_frequency_account_subscription_path(@subscription), method: :patch}
+
+      p Change frequency will take effect after next order.
+
+    - if params[:mode] == "payment"
+
+      h3 Change Payment Method
+
+      - if Rails.env.development?
+        .jumbotron
+          h2 Fake Credit Cards
+          = link_to 'More testing data', 'https://developers.braintreepayments.com/javascript+ruby/reference/general/testing'
+          table.table
+            thead
+              th Credit Card No
+              th cvv
+            tbody
+              tr
+                td 4111111111111111
+                td 222
+              tr
+                td 5555555555554444
+                td 222
+
+      p
+        span> Current Payment Method:
+        span
+          - case @subscription.payment_method.payment_type
+          - when :paypal
+            strong Paypal #{@braintree.email}
+          - when :card
+            strong #{@braintree.card_type} **** **** **** #{@braintree.last_4}
+
+      hr
+
+      = form_tag account_subscription_path(@subscription), method: :patch do
+        = hidden_field_tag :authenticity_token, form_authenticity_token
+        div id="js-dropin"
+        = button_tag 'Update Payment', class: 'btn btn-primary', style: 'margin-top: 50px', data: { disable_with: "Please wait..." }
+
+      script src="https://js.braintreegateway.com/v2/braintree.js"
+
+      javascript:
+        braintree.setup("#{@client_token}", 'dropin', {
+          container: 'js-dropin',
+        });
