@@ -25,8 +25,9 @@ group :development do
   gem 'capistrano-nc'
   gem 'capistrano3-delayed-job', '~> 1.0'
   gem 'capistrano-passenger', '= 0.0.1'
-  gem "capistrano-scm-gitcopy"
-  gem "rubycritic", :require => false
+  gem 'capistrano-scm-gitcopy'
+  gem 'rubycritic', :require => false
+  gem 'thin'
 end
 
 group :test do
@@ -89,5 +90,5 @@ gem 'skylight'
 gem 'reform', '~> 1.2.6'
 gem 'daemon_controller'
 gem 'react-rails'
-gem "selectize-rails"
+gem 'selectize-rails'
 gem 'whenever', require: false
