@@ -1,0 +1,33 @@
+.col-md-2.hidden-sm.hidden-xs
+  .panel.panel-primary
+    .panel-heading
+      h3.panel-title Brands
+    .panel-body
+      = form_tag url_for(params), method: :get do
+        - brands.each do |brand|
+          .checkbox
+            label
+              => check_box_tag 'brand_ids[]', brand.id, params[:brand_ids]&.include?(brand.id.to_s)
+              span = brand.name
+        .form-group
+          = submit_tag 'Filter'
+          = link_to 'Clear', url_for(params.except(:brand_ids)), class: 'pull-right'
+
+.col-xs-12.visible-xs.visible-sm
+  .panel.panel-primary
+    .panel-heading
+      h4.panel-title
+        a.collapsed data-toggle="collapse" data-target="#collapsable-filter" href="#collapsable-filter"
+        | Brands
+
+    #collapsable-filter.panel-collapse.collapse
+      .panel-body
+        = form_tag url_for(params), method: :get do
+          - brands.each do |brand|
+            .checkbox
+              label
+                => check_box_tag 'brand_ids[]', brand.id, params[:brand_ids]&.include?(brand.id.to_s)
+                span = brand.name
+          .form-group
+            = submit_tag 'Filter'
+            = link_to 'Clear', url_for(params.except(:brand_ids)), class: 'pull-right'

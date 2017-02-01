@@ -1,21 +1,8 @@
-- content_for(:filter_menu) do
-  h3 Brands
-  
-  ul
-    - @brands.each do |brand|
-      li = link_to brand.name, url_for(params.merge(brand_id: brand.id))
-
 .container
   - unless @products.blank?
     .row
-      .col-md-2.hidden-sm.hidden-xs
-        .filter-panel
-          h3 Brands
-          
-          ul
-            - @brands.each do |brand|
-              li = link_to brand.name, url_for(params.merge(brand_id: brand.id))
-          
+      = render 'shared/filter_panel', brands: @brands
+
       .col-md-10.col-xs-12
         #products
           - @products.each do |product|

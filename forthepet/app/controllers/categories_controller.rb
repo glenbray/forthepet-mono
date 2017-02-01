@@ -9,7 +9,8 @@ class CategoriesController < ApplicationController
     if params[:tertiary_id].present?
       @tertiary_category = @primary_category.descendants.find_by! slug: params[:tertiary_id]
       products = Product.by_category(@tertiary_category)
-        .filter_by_brand(params[:brand_id]).page(params[:page])
+      products = products.by_brand_ids(params[:brand_ids]) if params[:brand_ids].present?
+      products = products.page(params[:page])
       @products = ProductDecorator.decorate_collection(products)
       @brands = Brand.by_category(@tertiary_category)
     end

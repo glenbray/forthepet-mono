@@ -22,4 +22,5 @@
  *= require controls
  *= require quantity_input
  *= require tablesaw.stackonly
+ *= require filter_panel
  */

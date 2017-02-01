@@ -23,6 +23,7 @@ class Product < ActiveRecord::Base
   scope :by_category, ->category do
     joins(:categories).where 'categories.id' => category.self_and_descendant_ids
   end
+  scope :by_brand_ids, ->brand_ids { where brand_id: brand_ids }
 
   extend FriendlyId
 

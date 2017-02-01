@@ -1,6 +1,8 @@
 class ProductsController < ApplicationController
   def index
-    products = Product.products.filter_by_brand(params[:brand_id]).page(params[:page])
+    products = Product.products
+    products = products.by_brand_ids(params[:brand_ids]) if params[:brand_ids].present?
+    products = products.page(params[:page])
     @products = ProductDecorator.decorate_collection(products)
     load_brands
   end

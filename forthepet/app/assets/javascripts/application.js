@@ -18,6 +18,7 @@
 //= require bootstrap/transition
 //= require bootstrap/modal
 //= require bootstrap/alert
+//= require bootstrap/collapse
 //= require moment
 //= require_directory ./other
 //= require jquery.cookie
