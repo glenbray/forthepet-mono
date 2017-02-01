@@ -2,20 +2,31 @@ h1.text-center The #{@primary_category.name} shop
 
 hr
 
-- @primary_category.children.each do |secondary_category|
-  .col-md-3
-    .panel.panel-default
-      .panel-body.text-center
-        = image_tag secondary_category.picture.url(:small), class: 'img-responsive'
-        h3
-          = link_to secondary_category.name,
+.col-lg-12.hidden-sm.hidden-xs
+  - @primary_category.children.each do |secondary_category|
+    .col-md-3
+      .panel.panel-default
+        .panel-body.text-center
+          = image_tag secondary_category.picture.url(:small), class: 'img-responsive'
+          h3
+            = link_to secondary_category.name,
+              secondary_category_path(@primary_category.slug, secondary_category.slug)
+
+          - secondary_category.children.each do |tertiary_category|
+            p
+              = link_to tertiary_category.name,
+                tertiary_category_path(@primary_category.slug, secondary_category.slug, tertiary_category.slug)
+          hr
+
+          = link_to "See all #{secondary_category.name}",
             secondary_category_path(@primary_category.slug, secondary_category.slug)
 
-        - secondary_category.children.each do |tertiary_category|
-          p
-            = link_to tertiary_category.name,
-              tertiary_category_path(@primary_category.slug, secondary_category.slug, tertiary_category.slug)
-        hr
-
-        = link_to "See all #{secondary_category.name}",
-          secondary_category_path(@primary_category.slug, secondary_category.slug)
+.visible-sm.visible-xs
+  table.table
+    - @primary_category.children.each do |secondary_category|
+      tr
+        td style="width: 30%;"
+          = image_tag secondary_category.picture.url(:small), class: 'img-responsive'
+        td.text-center style="vertical-align: middle;"
+          strong = link_to secondary_category.name,
+            secondary_category_path(@primary_category.slug, secondary_category.slug)

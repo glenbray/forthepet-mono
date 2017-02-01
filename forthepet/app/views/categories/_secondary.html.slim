@@ -2,10 +2,21 @@ h1.text-center = @secondary_category.name
 
 hr
 
-- @secondary_category.children.each do |tertiary_category|
-  .col-md-3
-    .panel.panel-default
-      .panel-body.text-center
-        = link_to tertiary_category_path(@primary_category.slug, @secondary_category.slug, tertiary_category.slug) do
+.col-lg-12.hidden-sm.hidden-xs
+  - @secondary_category.children.each do |tertiary_category|
+    .col-md-3
+      .panel.panel-default
+        .panel-body.text-center
+          = link_to tertiary_category_path(@primary_category.slug, @secondary_category.slug, tertiary_category.slug) do
+            = image_tag tertiary_category.picture.url(:small), class: 'img-responsive'
+            h3 = tertiary_category.name
+
+.visible-sm.visible-xs
+  table.table
+    - @secondary_category.children.each do |tertiary_category|
+      tr
+        td style="width: 30%;"
           = image_tag tertiary_category.picture.url(:small), class: 'img-responsive'
-          h3 = tertiary_category.name
+        td.text-center style="vertical-align: middle;"
+          strong = link_to tertiary_category.name,
+            tertiary_category_path(@primary_category.slug, @secondary_category.slug, tertiary_category.slug)
