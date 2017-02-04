@@ -21,9 +21,8 @@ html
         nav class="off-canvas-left"
           ul
             = nav_link 'Home', root_path
-            = nav_link 'Dog', dog_products_path
-            = nav_link 'Cat', cat_products_path
-            = nav_link 'Misc', misc_products_path
+            - Category.roots.each do |category|
+              = nav_link category.name, primary_category_path(category.slug)
             = nav_link 'Refer a Friend', referrals_path
             = nav_link 'How it works', how_it_works_path
             = nav_link 'About', about_path

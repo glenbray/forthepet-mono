@@ -4,15 +4,20 @@ class CategoryUploader < CarrierWave::Uploader::Base
   include Cloudinary::CarrierWave
 
   version :small do
-    process resize_and_fill: [300, 250]
+    process resize_to_fill: [300, 250]
   end
 
   version :thumbnail do
-    process resize_and_fill: [80, 80]
+    process resize_to_fill: [80, 80]
   end
 
   def default_url(*args)
-    'http://placehold.it/350x250?text='
+    case version_name
+    when :thumbnail
+      'http://placehold.it/80x80'
+    else
+      'http://placehold.it/300x250'
+    end
   end
 
 end
