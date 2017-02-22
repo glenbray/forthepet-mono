@@ -27,7 +27,7 @@ group :development do
   gem 'capistrano-passenger', '= 0.0.1'
   gem 'capistrano-scm-gitcopy'
   gem 'rubycritic', :require => false
-  gem 'thin'
+  gem 'puma'
 end
 
 group :test do

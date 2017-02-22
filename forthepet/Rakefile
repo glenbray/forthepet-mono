@@ -4,7 +4,7 @@
 tasks = Rake.application.top_level_tasks
 
 tasks = tasks.flat_map { |task| task.split(':') }
-task_names = ['docker', 'backup', 'backup_existing']
+task_names = ['docker', 'backup', 'backup_existing', 'backup_with_images']
 
 if !(task_names & tasks).empty?
   import './tasks.rake'

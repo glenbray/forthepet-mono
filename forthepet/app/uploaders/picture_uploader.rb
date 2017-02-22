@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 class PictureUploader < CarrierWave::Uploader::Base
   include Cloudinary::CarrierWave
 
@@ -24,5 +22,4 @@ class PictureUploader < CarrierWave::Uploader::Base
   version :product_small do
     process resize_and_pad: [55, 55]
   end
-
 end
