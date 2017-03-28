@@ -45,7 +45,7 @@ html
                     p = number_to_currency(session_cart.total)
                     p = (@postage&.cost && @postage&.cost > 0) ? number_to_currency(@postage.cost) : 'Free'
                     p = session[:coupon_discount].to_i > 0 ? "- #{number_to_currency(session[:coupon_discount])}" : number_to_currency(0)
-                    p style="font-size: 1.1em" = number_to_currency(session_cart.total + (@postage&.cost || 0) - session[:coupon_discount].to_d)
+                    p style="font-size: 1.1em" = number_to_currency(session_cart.total + (@postage&.cost || 0) - (session[:coupon_discount]&.to_d || 0))
   
       = yield
     = javascript_include_tag "application", "data-turbolinks-track" => true, async: Rails.env.production?
