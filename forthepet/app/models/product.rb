@@ -28,7 +28,7 @@ class Product < ActiveRecord::Base
     [[:title]]
   end
 
-  paginates_per 15
+  paginates_per 16
 
   def title
     "#{brand} #{name}"

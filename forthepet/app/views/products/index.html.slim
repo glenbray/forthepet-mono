@@ -11,7 +11,6 @@
       .col-md-2.hidden-sm.hidden-xs
         .filter-panel
           h3 Brands
-          
           ul
             - @brands.each do |brand|
               li = link_to brand.name, url_for(params.merge(brand_id: brand.id))
@@ -20,7 +19,7 @@
         #products
           - @products.each do |product|
             = render product
-    .row.pagination-container
-      = paginate @products
+    .row
+      nav.pagination-container = paginate @products
   - else
     h1 No Products Currently Available
