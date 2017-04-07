@@ -12,7 +12,8 @@
           = link_to product_path(@subscription.variant.product) do
             div.cart-img
               - unless @subscription.variant.product.photos.empty?
-                = image_tag @subscription.variant.product.first_photo, class: 'img-responsive'
+                = image_tag @subscription.variant.product.first.picture_url(:thumbnail), class: 'img-responsive'
+
               - else
                 = image_tag "deal-placeholder.png", class: 'img-responsive', style: "border: 1px solid #04aff7;"
         td

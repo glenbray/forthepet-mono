@@ -199,16 +199,6 @@
   text-decoration: line-through;
 }
 
-.discount {
-  display: inline;
-  font-family: 'Overlock', cursive;
-  margin: 5px;
-  font-weight: bold;
-  font-size: 26px;
-  color: green;
-  margin-left: 40px;
-}
-
 .product-item-box {
   border: 1px solid #000;
   background: #fff;
@@ -406,11 +396,5 @@
 
   .modal-body {
     padding: 25px 15px;
-  }
-}
-
-.deal-features {
-  ul {
-    padding-left: 18px;
   }
 }

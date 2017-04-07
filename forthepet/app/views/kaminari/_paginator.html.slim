@@ -1,6 +1,5 @@
 = paginator.render do
   ul.pagination
-    == first_page_tag unless current_page.first?
     == prev_page_tag unless current_page.first?
 
     - each_page do |page|
@@ -10,4 +9,3 @@
         == gap_tag
 
     == next_page_tag unless current_page.last?
-    == last_page_tag unless current_page.last?

@@ -21,8 +21,8 @@
                     td ID
                     td = @subscription.id
                   tr
-                    td User ID
-                    td = @subscription.user_id
+                    td Email
+                    td = @subscription.user.email
                   tr
                     td Start Date
                     td = @subscription.start_at.to_date
@@ -42,12 +42,6 @@
                     td Frequency
                     td = @subscription.frequency
                   tr
-                    td Product
-                    td = link_to @subscription.variant.product.name, @subscription.variant.product
-                  tr
-                    td Variant
-                    td = @subscription.variant
-                  tr
                     td Shipping Full Name
                     td = @subscription.shipping_full_name
                   tr
@@ -59,6 +53,20 @@
                   tr
                     td Billing Address
                     td = @subscription.billing_address
+          .row
+            h4 style="margin-left: 20px; margin-top: 20px;" Order Information
+            .col-lg-7
+              table.table
+                thead
+                  th ID
+                  th Product
+                  th Variant
+                tbody
+                  - @subscription.orders.first.order_items.each do |item|
+                    tr
+                      td = item.id
+                      td = item.name
+                      td = item.variant
 
           hr
 

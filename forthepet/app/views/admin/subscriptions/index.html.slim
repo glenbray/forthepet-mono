@@ -39,7 +39,7 @@
                   td = subscription.frequency
                   td = subscription.aasm_state
                   td
-                    = link_to 'View', admin_subscription_path(subscription)
+                    = link_to 'View', admin_subscription_path(subscription), style: 'margin-right: 5px'
                     - if subscription.active?
                       span<>
                       = link_to 'Cancel', cancel_admin_subscription_path(subscription), method: :patch,

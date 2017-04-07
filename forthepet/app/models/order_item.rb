@@ -5,6 +5,7 @@ class OrderItem < ActiveRecord::Base
   belongs_to :deal
   belongs_to :variant
 
+  delegate :name, to: :variant
   scope :pending_orders_group_by_deals, -> { joins(:deal).where(order_id: Order.pending_orders.pluck(:id)).group_by(&:deal_id) }
 
   def self.total
