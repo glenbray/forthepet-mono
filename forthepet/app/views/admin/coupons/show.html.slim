@@ -1,0 +1,21 @@
+.container
+  .row
+    div class="col-lg-12"
+      .admin-panel
+        div class="admin-title"
+          h3 Coupon Codes
+        div class="admin-body"
+          table class="table table-striped"
+            thead
+              tr
+                th Coupon ID
+                th Order ID
+                th Order Email
+                th Code
+            tbody
+              - @coupon.coupon_codes.each do |coupon_code|
+                tr
+                  td = coupon_code.id
+                  td = coupon_code.order.id if coupon_code.order
+                  td = coupon_code.order.email if coupon_code.order
+                  td = coupon_code.code

@@ -3,7 +3,7 @@
 
   ul
     - @brands.each do |brand|
-      li = link_to brand.name, url_for(params.merge(brand_id: brand.id))
+      li = link_to brand.name, url_for(brand_id: brand.id)
 
 .container
   - if @products.present?

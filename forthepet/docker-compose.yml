@@ -22,15 +22,8 @@ services:
     volumes_from:
     - pg_data
 
-  # maildev:
-  #   image: djfarrelly/maildev:0.13.3
-  #   ports:
-  #     - "1080:80"
-  #     - "1025:25"
-
   mailcatcher:
     image: tophfr/mailcatcher:latest
-    # image: schickling/mailcatcher
     ports:
       - "1080:80"
       - "1025:25"

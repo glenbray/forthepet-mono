@@ -1,2 +1,27 @@
-h1 Admin::Coupons#index
-p Find me in app/views/admin/coupons/index.html.slim
+.container
+  .row
+    div class="col-lg-12"
+      .admin-panel
+        div class="admin-title"
+          h3 Coupons
+        div class="admin-body"
+          table class="table table-striped"
+            thead
+              tr
+                th ID
+                th Title
+                th Description
+                th Amount
+                th Percent
+                th Starts_at
+                th
+            tbody
+              - @coupons.each do |coupon|
+                tr
+                  td = coupon.id
+                  td = coupon.title
+                  td = coupon.description
+                  td = coupon.amount
+                  td = coupon.percent
+                  td = coupon.starts_at
+                  td = link_to 'view', admin_coupon_path(coupon.id)

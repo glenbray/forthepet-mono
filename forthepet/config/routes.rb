@@ -96,7 +96,7 @@ Forthepet::Application.routes.draw do
       resources :option_value, path: 'values'
     end
 
-    resources :coupons, only: [:index]
+    resources :coupons, only: [:index, :show]
     resources :subscriptions do
       patch :cancel, on: :member
     end

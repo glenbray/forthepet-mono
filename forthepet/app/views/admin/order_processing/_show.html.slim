@@ -12,7 +12,11 @@ div class="admin-panel" style="margin-bottom: 30px;"
               span.input-group-btn
                 = f.submit 'Save', class: 'btn btn-info'
 
-      = link_to 'Ship Order', admin_order_processing_ship_it_path(order), class: 'btn btn-danger pull-right', style: 'padding: 12px; border: 0px; margin-top: 15px;', data: { confirm: 'Are all items ready to be shipped?' }, method: :put
+      = link_to 'Ship Order', admin_order_processing_ship_it_path(order), 
+                              class: 'btn btn-danger pull-right', 
+                              style: 'padding: 12px; border: 0px; margin-top: 15px;', 
+                              data: { confirm: 'Are all items ready to be shipped?' }, 
+                              method: :put
 
     .push-down
 
