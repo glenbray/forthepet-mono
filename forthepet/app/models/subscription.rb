@@ -62,20 +62,20 @@ class Subscription < ActiveRecord::Base
     # prevent duplicate orders
     return if orders.detect{ |o| o.created_at.to_date == Date.current }
 
-    first_order = orders.order(:created_at).first
     order = orders.new slice(*SHARED_ATTRIBUTES_WITH_ORDERS)
 
-    first_order.order_items.each do |item|
-      order.order_items.build(quantity: item.quantity,
-                              variant_id: item.variant_id,
-                              price: item.variant.price)
-    end
+    order.order_items.build(quantity: quantity,
+                            variant_id: variant_id,
+                            price: variant.price)
 
-    order.total = first_order.order_items.reduce { |x, y| x.total + y.total } + postage
+    order.total = order.order_items.first.total + order.postage
 
     sale = {}
-    sale.merge!(payment_method_nonce: 'fake-valid-nonce') if Rails.env.development?
-    sale.merge!(payment_method_token: payment_method.braintree_token) if Rails.env.production?
+    if Rails.env.production?
+      sale.merge!(payment_method_token: payment_method.braintree_token)
+    else
+      sale.merge!(payment_method_nonce: 'fake-valid-nonce')
+    end
 
     result = Braintree::Transaction.sale({
       amount: order.total,
