@@ -1,6 +1,6 @@
-.container
+.container-fluid
   .row
-    div class="col-lg-12"
+    div class="col-lg-10 col-lg-offset-1"
       .admin-panel
         div class="admin-title"
           h3 Subscriptions
@@ -15,7 +15,7 @@
           table class="table table-striped"
             thead
               th = sort_link(@q, :id, 'ID', default_order: :des)
-              th User Id
+              th Email
               th Product
               th.center Qty
               th = sort_link(@q, :start_at, 'Start date')
@@ -29,7 +29,7 @@
               - @subscriptions.each do |subscription|
                 tr
                   td = subscription.id
-                  td = subscription.user_id
+                  td = subscription.user.email
                   td = link_to subscription.variant.name, product_path(subscription.variant.product)
                   td.center = subscription.quantity
                   td = subscription.start_at.to_date
