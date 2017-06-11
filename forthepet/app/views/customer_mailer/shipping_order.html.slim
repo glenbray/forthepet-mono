@@ -7,8 +7,4 @@ html xmlns="http://www.w3.org/1999/xhtml"
   body
     p = "Hello #{@order.shipping_first_name},"
     p We are sending you this email to let you know that your order has been processed and is now on way!
-
-    - if @order.tracking_no.present?
-      p
-        | Your tracking no for this order is
-        b = " #{@order.tracking_no}"
+    p = @tracking_msg

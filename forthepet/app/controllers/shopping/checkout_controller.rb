@@ -17,7 +17,8 @@ class Shopping::CheckoutController < ApplicationController
       clear_cart_session
     when :payment
       unless checkout_form.validate(session_order.attributes)
-        redirect_to wizard_path(:details) and return
+        redirect_to wizard_path(:details)
+        return
       else
         @client_token = Braintree::ClientToken.generate
         @amount = session_cart.total

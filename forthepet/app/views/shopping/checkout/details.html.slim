@@ -129,6 +129,13 @@
           .col-sm-8
             = f.input_field :shipping_phone, id: :shipping_phone, required: false
 
+    .row style="margin-bottom: 20px"
+      div class="col-md-5 col-xs-12"
+        h2 style="margin-top: 0px" Delivery Note
+        div class="form-group checkout-form-group"
+          .col-md-offset-2.col-md-10.col-sm-12
+            = f.input :special_instructions, as: :text, input_html: { rows: 4 }
+
     .row
       = f.submit 'Continue to payment', class: 'btn btn-primary continue-btn'
 

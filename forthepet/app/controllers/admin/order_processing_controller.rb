@@ -3,7 +3,7 @@ class Admin::OrderProcessingController < Admin::AdminController
 
   respond_to :html, :js
 
-  before_filter :load_order_and_orders, only: [:index, :tracking_no]
+  before_filter :load_order_and_orders, only: [:index, :tracking_no, :courier]
 
   def index
   end
@@ -34,6 +34,18 @@ class Admin::OrderProcessingController < Admin::AdminController
           flash[:success] = "Order #{@order.id} tracking no updated"
         else
           flash[:danger] = 'Error updating tracking no'
+        end
+       }
+    end
+  end
+
+  def courier
+    respond_to do |format|
+      format.js {
+        if @order.update(courier: params[:order][:courier])
+          flash[:success] = "Order #{@order.id} courier updated"
+        else
+          flash[:danger] = 'Error updating courier'
         end
        }
     end

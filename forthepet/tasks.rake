@@ -4,8 +4,6 @@ namespace :docker do
     system("docker build -t forthepet .")
     system("docker-compose build")
     system("docker-compose run web bundle install")
-    # system("docker-compose run web npm install")
-    # system("docker-compose run web bundle exec rake assets:webpack")
     system("docker-compose run web bundle exec rake db:create db:migrate db:test:prepare")
   end
 
@@ -13,8 +11,6 @@ namespace :docker do
   task :reload do
     system("docker-compose down")
     system("docker-compose run web bundle install")
-    # system("docker-compose run web npm install")
-    # system("docker-compose run web bundle exec rake assets:webpack")
     system("docker-compose run web bundle exec rake db:create db:migrate db:test:prepare")
   end
 end

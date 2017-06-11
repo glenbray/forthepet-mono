@@ -11,7 +11,15 @@ div class="admin-panel" style="margin-bottom: 30px;"
               = f.input_field :tracking_no, placeholder: 'Save Tracking No', size: 50, class: 'form-control'
               span.input-group-btn
                 = f.submit 'Save', class: 'btn btn-info'
-
+                
+        = simple_form_for order, url: admin_order_processing_courier_path(order), remote: true, html: { class: 'form-group' } do |f|
+          .form-group
+            = f.label :courier
+            .input-group
+              = f.input_field :courier, placeholder: 'Enter courier name', size: 50, class: 'form-control'
+              span.input-group-btn
+                = f.submit 'Save', class: 'btn btn-info'
+                
       = link_to 'Ship Order', admin_order_processing_ship_it_path(order), 
                               class: 'btn btn-danger pull-right', 
                               style: 'padding: 12px; border: 0px; margin-top: 15px;', 
@@ -30,6 +38,12 @@ div class="admin-panel" style="margin-bottom: 30px;"
               tr
                 td: b Email
                 td = order.email
+              tr
+                td: b Phone
+                td = order.shipping_phone
+              tr
+                td: b Mobile
+                td = order.shipping_mobile
               tr
                 td: b Transaction No
                 td = order.transaction_no
@@ -51,6 +65,12 @@ div class="admin-panel" style="margin-bottom: 30px;"
               tr
                 td: b Discount
                 td = order.discount
+              tr
+                td: b Courier
+                td = order.courier
+              tr
+                td: b Delivery Notes
+                td = order.special_instructions
 
     table.table
       thead

@@ -69,6 +69,7 @@ Forthepet::Application.routes.draw do
 
     resources :order_processing, param: 'order_id', only: [:index, :show], path: 'order-processing'
     patch 'order-processing/:order_id/tracking_no', to: 'order_processing#tracking_no', as: 'order_processing_tracking_no'
+    patch 'order-processing/:order_id/courier', to: 'order_processing#courier', as: 'order_processing_courier'
     patch 'order-processing/:order_item_id/received', to: 'order_processing#received', as: 'order_processing_received'
     patch 'order-processing/:order_item_id/shipping', to: 'order_processing#shipping', as: 'order_processing_shipping'
     put 'order-processing/:order_id/ship-it', to: 'order_processing#ship_it', as: 'order_processing_ship_it'
