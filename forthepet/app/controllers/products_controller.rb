@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.single.find(params[:id]).decorate
-    raise ActiveRecord::RecordNotFound !@product.is_active?
+    raise ActiveRecord::RecordNotFound if !@product.is_active?
 
     @cart_item = CartItem.new(quantity: 1)
   end
